@@ -2,7 +2,7 @@
 layout: post
 title:  "내 첫 글"
 date:   2020-10-27 01:38 +0530
-categories: 꾸준할 것인가
+categories: Javascript
 ---
 
 진짜 미뤄왔던 내 웹페이지 드디어 개설했다.
