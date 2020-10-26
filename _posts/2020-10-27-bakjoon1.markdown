@@ -1,0 +1,45 @@
+---
+layout: post
+title:  "내 첫 글"
+date:   2020-10-27 02:13 +0530
+categories: python
+---
+
+bakjoon 알고리즘 풀기 1일차
+
+1. #2557
+```
+#2557
+#Hello World!를 출력하시오.
+
+print("Hello World!")
+```
+
+2. #1000
+'''
+#1000
+#두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+
+'''
+two = list(map(int, input().split()))
+print(two[0]+two[1])
+'''
+
+a, b = input().split()
+print(int(a)+int(b))
+'''
+
+3. #1001
+'''
+#1001
+#두 정수 A와 B를 입력받은 다음, A-B를 출력하는 프로그램을 작성하시오.
+
+'''
+two = list(map(int, input().split()))
+print(two[0]-two[1])
+'''
+
+a, b = input().split()
+print(int(a)-int(b))
+'''
+
