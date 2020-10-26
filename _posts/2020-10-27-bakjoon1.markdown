@@ -5,7 +5,7 @@ date:   2020-10-27 02:13 +0530
 categories: python
 ---
 
-<h1>bakjoon 알고리즘 풀기 1일차</h>
+bakjoon 알고리즘 풀기 1일차
 
 - #2557
 
