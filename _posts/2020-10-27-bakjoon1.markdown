@@ -5,9 +5,9 @@ date:   2020-10-27 02:13 +0530
 categories: python
 ---
 
-bakjoon 알고리즘 풀기 1일차
+<h1>bakjoon 알고리즘 풀기 1일차</h>
 
-1.  #2557
+- #2557
 
 ```python
 #2557
@@ -16,7 +16,9 @@ bakjoon 알고리즘 풀기 1일차
 print("Hello World!")
 ```
 
-2.  #1000
+---
+
+-  #1000
 
 ```python
 #1000
@@ -29,7 +31,9 @@ print(two[0]+two[1])
 #print(int(a)+int(b))
 ```
 
-3.  #1001
+---
+
+- #1001
 
 ```python
 #1001
@@ -43,4 +47,4 @@ print(two[0]-two[1])
 a, b = input().split()
 print(int(a)-int(b))
 ```
-
+---
