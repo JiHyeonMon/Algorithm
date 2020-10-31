@@ -1,0 +1,88 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 4"
+date:   2020-10-31 11:55 +0530
+categories: python
+---
+
+bakjoon 알고리즘 풀기 4일차
+
+오늘도 반성문을 쓸때 고민을 오조오억번. (사실 맘 먹었지만 ):)
+
+- #1924	2007년
+
+```python
+#1924
+#오늘은 2007년 1월 1일 월요일이다. 그렇다면 2007년 x월 y일은 무슨 요일일까? 이를 알아내는 프로그램을 작성하시오.
+
+def day(x):
+    return {1: 'MON', 2: 'TUE', 3: 'WED', 4: 'THU', 5:'FRI', 6:'SAT', 0:'SUN'}[x]
+
+m, d = map(int, input().split())
+
+list_m = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+if m > 1:
+    for i in range(0, m-1):
+        d += list_m[i]
+    d%=7
+else:
+    d%=7
+
+print(day(d))
+
+```
+
+1학년 C프로그래밍 수업을 들을 때 시험에 나왔던 문제 같았다. ㅎㅎㅎ 몇년만에 풀어서 가물가물했지만 달 별로 일 수를 다 합친 후 7로 나눈 나머지로 요일을 출력하는 방식으로 풀었다. 
+
+
+---
+
+- #1157	그대로 출력하기
+
+```python
+#1157
+#알파벳 대소문자로 된 단어가 주어지면, 이 단어에서 가장 많이 사용된 알파벳이 무엇인지 알아내는 프로그램을 작성하시오. 단, 대문자와 소문자를 구분하지 않는다.
+
+words = input().upper()
+unique_words = list(set(words))  # 입력받은 문자열에서 중복값을 제거
+
+cnt_list = []
+for x in unique_words :
+    cnt = words.count(x)
+    cnt_list.append(cnt)  # count 숫자를 리스트에 append
+
+if cnt_list.count(max(cnt_list)) > 1 :  # count 숫자 최대값이 중복되면
+    print('?')
+else :
+    max_index = cnt_list.index(max(cnt_list))  # count 숫자 최대값 인덱스(위치)
+    print(unique_words[max_index])
+    
+```
+
+우선 모든 문자를 대문자로 변환하여 같은 문자 찾는 방법으로 구함.
+
+```python
+a = input()
+a = a.upper()
+cnt = {} #dictionary로 구현
+
+for i in range(0, len(a)):
+    if a[i] not in cnt:
+        cnt[a[i]] = 1
+    else:
+        cnt[a[i]]+=1
+
+cnt_list = list(cnt.values())
+cnt_list.sort()
+if cnt_list[-1]==cnt_list[-2]:
+    print("?")
+else:
+    b=[key for key, value in cnt.items() if value == max(cnt.values())] #value로 key찾기위해 for문 돌림 
+    print(b[0]) #위에서 바로 출력하니 list형식으로 나와서 따로 한번 더 처리 후 출력 
+```
+
+난 밑의 코드 대로 생각해서 짰는데, 테스트 케이스는 모두 만족 시켰는데 런타임 오류가 났다.
+찾아보니 더 짧게 코드를 짤 수 있는 방법이 많이 있었다. 파이썬 공부 더 열심히 해야겠다.
+
+---
