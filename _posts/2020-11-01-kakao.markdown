@@ -60,6 +60,10 @@ def solution(arr):
 
 - #2019 카카오 개발자 겨울 인턴십 - 크레인 인형뽑기 게임 
 
+
+<img src="assets/2019_kakao_winte_1.png">
+
+
 ```python
 def solution(board, moves):
     blanket=[]
