@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "baekjoon 알고리즘 7"
+title:  "Baekjoon 알고리즘 7"
 date:   2020-11-3 00:57 +0530
 categories: python
 ---
