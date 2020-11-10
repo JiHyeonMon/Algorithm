@@ -2,7 +2,7 @@
 layout: post
 title:  "Baekjoon 알고리즘 2"
 date:   2020-10-28 21:55 +0530
-categories: python
+categories: python, 7287, 2440, 10952, 2558, 2441, 11654, 11021, 11022, 15552, 10951, 8958, 1152, 10818, 10809, 2750
 ---
 
 bakjoon 알고리즘 풀기 2일차

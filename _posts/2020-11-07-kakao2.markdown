@@ -2,7 +2,7 @@
 layout: post
 title:  "2018 KAKAO BLIND RECRUITMENT - 다트게임"
 date:   2020-11-7 23:55 +0530
-categories: python
+categories: python, kakao
 ---
 
 알고리즘 풀기 10일차

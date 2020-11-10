@@ -2,7 +2,7 @@
 layout: post
 title:  "Baekjoon 알고리즘 3"
 date:   2020-10-30 03:01 +0530
-categories: python
+categories: python, 1924, 11718, 2562, 2673, 26751157, 11721, 2098, 10872, 11719, 2920, 14681, 5622
 ---
 
 bakjoon 알고리즘 풀기 3일차
@@ -253,7 +253,7 @@ else:
 
 
 ---
-
+292014681
 - #14681	사분면 고르기
 
 ```python

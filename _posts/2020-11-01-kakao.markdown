@@ -2,7 +2,7 @@
 layout: post
 title:  "2019 KAKAO 개발자 겨울 인턴십 문제"
 date:   2020-11-1 11:51 +0530
-categories: python
+categories: python, kakao
 ---
 
 알고리즘 풀기 5일차

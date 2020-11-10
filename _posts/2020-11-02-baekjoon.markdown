@@ -2,7 +2,7 @@
 layout: post
 title:  "Baekjoon 알고리즘 5"
 date:   2020-11-3 00:57 +0530
-categories: python
+categories: python, 11720, 2941, 1316
 ---
 
 알고리즘 풀기 6-7일차
