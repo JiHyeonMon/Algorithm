@@ -1,0 +1,73 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 17"
+date:   2020-11-16 06:51 +0530
+categories: python
+---
+
+알고리즘 풀기 17일차
+
+
+
+:)
+
+
+- #1018     체스판 다시 칠하기
+
+```python
+#1018
+#체스판 다시 칠하기
+
+def isChess(c):
+     cnt = 0
+     first=str(c[0][0])
+     print("start",c[0][0])
+     for i in range(0, 8, 2):
+          for j in range(0, 8, 2):
+               if c[i][j]!=first:
+                    cnt+=1
+                    print("1", i, j, cnt)
+
+     print(cnt)
+     for i in range(1, 9, 2):
+          for j in range(1, 9, 2):
+               if c[i][j]==first:
+                    cnt+=1
+                    print("2", i, j, cnt)
+
+     print(cnt)
+     for i in c:
+          print(i)
+     print("done", cnt)
+
+     return cnt
+
+h, w = map(int, input().split())
+chess=[]
+check=[]
+answer=[]
+n = h+w-16
+for i in range(h):
+     chess.append(input())
+
+for i in range(h-7):
+     check=[]
+     for j in range(w-7):
+          check=[]
+          for k in range(8):
+               check.append(chess[i:i+8][k][j:j+8])
+          answer.append(isChess(check))
+
+print(min(answer))
+
+```
+
+ㅎㅎ정답 코드 아니다,,,아직 풀고 있다,, 굉장히 쉬운듯 보였는데 (사실 이론은 간단 명료하다) 자꾸 답이 이상하게 나온다.
+
+그 오류를 찾느라 지금,,,사실 또 늦게 시작한 이유도 있지만, 아직 미제로 남아있다.
+
+그래서 솔루션들을 찾아봤는데 다 비슷하게 풀었다. 아무래도 bruteforce 문제다 보니 모든 경우 돌며 확인해야하는 것은 맞지만,
+
+왜? 안되짘ㅋㅋ큐ㅠㅠㅠㅠㅠ 좀 더 효율적인 방법으로 바꾸고 바꾸고 생각중인데 아무래도 지금 막힌 이 상황을 해결해야 속이 시원할 것 같다. 
+
+,,,
