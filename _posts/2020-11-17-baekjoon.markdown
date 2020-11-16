@@ -1,0 +1,175 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 18"
+date:   2020-11-17 02:20 +0530
+categories: python
+---
+
+알고리즘 풀기 18일차
+
+
+
+:)
+
+
+- #1018     체스판 다시 칠하기
+
+```python
+#1018
+#체스판 다시 칠하기
+
+whiteBoard = [
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W']
+    ]
+
+blackBoard = [
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B']
+    ]
+
+    
+def isChess(c):
+     cnt = 0
+     if c[0][0]=="W":
+          for i in range(8):
+               for j in range(8):
+                    if c[i][j]!= whiteBoard[i][j]:
+                         cnt+=1
+     else:
+          for i in range(8):
+               for j in range(8):
+                    if c[i][j]!= blackBoard[i][j]:
+                         cnt+=1
+     return cnt
+
+h, w = map(int, input().split())
+chess=[]
+check=[]
+answer=[]
+n = h+w-16
+for i in range(h):
+     chess.append(input())
+
+for i in range(h-7):
+     check=[]
+     for j in range(w-7):
+          check=[]
+          for k in range(8):
+               check.append(chess[i:i+8][k][j:j+8])
+          answer.append(isChess(check))
+
+print(min(answer))
+
+
+```
+
+ㅎㅎㅎ어제의 것을 디벨롭 해보려 다시 생각했다.
+
+어제의 풀이대로하면 절반 정도 테스트를 거치지 않는 문제가 있었다. 
+
+새로운 접근으로 나올 수 있는 경우는 수는 두가지니 미리 체스판 두개를 만들어놓고 각 자리 수가 같은지 비교하는 방법을 생각해냈다.
+
+그 결과 테스트 케이스는 만족하는데, 답은 틀렸다...
+
+bruteforce 공격은 모든 경우,,다 만족시켜야하니,,,어떤 경우가 빠진거지ㅠㅠㅠㅠㅠ에휴
+
+,,,,내일의 내가 더 디벨롭 할테야,,,,
+
+사실 궁금해서 비슷한 풀이 위주로 다 뒤져봤다.
+
+도대체 난 어떤 케이스를 빼먹은건가,,,
+
+```python
+def checkBoard(Field, Board, dx, dy):
+    count = 0
+    for i in range(8):
+        for j in range(8):
+            if Field[dx+i][dy+j] != Board[i][j]:
+                count += 1
+    return count
+
+def solution():
+    whiteBoard = [
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W']
+    ]
+
+    blackBoard = [
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'],
+        ['B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'],
+        ['W', 'B', 'W', 'B', 'W', 'B', 'W', 'B']
+    ]
+
+    M, N= map(int, input().split(' '))
+    Field = [[0] * N for i in range(M)]
+
+    for i in range(M):
+        Board = input()
+        for j in range(N):
+            Field[i][j] = Board[j]
+
+
+    result = 1048576
+
+    for i in range(0, M-7):
+        for j in range(0, N-7):
+            w = checkBoard(Field, whiteBoard, i, j)
+            b = checkBoard(Field, blackBoard, i, j)
+
+            result = min(result, w, b)
+    print(result)
+
+solution()
+
+```
+
+
+---
+
+- #1436     영화감독 숌
+
+```python
+#1436
+#영화감독 숌
+
+n = int(input())
+
+name = 666
+cnt=0
+while(True):
+    if "666" in str(name) : 
+        cnt+=1
+        if cnt == n : print(name) ; break
+    
+    name+=1
+
+```
+
+코드가 짧아서 아주 행복하다. 사실 아주 간단하게 보고 막 도전했다가 한번 틀렸다.
+
+수가 증가하며 666이 연속되는 수가 나올때마다 카운트!
+
