@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "프로그래머스 코딩테스트 문제"
+title:  "프로그래머스 코딩테스트 문제1"
 date:   2020-11-22 23:52 +0530
 categories: python
 ---
