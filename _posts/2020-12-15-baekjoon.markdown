@@ -20,9 +20,13 @@ categories: python
 input: 3
 
  *
+
  **
+ 
  ***
+ 
  **
+ 
  *
 
 
