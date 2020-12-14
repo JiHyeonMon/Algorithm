@@ -17,11 +17,13 @@ categories: python
 - #2523     별찍기 - 13
 
 
-input: 3
-
 ```python
 
 '''
+
+input: 3
+
+
 *
 **
 ***
