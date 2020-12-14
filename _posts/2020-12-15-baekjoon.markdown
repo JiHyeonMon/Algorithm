@@ -19,15 +19,15 @@ categories: python
 
 input: 3
 
- *
+```python
 
- * *
+*
+**
+***
+**
+*
 
- * * * 
-
- * *
-
- *
+```
 
 
 ```python
