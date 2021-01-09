@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Baekjoon 알고리즘 38"
-date:   2020-01-010 09:11 +0530
+date:   2020-01-10 00:04 +0530
 categories: python
 ---
 
