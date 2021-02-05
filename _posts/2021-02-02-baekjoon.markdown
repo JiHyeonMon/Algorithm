@@ -33,10 +33,10 @@ print(word)
 
 ```
 
+---
 
 ```python
 #ing
-
 word = []
 alpha = {}
 k = 9
@@ -99,3 +99,105 @@ ACDEB
 위에 사람들이 푼 방법이 아무리 생각해도 최적인 것 같다. (최소한의 반복문)
 
 내일 다시 또 수정을 거쳐봐야겠다.
+
+---
+
+```python
+#ing
+word = []
+alpha = {}
+k = 9
+answer =[]
+for i in range(int(input())):
+     word.append(list(input()))
+
+word.sort(key=len, reverse=True)
+word2alpha=word
+m = len(word[0])
+
+i=0
+while True:
+     if m<1:
+          break
+     
+     if i == len(word):
+          i=0
+          m-=1
+          
+     if len(word2alpha[i])>=m:
+          tmp = word2alpha[i].pop(0)
+          if tmp not in alpha:
+               alpha[tmp] = k
+               k-=1
+          i+=1
+     else:
+          i+=1
+          continue
+               
+for i in range(len(word)):
+     tmp=0
+     for j in range(len(word[i])):
+          tmp += alpha[word[i][j]] * 10**(len(word[i])-j-1)
+     answer.append(tmp)
+     
+print(alpha)
+print(sum(answer))
+
+```
+
+어떻게든 처음 생각 그대로 구현해보려 했는데 포기...ㅂㄷㅂㄷㅂㄷㅂㄷ
+그래서 사람들 풀이 코드 보단 접근법을 보고 원래 쓰려던 딕셔너리를 써서 그대로 해보기로 하고 수정
+
+
+```python
+
+for i in range(len(word)):
+     for j in range(len(word[i])):
+          if word[i][j] not in alpha:
+               alpha[word[i][j]] = 10**(len(word[i])-j-1)
+          else:
+               alpha[word[i][j]] += 10**(len(word[i])-j-1)
+
+'''
+GCF
+ACDEB
+{'A': 10000, 'C': 1010, 'D': 100, 'E': 10, 'B': 1, 'G': 100, 'F': 1}
+'''
+```
+
+딕셔너리에 문자를 key로 해당 자리 값을 value에 넣어준다. c의 경우는 1000의 자리에서 한번, 10의 자리에서 한번 나오니 다 더해준다.
+
+이제 결과적으로 해당 값을 value 기준으로 정렬하고 9부터 작아지며 곱해준 뒤, 더해면 정답이 나올 것이다. (합을 구하는 것이니)
+
+```python
+#done
+
+import operator
+word = []
+alpha = {}
+k = 9
+
+for i in range(int(input())):
+     word.append(list(input()))
+
+word.sort(key=len, reverse=True)
+
+for i in range(len(word)):
+     for j in range(len(word[i])):
+          if word[i][j] not in alpha:
+               alpha[word[i][j]] = 10**(len(word[i])-j-1)
+          else:
+               alpha[word[i][j]] += 10**(len(word[i])-j-1)
+
+num = list(alpha.values())
+num.sort(reverse=True)
+
+for i in range(len(num)):
+     num[i]*=k
+     k-=1
+     
+print(sum(num))
+
+```
+
+최종본이다.....
