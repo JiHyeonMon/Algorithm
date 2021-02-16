@@ -220,3 +220,43 @@ while True:
 
 분명 빠뜨린 무언가가 있는데,,,,못찾겠다. 더 생각해보고 풀이 찾아보던지 해야겠다.
 
+
+---
+
+```python
+#정답
+while True:
+     line = input()
+     if line == '.':
+          break
+     bracket = []
+     TF = True
+     for i in range(len(line)):
+          if line[i]=='(' or line[i]=='[':
+               bracket.append(line[i])
+               
+          if line[i]==')':
+               if not bracket or bracket[-1]=='[':
+                    TF = False
+                    break
+               else:
+                    bracket.pop()
+          if line[i]==']':
+               if not bracket or bracket[-1]=='(':
+                    TF = False
+                    break
+               else:
+                    bracket.pop()
+
+     if TF and not bracket:
+          print("yes")
+     else:
+          print("no")
+
+```
+
+결국 풀이를 찾아봤는데 진짜,,,똑같다. 첫번째 풀이와.
+
+조건에서 ) 닫는 괄호 나올 시 앞에꺼가 [ 열린 대괄호인지 체크를 안해줬다.
+
+묵은 체증이 내려가는 기분,
