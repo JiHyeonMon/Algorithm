@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 61"
+date:   2021-02-24 23:59 +0530
+categories: python
+---
+
+알고리즘 풀기 75일차
+
+
+:)
+
+- #2981        검문
+
+트럭을 타고 이동하던 상근이는 경찰의 검문을 받게 되었다. 경찰은 상근이가 운반하던 화물을 하나하나 모두 확인할 것이기 때문에, 검문하는데 엄청나게 오랜 시간이 걸린다.
+
+상근이는 시간을 때우기 위해서 수학 게임을 하기로 했다.
+
+먼저 근처에 보이는 숫자 N개를 종이에 적는다. 그 다음, 종이에 적은 수를 M으로 나누었을 때, 나머지가 모두 같게 되는 M을 모두 찾으려고 한다. M은 1보다 커야 한다.
+
+N개의 수가 주어졌을 때, 가능한 M을 모두 찾는 프로그램을 작성하시오.
+
+# <풀이>
+
+```python
+
+import math
+
+N=int(input())
+num_list=[]
+
+#A-B를 통해 m구하기
+while N>0:
+     N-=1
+     num_list.append(int(input()))
+ 
+if num_list[0]<num_list[1]:
+     m=num_list[1]-num_list[0]
+else:
+     m=num_list[0]-num_list[1]
+    
+#약수구하기
+m_candidate=[m]
+for i in range(2,int(math.sqrt(m))+1):
+     if m%i==0:
+          m_candidate.append(i)
+          m_candidate.append(m//i)
+ 
+#M구하기
+M=[]
+for i in range(len(m_candidate)):
+     r=num_list[0]%m_candidate[i]
+     #나머지 구하기
+     for j in range(1,len(num_list)):
+        #나머지 같은지 확인
+          if r!=num_list[j]%m_candidate[i]:
+               #나머지가 다르면 패스
+               break
+          if j==len(num_list)-1:
+               #모든 나머지가 같으면 m추가
+               M.append(m_candidate[i])
+ 
+M.sort()
+
+for k in M:
+     print(k,end=' ')
+
+```
+
+꽤나 전부터 풀던 문제인데, 자꾸 틀려서 결국 오늘 풀이를 찾아봤다.
+
+처음 딱 든 생각은 당연히 약수를 하나 구하고 비교하고 이런 방식이었다. 당연히 시간초과.
+
+참고한 풀이로는 
+
+A=a*M+r
+B=b*M+r
+
+로 표현시, 큰 수에서 작은 수를 빼주면 나머지가 제거되는것을 알 수 있고 A-B=(a-b)*M 두 수를 빼서 나오는 숫자의 약수에 M이 포함돼있는 것을 확인할 수 있다.
+
+풀이 읽고 이해하니 끄덕끄덕- 납득- 
+
+알고리즘 풀면서 시간초과 에러를 만났을 때 제일 어려운 거 같다. 코드는 돌아가는데 어떻게 더 효율적으로 짤 것인지 생각하는게 쉽지않다..ㅠ
