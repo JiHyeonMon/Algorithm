@@ -1,0 +1,71 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 66"
+date:   2021-03-08 23:59 +0530
+categories: python
+---
+
+알고리즘 풀기 82일차
+
+:)
+
+- #10845     큐
+
+# <문제 설명>
+
+정수를 저장하는 큐를 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
+
+명령은 총 여섯 가지이다.
+
+push X: 정수 X를 큐에 넣는 연산이다.
+pop: 큐에서 가장 앞에 있는 정수를 빼고, 그 수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+size: 큐에 들어있는 정수의 개수를 출력한다.
+empty: 큐가 비어있으면 1, 아니면 0을 출력한다.
+front: 큐의 가장 앞에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+back: 큐의 가장 뒤에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+
+# <제한사항>
+
+시간 제한:  0.5 초 (추가 시간 없음)	
+메모리 제한:  256 MB
+
+
+# <풀이>
+
+```python
+
+from collections import deque
+import sys
+queue = deque()
+for i in range(int(sys.stdin.readline())):
+     tmp = sys.stdin.readline()
+     if tmp[0:4] == 'push':
+          queue.append(int(tmp[5:]))
+     if tmp[0:3] == 'pop':
+          if not queue:
+               print(-1)
+          else:
+               print(queue.popleft())
+     if tmp[0] == 's':
+          print(len(queue))
+     if tmp[0] == 'e':
+          if not queue:
+               print(1)
+          else:
+               print(0)
+     if tmp[0] == 'f':
+          if not queue:
+               print(-1)
+          else:
+               print(queue[0])
+     if tmp[0] == 'b':
+          if not queue:
+               print(-1)
+          else:
+               print(queue[-1])
+
+```
+
+파이썬이 제공하는 큐의 기능인 deque를 이용해서 풀어보았다.
+
+push와 pop을 빼고는 앞자리가 다 달라서 비교를 빨리 하기 위해 앞글자로 어떤 명령인지 판단하게 했다.
