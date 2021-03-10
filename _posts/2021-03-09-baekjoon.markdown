@@ -56,3 +56,24 @@ print("<%s>" %(", ".join(answer)))
 for 문도 짜다가 while로 돌아왔는데,,,,,,,,,결국 시간초과
 
 K만큼 후의 수를 출력 위해 index를 둬서 해당 index를 pop하는 것을 반복하는 방식으로 짰다.
+
+# <다시 푼 것>
+
+```python
+
+from collections import deque
+N, K = map(int, input().split())
+n = deque([i+1 for i in range(N)])
+answer = []
+index = 0
+while len(n)>0:
+     while index < K-1:
+          n.append(n.popleft())
+          index+=1
+     answer.append(str(n[0]))
+     n.popleft()
+     index = 0
+
+print("<%s>" %(", ".join(answer)))
+
+```
