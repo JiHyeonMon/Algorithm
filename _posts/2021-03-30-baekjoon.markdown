@@ -1,0 +1,106 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 70"
+date:   2021-03-30 23:59 +0530
+categories: python
+---
+
+알고리즘 풀기 92일차
+
+:)
+
+- # 14891
+- # 톱니바퀴
+
+# < 문제 >
+
+톱니바퀴의 초기 상태와 톱니바퀴를 회전시킨 방법이 주어졌을 때, 최종 톱니바퀴의 상태를 구하는 프로그램을 작성하시오.
+
+# < 입력 >
+
+첫째 줄에 1번 톱니바퀴의 상태, 둘째 줄에 2번 톱니바퀴의 상태, 셋째 줄에 3번 톱니바퀴의 상태, 넷째 줄에 4번 톱니바퀴의 상태가 주어진다. 상태는 8개의 정수로 이루어져 있고, 12시방향부터 시계방향 순서대로 주어진다. N극은 0, S극은 1로 나타나있다.
+
+다섯째 줄에는 회전 횟수 K(1 ≤ K ≤ 100)가 주어진다. 다음 K개 줄에는 회전시킨 방법이 순서대로 주어진다. 각 방법은 두 개의 정수로 이루어져 있고, 첫 번째 정수는 회전시킨 톱니바퀴의 번호, 두 번째 정수는 방향이다. 방향이 1인 경우는 시계 방향이고, -1인 경우는 반시계 방향이다.
+
+# < 출력 >
+
+총 K번 회전시킨 이후에 네 톱니바퀴의 점수의 합을 출력한다. 점수란 다음과 같이 계산한다.
+
+1번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 1점
+2번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 2점
+3번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 4점
+4번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 8점
+
+# < 제한사항 >
+
+시간 제한 : 2초
+
+메모리 제한 : 512MB
+
+# < 풀이 >
+
+```python
+#오답
+import collections
+import sys
+
+def check_right(which, direction):
+     if which == 4 or num[which-1][2] == num[which][6]:
+          return 
+     
+     if num[which-1][2] != num[which][6]:
+          check_right(which+1, -direction)
+          num[which].rotate(direction)
+
+def check_left(which, direction):
+     if which == 1 or num[which+1][6] == num[which][2]:
+          return 
+     
+     if num[which+1][-2] != num[which][2]:
+          check_left(which-1, -direction)
+          num[which].rotate(direction)
+
+num = []
+answer=0
+for i in range(4):
+     num.append(collections.deque(sys.stdin.readline().strip()))
+
+for i in range(int(sys.stdin.readline())):
+     n, direction = map(int, sys.stdin.readline().split())
+     n-=1
+     check_right(n+1, -direction)
+     check_left(n-1, -direction)
+     num[n].rotate(direction)
+
+for i in range(4):
+     answer += 2**i * int(num[i][0])
+     
+print(answer)
+
+```
+
+우선 네 줄 deque로 받는다. 
+
+입력받은 만큼 톱니바퀴를 돌리는데 지정된 톱니바퀴 근처 수부터 오른쪽 왼쪽 검사를 한다.
+
+해당 검사는 왼쪽 오른쪽 함수를 만들었으며 오른쪽 검사 -> 그 오른쪽 검사 --> .. 이렇게 재귀로 검사한다. (하나에 영향가면 또 그 옆으로 퍼져나가니)
+
+그렇게 주변 돌리고 해당 톱니도 돌린다.
+
+정답은 큐의 0번째 수를 확인해서 2의 제곱수로 더해준다.
+
+
+
+
+아직 다 풀지 못했다. 사실 어느정도 다 짰는데 테스트케이스 4개 중 2개가 자꾸 틀린다. (자꾸 하나 값에서 톱니바퀴가 도는데,,,,원인 파악 중)
+
+회사에서 오늘 좀 여유로워서 몰래 문제 풀다가 아직까지 붙잡고 있는 문제.
+
+풀만할 줄 알았으나 생각보다 생각할게 많았던 문제. 
+
+아직 정답 돌려보지도 않아서 시간 초과가 날지 안날지 모르겠지만 일반 리스트로 pop, append 로 쓰자니 꽤나 시간복잡도가 높았어서 deque를 썼다. 
+
+더욱이나 deque는 rotatie기능을 제공한다! 1이면 시계방향 회전, -1이면 반시계 회전 가능.
+
+
+
