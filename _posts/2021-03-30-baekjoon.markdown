@@ -103,4 +103,48 @@ print(answer)
 더욱이나 deque는 rotatie기능을 제공한다! 1이면 시계방향 회전, -1이면 반시계 회전 가능.
 
 
+---
 
+```python
+#정답
+import collections
+import sys
+
+def check_right(which, direction):
+    if which > 3 or num[which-1][2] == num[which][6]:
+        return
+
+    if num[which-1][2] != num[which][6]:
+        check_right(which+1, -direction)
+        num[which].rotate(direction)
+
+def check_left(which, direction):
+    if which < 0 or num[which+1][6] == num[which][2]:
+        return
+
+    if num[which+1][6] != num[which][2]:
+        check_left(which-1, -direction)
+        num[which].rotate(direction)
+
+num = []
+answer = 0
+for i in range(4):
+    num.append(collections.deque(sys.stdin.readline().strip()))
+
+for i in range(int(sys.stdin.readline())):
+    n, direction = map(int, sys.stdin.readline().split())
+    n-=1
+    check_right(n+1, -direction)
+    check_left(n-1, -direction)
+    num[n].rotate(direction)
+
+for i in range(4):
+    answer+= 2**i * int(num[i][0])
+
+print(answer)
+
+```
+
+check_right, check_left에서 멈추는 조건이 맞지 않아서 계속 오답이 났던 것!
+
+입력받은 n을 배열 인덱스에 맞게 1을 빼주다 보니 멈추는 조건도 배열 인덱스 끝인 3, 0을 벗어나는 경우로 수정해주니 잘 동작하는 것을 확인하였다. :)
