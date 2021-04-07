@@ -74,3 +74,30 @@ m   n   puddles   return
 
 사실,,,아직 푸는 중임....
 
+<미완성>
+
+
+```python
+
+def solution(m, n, puddles):
+    d = [[0 for i in range(m+1)] for i in range(n+1)]
+    d[1][1] = 1
+    for i in range(1, n+1):
+        for j in range(1, m+1):
+            if i == 1 and j == 1:
+                continue
+                
+            if [j, i] in puddles:
+                d[i][j] = 0
+                
+            else:
+                d[i][j] = (d[i-1][j]+d[i][j-1]) % (1000000007)
+
+    return d[n][m]
+
+```
+
+계속 틀렸다 떴는데 장애물 확인하는 과정에서 i, j 순서 바꿔서 함. 가로로 가는게 j 인데 자연스레 i, j로 적어서 찾느라 살짝 헤맸다. 
+
+> if [j, i] in puddles:
+
