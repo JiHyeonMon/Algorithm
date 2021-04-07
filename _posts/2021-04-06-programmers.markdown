@@ -67,11 +67,6 @@ n = 3
 puddles = [[2,2]]
 solution(m, n, puddles)
 
-'''
-m   n   puddles   return
-4   3   [[2, 2]]
-'''
-
 ```
 
 사실,,,아직 푸는 중임....
@@ -99,6 +94,11 @@ def solution(m, n, puddles):
                 d[i][j] = (d[i-1][j]+d[i][j-1]) % (1000000007)
 
     return d[n][m]
+
+'''
+m   n   puddles   return
+4   3   [[2, 2]]
+'''
 
 ```
 
