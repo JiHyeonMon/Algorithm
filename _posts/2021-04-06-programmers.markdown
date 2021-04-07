@@ -6,6 +6,7 @@ categories: python
 ---
 
 알고리즘 풀기 95일차
+
 알고리즘 풀기 96일차
 
 :)
@@ -76,6 +77,8 @@ m   n   puddles   return
 사실,,,아직 푸는 중임....
 
 <미완성>
+
+---
 
 
 ```python
