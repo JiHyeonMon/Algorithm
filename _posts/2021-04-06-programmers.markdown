@@ -78,7 +78,8 @@ m   n   puddles   return
 
 <미완성>
 
----
+
+# < 풀이 2 >
 
 
 ```python
@@ -100,6 +101,7 @@ def solution(m, n, puddles):
     return d[n][m]
 
 ```
+
 
 계속 틀렸다 떴는데 장애물 확인하는 과정에서 i, j 순서 바꿔서 함. 가로로 가는게 j 인데 자연스레 i, j로 적어서 찾느라 살짝 헤맸다. 
 
