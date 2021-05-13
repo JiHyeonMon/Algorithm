@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Baekjoon 알고리즘 71"
+title: "[백준] 계단 오르기"
 date: 2021-04-08 23:59 +0530
-categories: python
+categories: 백준
 ---
 
 알고리즘 풀기 97일차

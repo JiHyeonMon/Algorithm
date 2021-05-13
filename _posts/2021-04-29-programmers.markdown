@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "프로그래머스 코딩테스트"
+title: "[프로그래머스] 뉴스 클러스터링"
 date: 2021-04-29 23:59 +0530
-categories: python
+categories: 프로그래머스, KAKAO
 ---
 
 알고리즘 풀기 110일차

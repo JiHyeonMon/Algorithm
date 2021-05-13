@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "프로그래머스 코딩테스트"
+title: "[프로그래머스] 오픈채팅방"
 date: 2021-04-21 23:59 +0530
-categories: python
+categories: 프로그래머스, KAKAO
 ---
 
 알고리즘 풀기 104일차

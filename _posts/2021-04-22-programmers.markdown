@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "프로그래머스 코딩테스트"
+title: "[프로그래머스] 최댓값과 최솟값, 최솟값 만들기"
 date: 2021-04-22 23:59 +0530
-categories: python
+categories: 프로그래머스
 ---
 
 알고리즘 풀기 105일차

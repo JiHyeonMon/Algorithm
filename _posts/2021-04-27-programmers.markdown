@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "프로그래머스 코딩테스트"
+title: "[프로그래머스] SQL"
 date: 2021-04-27 23:59 +0530
-categories: python
+categories: 프로그래머스, SQL
 ---
 
 알고리즘 풀기 108일차

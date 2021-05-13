@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "프로그래머스 코딩테스트"
+title: "[프로그래머스] 위장"
 date: 2021-04-05 23:59 +0530
-categories: python
+categories: 프로그래머스
 ---
 
 알고리즘 풀기 94일차

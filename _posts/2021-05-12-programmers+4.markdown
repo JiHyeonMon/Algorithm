@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "프로그래머스 코딩테스트"
+title: "[프로그래머스] 소수 만들기"
 date: 2021-05-12 23:33 +0530
-categories: 소수만들기
+categories: 프로그래머스
 ---
 
 알고리즘 풀기 116일차
