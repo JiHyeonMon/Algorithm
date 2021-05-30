@@ -2,7 +2,7 @@
 layout: post
 title: "[프로그래머스] 셔틀 버스"
 date: 2021-04-30 23:59 +0530
-categories: 프로그래머스, KAKAO
+categories: 프로그래머스 KAKAO
 ---
 
 알고리즘 풀기 111일차

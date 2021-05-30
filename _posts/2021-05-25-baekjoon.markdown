@@ -2,7 +2,7 @@
 layout: post
 title: "[백준] 계단오르기"
 date: 2021-05-25 23:33 +0530
-categories: 백준, 2579, 동적계획법
+categories: 백준 2579 동적계획법
 ---
 
 알고리즘 풀기 221일차

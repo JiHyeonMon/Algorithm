@@ -2,7 +2,7 @@
 layout: post
 title: "[프로그래머스] 전화번호 목록"
 date: 2021-05-13 23:33 +0530
-categories: 프로그래머스, 해시
+categories: 프로그래머스 해시
 ---
 
 알고리즘 풀기 117일차

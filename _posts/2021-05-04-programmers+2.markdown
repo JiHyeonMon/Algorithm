@@ -2,7 +2,7 @@
 layout: post
 title: "[프로그래머스] 프렌즈 4블록"
 date: 2021-05-04 23:59 +0530
-categories: 프로그래머스, KAKAO
+categories: 프로그래머스 KAKAO
 ---
 
 알고리즘 풀기 113일차
