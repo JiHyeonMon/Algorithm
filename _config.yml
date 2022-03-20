@@ -1,61 +1,76 @@
-title: HapBee
-author: JiHyeonMon
-email: kjhk8806@gmail.com
-description: > # this means to ignore newlines until "show_exerpts:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-show_excerpts: true # set to true to show excerpts on the homepage
+# (string) Title of your wiki
+title: B-algorighm-wiki
+demo_ver: 1.0.14
+remote_theme: Drassil/git-wiki-theme@master
+description: B Algorighm documentation
+show_downloads: true
+show_wiki_pages: true
+show_wiki_pages_limit: 10
+paginate: 5
+paginate_path: "assets/blog/page:num"
+blog_feature: true
+show_wiki_posts: true
+show_wiki_posts_limit: 5
+logo_url: assets/images/1200px-Wikipedia-logo-v2.svg_.png
+google_analytics:
+git_branch: gh-pages
+use_github_wiki: false
+use_prose_io: true
+service: github
+search_engine : "js"
+google_cse_token: 007197903287787072094:8rbvkeqo6qw
+wiki_folder : "wiki"
+permalink: /blog/posts/:year/:month/:day/:title:output_ext
+site_root: 
 
-# Minima date format
-# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
-sass:
-  sass_dir: _sass
-plainwhite:
-  name: 열시미시미
-  tagline: ㄱㅐ발자 꿈나무
-  date_format: "%b %-d, %Y"
-  sitemap: true # set to true to generate sitemap.xml content
-  search: true # set to true to enable searchbar
-  dark_mode: true # set to true to add dark mode toggle
-  portfolio_image: "assets/buzz.png" # the path from the base directory of the site to the image to display (no / at the start)
-  html_lang: "en" # set the lang attribute of the <html> tag for the pages. See here for a list of codes: https://www.w3schools.com/tags/ref_country_codes.asp
-  condensed_mobile:
-    #- home
-    - page
-    - post
-  # generate social links in footer
-  social_links:
-    github:   https://github.com/JiHyeonMon
-    instagram: _hapbee_
-    twitter: samarsault
+#
+# Jekyll
+#
 
-    #rss: rss
-    #dribbble: jekyll
-    #flickr:   jekyll
-    
-    #pinterest: jekyll
-    #youtube: jekyll
-    #facebook: jekyll
-    #soundcloud: jekyll
-    #telegram: jekyll
-    #gitlab: jekyll
-
-    # Mastodon instances
-    # mastodon:
-    # - username: jekyll
-    #   instance: example.com
-    # - username: jekyll2
-    #   instance: example.com
-
-# If you want to link only specific pages in your header, uncomment
-# this and add the path to the pages in order as they should show up
-#header_pages:
-# - about.md
-
-# Build settings
-theme: plainwhite
+defaults:
+ - 
+    scope:
+      path: "wiki"
+    values:
+      permalink: /:basename
+ -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "git-wiki-default"
+ -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "git-wiki-default"
+ -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "git-wiki-post"
+ -
+    scope:
+      path: assets/blog
+    values:
+      layout: "git-wiki-blog"
 
 plugins:
-  - jekyll-seo-tag
-#  - jekyll-feed
+ - jekyll-feed
+ - jekyll-redirect-from
+ - jekyll-seo-tag
+ - jekyll-sitemap
+ - jekyll-avatar
+ - jemoji
+ - jekyll-mentions
+  
+#
+# INCLUDING HOOKS
+# They are optional, change them only if you need
+# Check wiki documentation to learn how they work
+#
+
+inc_after_content: "drassil/comments.html"
+inc_after_head : "drassil/head.html"
+inc_before_page_list : "drassil/sidebar.html"
