@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: "B's Algorighm Blog"
+title: "Algorighm"
 email: buzzoverflow@kakao.com
 name: Hapbee
 description: >- # this means to ignore newlines until "baseurl:"
@@ -70,7 +70,6 @@ plugins:
   - jekyll-archives
   - jekyll-seo-tag
 
-<<<<<<< HEAD
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
@@ -82,10 +81,7 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-=======
 inc_after_content: "drassil/comments.html"
 inc_after_head : "drassil/head.html"
 inc_before_page_list : "drassil/sidebar.html"
 
-theme: jekyll-theme-minimal
->>>>>>> cf1340cae381fa6837ba9999ddaf701d6b7c59cb

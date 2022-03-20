@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 55 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 55" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 69일차" />
+<meta property="og:description" content="알고리즘 풀기 69일차" />
+<link rel="canonical" href="http://localhost:4000/2021/02/12/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2021/02/12/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-12T22:44:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 55" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-12T22:44:00+09:00","datePublished":"2021-02-12T22:44:00+09:00","description":"알고리즘 풀기 69일차","headline":"Baekjoon 알고리즘 55","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/12/baekjoon"},"url":"http://localhost:4000/2021/02/12/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 55</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 69일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>#10828     스택</li>
+</ul>
+
+<p>정수를 저장하는 스택을 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.</p>
+
+<p>명령은 총 다섯 가지이다.</p>
+
+<p>push X: 정수 X를 스택에 넣는 연산이다.
+pop: 스택에서 가장 위에 있는 정수를 빼고, 그 수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+size: 스택에 들어있는 정수의 개수를 출력한다.
+empty: 스택이 비어있으면 1, 아니면 0을 출력한다.
+top: 스택의 가장 위에 있는 정수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())):</span>
+     <span class="n">tmp</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">()</span>
+     <span class="k">if</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="s">'push'</span><span class="p">:</span>
+          <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="mi">5</span><span class="p">:]))</span>
+     <span class="k">if</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s">'pop'</span><span class="p">:</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
+          <span class="k">else</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'s'</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">))</span>
+     <span class="k">if</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'e'</span><span class="p">:</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+          <span class="k">else</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'t'</span><span class="p">:</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+          <span class="k">else</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>알고리즘 분류에서 자료구조 문제의 첫번째!</p>
+
+<p>두번의 시간 초과가 떴다. 사실 어떻게 더 줄일까 생각하다 sys 모듈을 import 해서 입력받는 시간을 조금이나마 단축해봤는데 성공했다.</p>
+
+<hr />
+
+<ul>
+  <li>#9012     괄호</li>
+</ul>
+
+<p>괄호 문자열(Parenthesis String, PS)은 두 개의 괄호 기호인 ‘(’ 와 ‘)’ 만으로 구성되어 있는 문자열이다. 그 중에서 괄호의 모양이 바르게 구성된 문자열을 올바른 괄호 문자열(Valid PS, VPS)이라고 부른다. 한 쌍의 괄호 기호로 된 “( )” 문자열은 기본 VPS 이라고 부른다. 만일 x 가 VPS 라면 이것을 하나의 괄호에 넣은 새로운 문자열 “(x)”도 VPS 가 된다. 그리고 두 VPS x 와 y를 접합(concatenation)시킨 새로운 문자열 xy도 VPS 가 된다. 예를 들어 “(())()”와 “((()))” 는 VPS 이지만 “(()(”, “(())()))” , 그리고 “(()” 는 모두 VPS 가 아닌 문자열이다.</p>
+
+<p>여러분은 입력으로 주어진 괄호 문자열이 VPS 인지 아닌지를 판단해서 그 결과를 YES 와 NO 로 나타내어야 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())):</span>
+     <span class="n">TF</span> <span class="o">=</span> <span class="bp">True</span>
+     <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+     <span class="n">tmp</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">()</span>
+     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tmp</span><span class="p">)):</span>
+          <span class="k">if</span> <span class="n">num</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+               <span class="n">TF</span><span class="o">=</span><span class="bp">False</span>
+               <span class="k">break</span>
+          <span class="k">if</span> <span class="n">tmp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'('</span><span class="p">:</span>
+               <span class="n">num</span><span class="o">+=</span><span class="mi">1</span>
+          <span class="k">else</span><span class="p">:</span>
+               <span class="n">num</span><span class="o">-=</span><span class="mi">1</span>
+     <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">TF</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="s">"YES"</span><span class="p">)</span>
+          <span class="k">else</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="s">"NO"</span><span class="p">)</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"NO"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>배열을 쓸까하다 그냥 변수 하나를 둬서 풀었다.</p>
+
+<p>여는 괄호 ( 이거면 +1, 닫는 괄호면 -1을 해서 결과적으로 0이 되어 밸런스를 맞췋야하는데 왜 -1이 될까,,왜일까,,,왜일까요….</p>
+
+<p>중간에 닫는 괄호 먼저나오면 합이 0이 되어도 제대로 된 괄호가 아니기에 NO출력</p>
+
+<hr />
+
+<ul>
+  <li>#10773        제로</li>
+</ul>
+
+<p>나코더 기장 재민이는 동아리 회식을 준비하기 위해서 장부를 관리하는 중이다.</p>
+
+<p>재현이는 재민이를 도와서 돈을 관리하는 중인데, 애석하게도 항상 정신없는 재현이는 돈을 실수로 잘못 부르는 사고를 치기 일쑤였다.</p>
+
+<p>재현이는 잘못된 수를 부를 때마다 0을 외쳐서, 가장 최근에 재민이가 쓴 수를 지우게 시킨다.</p>
+
+<p>재민이는 이렇게 모든 수를 받아 적은 후 그 수의 합을 알고 싶어 한다. 재민이를 도와주자!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">num</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())):</span>
+     <span class="n">tmp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())</span>
+     <span class="k">if</span> <span class="n">tmp</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">num</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="n">num</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<p>우와 쉬운문제 - 
+단계별로 보다가 스택에서 안푼 문제 중 쉬워보이길래 후딱 풀어보았다. 바로 통과해버리기-</p>
+
+<p>그냥 0이면 맨 위에 수 pop해서 지우고 아니면 계속 넣어두고 결과로 합을 출력해주면 된다.</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-02-12.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/python" class="post-category">python</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/02/16/baekjoon">Baekjoon 알고리즘 56</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/02/12/baekjoon">Baekjoon 알고리즘 54</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

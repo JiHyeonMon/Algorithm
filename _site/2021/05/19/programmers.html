@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 2개 이하로 다른 비트 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 2개 이하로 다른 비트" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 119일차" />
+<meta property="og:description" content="알고리즘 풀기 119일차" />
+<link rel="canonical" href="http://localhost:4000/2021/05/19/programmers" />
+<meta property="og:url" content="http://localhost:4000/2021/05/19/programmers" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-19T03:03:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 2개 이하로 다른 비트" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-19T03:03:00+09:00","datePublished":"2021-05-19T03:03:00+09:00","description":"알고리즘 풀기 119일차","headline":"[프로그래머스] 2개 이하로 다른 비트","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/19/programmers"},"url":"http://localhost:4000/2021/05/19/programmers"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 2개 이하로 다른 비트</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 119일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="2개-이하로-다른-비트">2개 이하로 다른 비트</h1>
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>양의 정수 x에 대한 함수 f(x)를 다음과 같이 정의합니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x보다 크고 x와 비트가 1~2개 다른 수들 중에서 제일 작은 수
+</code></pre></div></div>
+
+<p>예를 들어,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f(2) = 3 입니다. 다음 표와 같이 2보다 큰 수들 중에서 비트가 다른 지점이 2개 이하이면서 제일 작은 수가 3이기 때문입니다.
+</code></pre></div></div>
+
+<table>
+  <tbody>
+    <tr>
+      <td>수</td>
+      <td>비트</td>
+      <td>다른 비트의 개수</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>000…0010</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>000…0011</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>f(7) = 11 입니다. 다음 표와 같이 7보다 큰 수들 중에서 비트가 다른 지점이 2개 이하이면서 제일 작은 수가 11이기 때문입니다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>수</td>
+      <td> </td>
+      <td>비트</td>
+      <td>다른 비트의 개수</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td> </td>
+      <td>000…0111</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td> </td>
+      <td>000…1000</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td> </td>
+      <td>000…1001</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td> </td>
+      <td>000…1010</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td> </td>
+      <td>000…1011</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>정수들이 담긴 배열 numbers가 매개변수로 주어집니다. numbers의 모든 수들에 대하여 각 수의 f 값을 배열에 차례대로 담아 return 하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">smallbit</span><span class="p">(</span><span class="n">bit</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s">'0'</span> <span class="ow">in</span> <span class="n">bit</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="s">'0b'</span><span class="o">+</span><span class="n">bit</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">bit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'0'</span><span class="p">:</span>
+                <span class="n">bit</span> <span class="o">=</span> <span class="n">bit</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="s">'1'</span><span class="o">+</span><span class="n">bit</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+                <span class="n">cnt</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="s">'0b'</span><span class="o">+</span><span class="n">bit</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="s">'0b10'</span><span class="o">+</span><span class="n">bit</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)):</span>
+        <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">smallbit</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]).</span><span class="n">replace</span><span class="p">(</span><span class="s">'0b'</span><span class="p">,</span> <span class="s">''</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">answer</span>
+
+
+<span class="c1"># 입력: [2,7]	-&gt; 출력: [3,11]
+</span></code></pre></div></div>
+
+<p>풀기야 했는데 죄다 틀렸다 ㅎㅎㅎ</p>
+
+<p>정말 예시 두개만 통과하고,, 문제를 간과했다.</p>
+
+<p>우선 진법 계산은 파이썬 라이브러리를 이용했다. bin()을 이용해서 10진수를 2진수로 바꾸는데 이때 앞에 ‘0b’가 필수적으로 붙어 슬라이싱을 한 채로 계산에 들어갔다.</p>
+
+<p>우선 경우는 두가지로 생각했다.</p>
+
+<p>(맨 앞자리는 1이 당연) 뒤에 0이 있는가 없는가.</p>
+
+<p>0이 있다면 젤 뒤에서부터 가까운 순으로 0 -&gt; 1로 바꾸는게 최소값이 될 것이다.</p>
+
+<p>0이 없다면 다 1. 그러면 당연 앞자리가 커질 수밖에 없다. 그럼 앞자리 1이 생기며 하나의 비트 바뀌고 나머지 하나의 비트 1 -&gt; 0 바꾸면서 최소를 하려면 앞자리일 수록 좋기에 맨 자리를 10으로 바꿔주는 작업을 거쳤다.</p>
+
+<hr />
+
+<p>다시 생각을 해야할 것 같다.</p>
+
+<p>오늘 너무 피곤해서,,,,,ㅠㅠㅠㅠㅠㅠㅠㅠ 하나 진짜 풀고 잘랬는데, 내일 이 문제 하나와 다른 문제 하나 꼭 풀기,,,,,,풀기,,,,,,,,진짜,,,,,,,,,,</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-05-19.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+      <a href="/category/월간코드챌린지2" class="post-category">월간코드챌린지2</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/05/25/baekjoon">[백준] RGB거리</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/05/18/programmers">[프로그래머스] 약수의 개수와 덧셈</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

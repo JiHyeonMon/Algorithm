@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 숫자 문자열과 영단어 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 숫자 문자열과 영단어" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 231일차" />
+<meta property="og:description" content="알고리즘 풀기 231일차" />
+<link rel="canonical" href="http://localhost:4000/2021/07/19/programmers" />
+<meta property="og:url" content="http://localhost:4000/2021/07/19/programmers" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-19T23:01:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 숫자 문자열과 영단어" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-07-19T23:01:00+09:00","datePublished":"2021-07-19T23:01:00+09:00","description":"알고리즘 풀기 231일차","headline":"[프로그래머스] 숫자 문자열과 영단어","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/07/19/programmers"},"url":"http://localhost:4000/2021/07/19/programmers"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 숫자 문자열과 영단어</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 231일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="숫자-문자열과-영단어">숫자 문자열과 영단어</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/126166541-cfa1caf6-e0cc-4666-b857-03e23c748a9b.png" alt="image" /></p>
+
+<p>네오와 프로도가 숫자놀이를 하고 있습니다. 네오가 프로도에게 숫자를 건넬 때 일부 자릿수를 영단어로 바꾼 카드를 건네주면 프로도는 원래 숫자를 찾는 게임입니다.</p>
+
+<p>다음은 숫자의 일부 자릿수를 영단어로 바꾸는 예시입니다.</p>
+
+<p>1478 → “one4seveneight”</p>
+
+<p>234567 → “23four5six7”</p>
+
+<p>10203 → “1zerotwozero3”</p>
+
+<p>이렇게 숫자의 일부 자릿수가 영단어로 바뀌어졌거나, 혹은 바뀌지 않고 그대로인 문자열 s가 매개변수로 주어집니다. s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">numberStringList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"zero"</span><span class="p">,</span> <span class="s">"one"</span><span class="p">,</span> <span class="s">"two"</span><span class="p">,</span> <span class="s">"three"</span><span class="p">,</span> <span class="s">"four"</span><span class="p">,</span> <span class="s">"five"</span><span class="p">,</span> <span class="s">"six"</span><span class="p">,</span> <span class="s">"seven"</span><span class="p">,</span> <span class="s">"eight"</span><span class="p">,</span> <span class="s">"nine"</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num</span><span class="p">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">answer</span><span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">+=</span> <span class="n">num</span>
+            <span class="k">if</span> <span class="n">tmp</span> <span class="ow">in</span> <span class="n">numberStringList</span><span class="p">:</span>
+                <span class="n">answer</span><span class="o">+=</span><span class="nb">str</span><span class="p">(</span><span class="n">numberStringList</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>분명 푼 문제 같은 느낌은 해당 코딩테스트에서 풀었던 문제겠죠?</p>
+
+<p>쉽게쉽게 다시 풀었습니다.</p>
+
+<p>string형태의 숫자를 먼저 배열로 넣어두고, 해당 string을 int로 넣어야함에 배열 index를 넣어주게 했습니다.</p>
+
+<p>python 의 isdigit() 함수를 사용해서 true일 경우 해당 값을 string으로 넣고, 아닐 경우 문자로 된 숫자이기에 tmp 에 잠시 넣어놨다 tmp가 문자로 된 숫자로 완성되면 해당 index를 string으로 answer에 넣습니다.</p>
+
+<p>answer에 string을 넣는 이유는 int결과값을 더해주면 정말 수식 더하기가 되기에 string으로 변환해 숫자들을 넣고 integer형으로 결과 값을 반환해줍니다.</p>
+
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-07-19.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+      <a href="/category/2021카카오" class="post-category">2021카카오</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/07/20/programmers">[프로그래머스] 예상 대진표</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/07/14/programmers">[프로그래머스] 문자열 압축</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

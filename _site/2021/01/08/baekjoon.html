@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 36 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 36" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 48일차" />
+<meta property="og:description" content="알고리즘 풀기 48일차" />
+<link rel="canonical" href="http://localhost:4000/2021/01/08/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2021/01/08/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-08T03:30:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 36" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-01-08T03:30:00+09:00","datePublished":"2021-01-08T03:30:00+09:00","description":"알고리즘 풀기 48일차","headline":"Baekjoon 알고리즘 36","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/01/08/baekjoon"},"url":"http://localhost:4000/2021/01/08/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 36</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 48일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>#11399     ATM</li>
+</ul>
+
+<p>인하은행에는 ATM이 1대밖에 없다. 지금 이 ATM앞에 N명의 사람들이 줄을 서있다. 사람은 1번부터 N번까지 번호가 매겨져 있으며, i번 사람이 돈을 인출하는데 걸리는 시간은 Pi분이다.</p>
+
+<p>사람들이 줄을 서는 순서에 따라서, 돈을 인출하는데 필요한 시간의 합이 달라지게 된다. 예를 들어, 총 5명이 있고, P1 = 3, P2 = 1, P3 = 4, P4 = 3, P5 = 2 인 경우를 생각해보자. [1, 2, 3, 4, 5] 순서로 줄을 선다면, 1번 사람은 3분만에 돈을 뽑을 수 있다. 2번 사람은 1번 사람이 돈을 뽑을 때 까지 기다려야 하기 때문에, 3+1 = 4분이 걸리게 된다. 3번 사람은 1번, 2번 사람이 돈을 뽑을 때까지 기다려야 하기 때문에, 총 3+1+4 = 8분이 필요하게 된다. 4번 사람은 3+1+4+3 = 11분, 5번 사람은 3+1+4+3+2 = 13분이 걸리게 된다. 이 경우에 각 사람이 돈을 인출하는데 필요한 시간의 합은 3+4+8+11+13 = 39분이 된다.</p>
+
+<p>줄을 [2, 5, 1, 4, 3] 순서로 줄을 서면, 2번 사람은 1분만에, 5번 사람은 1+2 = 3분, 1번 사람은 1+2+3 = 6분, 4번 사람은 1+2+3+3 = 9분, 3번 사람은 1+2+3+3+4 = 13분이 걸리게 된다. 각 사람이 돈을 인출하는데 필요한 시간의 합은 1+3+6+9+13 = 32분이다. 이 방법보다 더 필요한 시간의 합을 최소로 만들 수는 없다.</p>
+
+<p>줄을 서 있는 사람의 수 N과 각 사람이 돈을 인출하는데 걸리는 시간 Pi가 주어졌을 때, 각 사람이 돈을 인출하는데 필요한 시간의 합의 최솟값을 구하는 프로그램을 작성하시오.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">time</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())))</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+     <span class="n">total</span><span class="o">+=</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>나는 동적 프로그래밍이랑 안맞는 것 같다. 알면서도 모르겠고, 어려운,,,오늘은 다른 것을 풀어보자하여 탐욕알고리즘의 쉬워보이는 문제를 펴보았다.</p>
+
+<p>기존 풀던 문제보다 쉬운 문제기도 했지만 접근도 쉬워서 슥 풀었다.</p>
+
+<p>모든 사람이 뽑는데 대기 시간의 최소였음 정렬 후 합이겠지만, 각 사람 시간의 합이기에 각 사람들 대기 시간을 다 더해주면 된다.</p>
+
+<p>각 사람이니 첫번째 사람은 모든 순서에 걸쳐 나올 것이고, 두번째 사람은 첫번째 사람 뺀 모든 순서에 더해질 것이다.</p>
+
+<p>결론적으로 마지막 사람은 한번, 앞으로 갈 수록 한번씩 더 더해주면 된다.</p>
+
+<p>반복문을 반대로 돌려서 (사실 적은 수부터 많이 곱하는 방식으로 갈 수도 있지만) 하나씩 적게 곱해준 것을 total값에 넣어 구했다.</p>
+
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-01-08.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/python" class="post-category">python</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/01/09/baekjoon">Baekjoon 알고리즘 37</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/01/07/baekjoon">Baekjoon 알고리즘 35</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

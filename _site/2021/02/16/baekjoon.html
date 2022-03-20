@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 56 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 56" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 70일차" />
+<meta property="og:description" content="알고리즘 풀기 70일차" />
+<link rel="canonical" href="http://localhost:4000/2021/02/16/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2021/02/16/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-16T02:44:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 56" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-02-16T02:44:00+09:00","datePublished":"2021-02-16T02:44:00+09:00","description":"알고리즘 풀기 70일차","headline":"Baekjoon 알고리즘 56","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/16/baekjoon"},"url":"http://localhost:4000/2021/02/16/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 56</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 70일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>#4949     균형잡힌 세상</li>
+</ul>
+
+<p>세계는 균형이 잘 잡혀있어야 한다. 양과 음, 빛과 어둠 그리고 왼쪽 괄호와 오른쪽 괄호처럼 말이다.</p>
+
+<p>정민이의 임무는 어떤 문자열이 주어졌을 때, 괄호들의 균형이 잘 맞춰져 있는지 판단하는 프로그램을 짜는 것이다.</p>
+
+<p>문자열에 포함되는 괄호는 소괄호(“()”) 와 대괄호(“[]”)로 2종류이고, 문자열이 균형을 이루는 조건은 아래와 같다.</p>
+
+<ul>
+  <li>모든 왼쪽 소괄호(“(“)는 오른쪽 소괄호(“)”)와만 짝을 이뤄야 한다.</li>
+  <li>모든 왼쪽 대괄호(“[“)는 오른쪽 대괄호(“]”)와만 짝을 이뤄야 한다.</li>
+  <li>모든 오른쪽 괄호들은 자신과 짝을 이룰 수 있는 왼쪽 괄호가 존재한다.</li>
+  <li>모든 괄호들의 짝은 1:1 매칭만 가능하다. 즉, 괄호 하나가 둘 이상의 괄호와 짝지어지지 않는다.</li>
+  <li>짝을 이루는 두 괄호가 있을 때, 그 사이에 있는 문자열도 균형이 잡혀야 한다.</li>
+</ul>
+
+<p>정민이를 도와 문자열이 주어졌을 때 균형잡힌 문자열인지 아닌지를 판단해보자.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#테스트 케이스
+
+So when I die (the [first] I will see in (heaven) is a score list).
+[ first in ] ( first out ).
+Half Moon tonight (At least it is better than no Moon at all].
+A rope may form )( a trail in a maze.
+Help( I[m being held prisoner in a fortune cookie factory)].
+([ (([( [ ] ) ( ) (( ))] )) ]).
+ .
+.
+
+yes
+yes
+no
+no
+no
+yes
+yes
+
+</code></pre></div></div>
+
+<h1><풀이></풀이></h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#첫 시도
+</span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+     <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+     <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>
+          <span class="k">break</span>
+     <span class="n">bracket</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">TF</span> <span class="o">=</span> <span class="bp">True</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)):</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+               <span class="n">bracket</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">')'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               
+               <span class="k">if</span> <span class="n">bracket</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span><span class="p">:</span>
+                    <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">']'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               
+               <span class="k">if</span> <span class="n">bracket</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+                    <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+
+     <span class="k">if</span> <span class="n">TF</span><span class="p">:</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>테스트 케이스 다 만족.</p>
+
+<p>여기서의 문제는 ( 이 입력으로 들어오면 이전 bracket[-1] 이 ) 라는 전제일 때만 가능한 시나리오다. 
+사실은 ([()) ??????????????????????? 풀이 지금 쓰다보니 이거 맞는 풀이인거 같은데,,,,,,,, 이때 수정한 이유가 ([ )와 같은 상황을 생각했는데 이거 역시 안되는 케이스 맞는데,,,)들어오면 무조건 전에꺼가 (여야하는거 아닌가…?</p>
+
+<p>아무튼 고침,,,</p>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#두번째 시도
+</span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+     <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+     <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>
+          <span class="k">break</span>
+     <span class="n">bracket</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">TF</span> <span class="o">=</span> <span class="bp">True</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)):</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+               <span class="n">bracket</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">')'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               
+               <span class="k">if</span> <span class="s">'('</span> <span class="ow">in</span> <span class="n">bracket</span><span class="p">:</span>
+                    <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">bracket</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="s">'('</span><span class="p">))</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">']'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               
+               <span class="k">if</span> <span class="s">'['</span> <span class="ow">in</span> <span class="n">bracket</span><span class="p">:</span>
+                    <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">bracket</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="s">'['</span><span class="p">))</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+
+     <span class="k">if</span> <span class="n">TF</span><span class="p">:</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+          <span class="k">else</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="s">"yes"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>다섯번째 테스트 케이스 불만족.</p>
+
+<p>여기서의 문제는 ( 입력으로 들어오면 index로 ( 가 있는 앞자리 애를 없애버린다. 뒤부터 맞쳐가며 없애야하는데. 그래서 또 수정 - 아래 버전</p>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#세번째 시도
+</span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+     <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+     <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>
+          <span class="k">break</span>
+     <span class="n">bracket</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">TF</span> <span class="o">=</span> <span class="bp">True</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)):</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+               <span class="n">bracket</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+          <span class="k">elif</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">')'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+
+               <span class="k">if</span> <span class="s">'('</span> <span class="ow">in</span> <span class="n">bracket</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                         <span class="k">if</span> <span class="n">bracket</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+                              <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                              <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                              <span class="k">break</span>
+                         <span class="k">elif</span> <span class="n">bracket</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span><span class="p">:</span>
+                              <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+                              <span class="k">break</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               
+                         
+          <span class="k">elif</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">']'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               
+               <span class="k">if</span> <span class="s">'['</span> <span class="ow">in</span> <span class="n">bracket</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                         <span class="k">if</span> <span class="n">bracket</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span><span class="p">:</span>
+                              <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                              <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                              <span class="k">break</span>
+                         <span class="k">elif</span> <span class="n">bracket</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+                              <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+                              <span class="k">break</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+
+     <span class="k">if</span> <span class="n">TF</span><span class="p">:</span>
+          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bracket</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+          <span class="k">else</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="s">"yes"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>( 를 만나면 bracket 괄호 리스트를 역순으로 돌며 [ 다른 괄호 나오면 틀린 거, 맞는 괄호면 pop을 해서 없애준다.</p>
+
+<p>테스트 케이스 다 만족.</p>
+
+<p>근데 뭐가,,,,,,,,,,뭐가 예외사항에 있는걸까,,,,,,,,, 그 예외를 못찾겠다….</p>
+
+<p>분명 빠뜨린 무언가가 있는데,,,,못찾겠다. 더 생각해보고 풀이 찾아보던지 해야겠다.</p>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#정답
+</span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+     <span class="n">line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+     <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>
+          <span class="k">break</span>
+     <span class="n">bracket</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">TF</span> <span class="o">=</span> <span class="bp">True</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)):</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span> <span class="ow">or</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+               <span class="n">bracket</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+               
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">')'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="ow">not</span> <span class="n">bracket</span> <span class="ow">or</span> <span class="n">bracket</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s">'['</span><span class="p">:</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+          <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="s">']'</span><span class="p">:</span>
+               <span class="k">if</span> <span class="ow">not</span> <span class="n">bracket</span> <span class="ow">or</span> <span class="n">bracket</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="s">'('</span><span class="p">:</span>
+                    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+               <span class="k">else</span><span class="p">:</span>
+                    <span class="n">bracket</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+     <span class="k">if</span> <span class="n">TF</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">bracket</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"yes"</span><span class="p">)</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"no"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>결국 풀이를 찾아봤는데 진짜,,,똑같다. 첫번째 풀이와.</p>
+
+<p>조건에서 ) 닫는 괄호 나올 시 앞에꺼가 [ 열린 대괄호인지 체크를 안해줬다.</p>
+
+<p>묵은 체증이 내려가는 기분,</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-02-16.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/python" class="post-category">python</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/02/17/baekjoon">Baekjoon 알고리즘 57</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/02/12/baekjoon">Baekjoon 알고리즘 55</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

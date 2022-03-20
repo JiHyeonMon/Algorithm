@@ -1,0 +1,95 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 38"
+date:   2021-01-10 00:04 +0530
+categories: python
+---
+
+알고리즘 풀기 50일차
+
+:)
+
+
+- #1541     잃어버린 괄호
+
+세준이는 양수와 +, -, 그리고 괄호를 가지고 식을 만들었다. 그리고 나서 세준이는 괄호를 모두 지웠다.
+
+그리고 나서 세준이는 괄호를 적절히 쳐서 이 식의 값을 최소로 만들려고 한다.
+
+괄호를 적절히 쳐서 이 식의 값을 최소로 만드는 프로그램을 작성하시오.
+
+```python
+
+expression = input().split('-')
+answer = int(expression[0])
+tmp=[]
+for i in range(1, len(expression)):
+     if expression[i].find('+') == -1 :
+          answer-=int(expression[i])
+     else:
+          answer-=sum(list(map(int, expression[i].split('+'))))
+          
+print(answer)
+
+
+```
+
+테스트 케이스는 통과했으나 런타임 에러가 떴다. 
+
+찾아보니 첫 수로 음수가 오는 경우, split('-')로 처리하기 때문에 -가 사라지는 오류가 발생한다.
+
+그래서 맨 처음 수를 음수인지 확인하는 과정을 거치기 위해 아래처럼 코드를 수정하였다. 
+
+
+```python
+
+expression = input()
+
+if expression[0] == '-':
+     expression = expression.split('-')
+     expression.pop(0)
+     answer = int(expression[0])*(-1)
+else:
+     expression = expression.split('-')
+     answer = int(expression[0])
+
+tmp=[]
+for i in range(1, len(expression)):
+     if expression[i].find('+') == -1 :
+          answer-=int(expression[i])
+     else:
+          answer-=sum(list(map(int, expression[i].split('+'))))
+          
+print(answer)
+
+```
+
+첫 수가 음수인 경우를 확인하고, -5-4+2 와 같은 계산을 통과하는 것을 확인하였으나
+
+-43+24 같이 음수 다음 +가 오는 경우 계산에 오류가 발생하였다.
+
+그럼 첫 수가 음수인 경우 킵해두고 뒤에가 +라면 뒤에 더한 후 -1을 곱해줘야한다. 식이 굉장히 복잡해지고 난잡해져서 다시 코드를 짜던 중 다른 사람들은 어떻게 풀었다 확인하는데, 아니 내 첫번째 풀이 처럼들 풀었다.
+
+즉, 해당 코드를 돌렸을 때 음수가 첫 수로 나오는 코드들 다 같은 에러가 나느 ㄴ것이다.
+
+아마 첫 수는 음수가 아니란 가정이,,있었나..? 아무튼 내 첫 코드의 문제는 첫 수 다음에 +가 올 경우 같이 계산해야 하는데 answer에 첫 수를 그냥 넣어서 생기는 문제 같았다. 
+
+```python
+
+expression = input().split('-')
+answer = 0
+for i in expression[0].split('+'):
+     answer += int(i)
+for i in expression[1:]:
+     answer-=sum(list(map(int, i.split('+'))))
+     
+print(answer)
+
+
+```
+
+그래서 첫 수도 split('+') 를 써서 + 가 뒤에 올 경우 계산해주고 시작하게 수정하였다.
+
+이후는 똑같이 +로 split해주고 리스트에 넣은 후 sum으로 다 더한 값을 뺐다.
+
+런타임 에러,,,참 코드와 조건을 잘 읽어야겠다는 생각이 들었다. 

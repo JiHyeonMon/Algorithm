@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[백준] RGB거리 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[백준] RGB거리" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 220일차" />
+<meta property="og:description" content="알고리즘 풀기 220일차" />
+<link rel="canonical" href="http://localhost:4000/2021/05/25/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2021/05/25/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-25T03:03:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[백준] RGB거리" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-25T03:03:00+09:00","datePublished":"2021-05-25T03:03:00+09:00","description":"알고리즘 풀기 220일차","headline":"[백준] RGB거리","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/25/baekjoon"},"url":"http://localhost:4000/2021/05/25/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[백준] RGB거리</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 220일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="rgb거리">RGB거리</h1>
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>RGB거리에는 집이 N개 있다. 거리는 선분으로 나타낼 수 있고, 1번 집부터 N번 집이 순서대로 있다.</p>
+
+<p>집은 빨강, 초록, 파랑 중 하나의 색으로 칠해야 한다. 각각의 집을 빨강, 초록, 파랑으로 칠하는 비용이 주어졌을 때, 아래 규칙을 만족하면서 모든 집을 칠하는 비용의 최솟값을 구해보자.</p>
+
+<p>1번 집의 색은 2번 집의 색과 같지 않아야 한다.
+œ
+N번 집의 색은 N-1번 집의 색과 같지 않아야 한다.</p>
+
+<p>i(2 ≤ i ≤ N-1)번 집의 색은 i-1번, i+1번 집의 색과 같지 않아야 한다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">RGB</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">RGB</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">))))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="nb">min</span><span class="p">(</span><span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="nb">min</span><span class="p">(</span><span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="n">RGB</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">RGB</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="s">'''
+3
+26 40 83
+49 60 57
+13 89 99
+'''</span>
+
+</code></pre></div></div>
+
+<p>오늘은 간만에 짧은 코드!</p>
+
+<p>동적 계획법 문제를 오랜만에 풀어보았다.</p>
+
+<p>최솟값을 구하는 문제. dp라는 새로운 배열에 적지 않고 입력으로 받은 RGB리스트를 그대로 더해가며 갱신하는 방식으로 풀었다.</p>
+
+<p>우선 바로 앞의 RGB와 겹치면 안되면서 최소를 선택해야 한다. 그래서 반복문은 인덱스 1번부터 시작한다.</p>
+
+<p>1~ 각 RGB칸에 선택 됐을 시 최소값으르 넣는데, R일 경우, 앞의 칸의 G,B 중 최소를 고른 뒤 현재 R칸 더해서 넣어준다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>26 40 83
+49+40 60+26 57+26 이 된다. 해당 칸에 앞에서 올 수 있는 최소 값을 더해준다.
+</code></pre></div></div>
+
+<p>이렇게 하면 맨 마지막 칸의 RGB 색 중에서 최소 값을 고르면 된다.</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-05-25.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/백준" class="post-category">백준</a>
+      
+      <a href="/category/1149" class="post-category">1149</a>
+      
+      <a href="/category/동적계획법" class="post-category">동적계획법</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/05/26/baekjoon">[백준] 계단오르기</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/05/19/programmers">[프로그래머스] 2개 이하로 다른 비트</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 23"
+date:   2020-12-06 00:07 +0530
+categories: python
+---
+
+알고리즘 풀기 34일차
+
+:)
+
+
+- #1427     소트인사이드
+
+
+배열을 정렬하는 것은 쉽다. 수가 주어지면, 그 수의 각 자리수를 내림차순으로 정렬해보자.
+
+```python
+
+n = list(input())
+n = ''.join(sorted(n, reverse = True))
+print(n)
+
+```
+
+난이도에 비해 쉬웠던 문제.
+
+---
+
+- #11650        좌표 정렬하기
+
+```python
+
+z=[]
+for i in range(int(input())):
+    z.append(list(map(int, input().split())))
+z=sorted(z)
+for i in range(len(z)):
+     print('{} {}'.format(z[i][0], z[i][1]))
+
+```
+
+---
+
+- #11651        좌표 정렬하기 2
+
+2차원 평면 위의 점 N개가 주어진다. 좌표를 y좌표가 증가하는 순으로, y좌표가 같으면 x좌표가 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성하시오.
+
+```python
+
+z=[]
+for i in range(int(input())):
+     z.append(list(map(int, input().split())))
+z = sorted(z, key = lambda x : (x[1], x[0]))
+
+for i in range(len(z)):
+     print('{} {}'.format(z[i][0], z[i][1]))
+
+```
+
+이전 문제에서 두번째 인덱스를 먼저 정렬에 사용해야하는 문제. 
+제대로 찾아본 적은 없지만 이전에 이런 문제에서 lambda를 쓰는 예시를 많이 봤기에 lambda에 대해 찾아봤다.
+정렬할 때 원하는 인자를 순서대로 넣어주면 그 key대로 정렬을 해준다.
+
+처음에 x[0]을 안쓰고 하니까 실패했다. 아마 두번째 인덱스로 정렬하고 첫번째 인덱스 정렬은 안해서 그런 것 같다. 두번째 정렬 후 같은 수가 있으면 첫번째 인덱스로 정렬을 하니 lambda에 x[1],x[0]을 순서대로 넣어주니 성공했다.
+

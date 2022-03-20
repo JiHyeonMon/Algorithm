@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 12 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 12" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 12일차 :)" />
+<meta property="og:description" content="알고리즘 풀기 12일차 :)" />
+<link rel="canonical" href="http://localhost:4000/2020/11/10/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2020/11/10/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-10T07:54:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 12" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-11-10T07:54:00+09:00","datePublished":"2020-11-10T07:54:00+09:00","description":"알고리즘 풀기 12일차 :)","headline":"Baekjoon 알고리즘 12","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/11/10/baekjoon"},"url":"http://localhost:4000/2020/11/10/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="python" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 12</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 12일차
+:)</p>
+
+<ul>
+  <li>#9020     골드바흐의 추측</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#9020
+#골드바흐의 추측
+</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="c1">#미리 약수 리스트 만들어둠
+</span><span class="n">prime</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10001</span><span class="p">):</span>
+     <span class="n">t</span> <span class="o">=</span> <span class="bp">True</span>
+     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+          <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+               <span class="n">t</span> <span class="o">=</span> <span class="bp">False</span>
+               <span class="k">break</span>
+     <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span><span class="n">prime</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+     <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+     <span class="k">if</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span> <span class="ow">in</span> <span class="n">prime</span><span class="p">:</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+               <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+               <span class="k">continue</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+               <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prime</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">n</span><span class="o">-</span><span class="n">i</span> <span class="ow">in</span> <span class="n">prime</span><span class="p">:</span>
+                         <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+                         <span class="k">break</span>
+
+</code></pre></div></div>
+
+<p>요즘 실패의 늪에 빠져살다 한번만에 성공하긴 정말 오랜만이라 눈물 광광-</p>
+
+<p>미리 약수들을 모아둔 리스트를 만들고 시작한다.</p>
+
+<p>테스트케이스 개수만큼 반복하는데, 우선 중간부터 생각한다. 중간 값이 소수면 바로 두 합이니 나누기 2한 값이 정답.</p>
+
+<p>나누기 2한 값이 소수가 아니라면 차근차근 값을 내려가며 찾는다. (여러개 있어도 차가 적은 값을 선택해야하니 중간값에서 제일 먼저 만난게 차이가 제일 적은 것)</p>
+
+<p>내려가다 만난 소수가 있다면, 입력값에서 뺀 값도 소수라면 그것이 정답.</p>
+
+<hr />
+
+<ul>
+  <li>#1085     직사각형에서 탈출</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#1085     
+#직사각형에서 탈출
+</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="o">-</span><span class="n">y</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<p>아주 심플한 코드.</p>
+
+<hr />
+
+<ul>
+  <li>#3009     네번째 점</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#3009
+#네번째 점
+</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+
+<span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+     <span class="n">x</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+     <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">!=</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>세 점이 주어졌을 때, 축에 평행한 직사각형을 만들기 위해서 필요한 네 번째 점을 찾는 프로그램을 작성하시오.</p>
+
+<p>쉬운데,,코드 간단하게 어떻게 분명할 수 있을텐데,,,머리가 안돌아가서 진짴ㅋㅋㅋ하드코딩함.</p>
+
+<hr />
+
+<ul>
+  <li>#4153     직각삼각형</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#4153
+#직각삼각형
+</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+     <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+     <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+          <span class="k">break</span>
+
+     <span class="n">a</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+     <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"right"</span><span class="p">)</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">"wrong"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>세 수를 입력받는데 하나라도 0이면 삼각형이 안되니 break.</p>
+
+<p>정렬을 해줘서 덧셈이 편해지도록 해주고 피타고라스 정의로 구한다.</p>
+
+<hr />
+
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2020-11-10.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/baekjoon" class="post-category">Baekjoon</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+      <a href="/tag/python" class="post-tag">python</a>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2020/11/11/baekjoon">Baekjoon 알고리즘 13</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2020/11/09/baekjoon">Baekjoon 알고리즘 11</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

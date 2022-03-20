@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 카펫 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 카펫" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 107일차" />
+<meta property="og:description" content="알고리즘 풀기 107일차" />
+<link rel="canonical" href="http://localhost:4000/2021/04/27/programmers" />
+<meta property="og:url" content="http://localhost:4000/2021/04/27/programmers" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-27T03:29:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 카펫" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-04-27T03:29:00+09:00","datePublished":"2021-04-27T03:29:00+09:00","description":"알고리즘 풀기 107일차","headline":"[프로그래머스] 카펫","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/04/27/programmers"},"url":"http://localhost:4000/2021/04/27/programmers"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 카펫</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 107일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="카펫">카펫</h1>
+  </li>
+</ul>
+
+<blockquote>
+
+</blockquote>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 노란색으로 칠해져 있고 테두리 1줄은 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/116107001-94de7900-a6ed-11eb-98c2-844e8cdaa448.png" alt="image" /></p>
+
+<p>Leo는 집으로 돌아와서 아까 본 카펫의 노란색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다.</p>
+
+<p>Leo가 본 카펫에서 갈색 격자의 수 brown, 노란색 격자의 수 yellow가 매개변수로 주어질 때 카펫의 가로, 세로 크기를 순서대로 배열에 담아 return 하도록 solution 함수를 작성해주세요.</p>
+
+<h2 id="-조건-">&lt; 조건 &gt;</h2>
+
+<p>갈색 격자의 수 brown은 8 이상 5,000 이하인 자연수입니다.</p>
+
+<p>노란색 격자의 수 yellow는 1 이상 2,000,000 이하인 자연수입니다.</p>
+
+<p>카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">brown</span><span class="p">,</span> <span class="n">yellow</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">brown</span><span class="o">+</span><span class="n">yellow</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">brown</span><span class="o">+</span><span class="n">yellow</span><span class="p">):</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">brown</span><span class="o">+</span><span class="n">yellow</span><span class="p">)</span><span class="o">//</span><span class="n">x</span>
+
+        <span class="k">if</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span><span class="mi">4</span> <span class="o">==</span> <span class="n">brown</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">yellow</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span>
+
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+
+<span class="c1"># brown + yellow = x*y
+# x*2 + (y-2)*2 = brown
+# (x-2)*(y-2) = yellow
+</span>
+</code></pre></div></div>
+
+<p>흠,,어케 풀지 생각이 안들어서 이렇게 푸는게 맞는지 모르겠는데 수식 세워서 집어넣었다.</p>
+
+<p>우선 출력할 가로를 x, 세로를 y라 했을 때! [x, y]를 출력해야 한다.</p>
+
+<p>brown + yellow = x*y 인데, 우선 중간 값 - 루트를 씌운 값 부터 찾아본다. (여기서 ceil 즉 올림을 안해줄 경우 x가 y보다 작은 경우 생기니 무조건 올림으로 올려준다.)</p>
+
+<p>이제 중간 값부터 반복문을 돌며 수식 두가지 만족할 때까지 돌리고 맞는 값 찾으면 출력해준다.</p>
+
+<p>수식에 대해 설명하자면,</p>
+
+<blockquote>
+  <p>brown은 겉에 한 줄 –&gt; 가로 길이인 x가 위에 하나 아래 하나라 곱 2, 세로는 x에서 더해준 2개 빼고 왼쪽 하나 오른쪽 하나 곱 2</p>
+</blockquote>
+
+<blockquote>
+  <p>yellow는 brown 한 줄, 그리고 그 안의 모든게 yellow –&gt; 위에 아래 왼쪽 오른쪽 한칸 씩 안이라서 -2 씩하면 가로 세로 길이 나오고 곱해주면 노란 면적이 나온다.</p>
+</blockquote>
+
+<p>위의 두 식을 만족하는 x, y를 찾으면 된다.</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-04-27.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/04/28/programmers">[프로그래머스] SQL</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/04/24/programmers">[프로그래머스] 캐시</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 11"
+date:   2020-11-9 02:58 +0530
+categories: [Baekjoon]
+tags: [python]
+---
+
+알고리즘 풀기 11일차
+:)
+
+
+- #2581     소수
+
+```python
+#2581
+#소수 - 자연수 M과 N이 주어질 때 M이상 N이하의 자연수 중 소수인 것을 모두 골라 이들 소수의 합과 최솟값을 찾는 프로그램을 작성하시오.
+
+import math
+
+def Prime(k):
+     for i in range(2, int(math.sqrt(k))+1):
+          if k%i==0:
+               return False
+     return True
+
+a = int(input())
+b = int(input())
+prime=[]
+
+for i in range(a, b+1):
+     if i == 1:
+          pass
+     elif i == 2:
+          prime.append(i)
+     else:
+          if i%2!=0:
+               if Prime(i):
+                    prime.append(i)
+          
+if len(prime)>0:
+     print("{}\n{}".format(sum(prime),min(prime)))
+else:
+     print(-1)
+
+```
+
+푼 방식은 학교 알고리즘 시간에 소수 구하기에서 배웠던 방식과 비슷하게 풀었다. 
+
+다른 풀이들 찾아보니 함수로 만든 사람은 잘 없었는데, 왠지 함수로 만들고 싶어 함수로 소수판별하는 부분을 빼보았다.
+
+소수는 1과 자기자신 외에 나눠지지 않는 수로 입력받은 두 숫자 a,b (포함) 사이 모든 수가 소수인지 2~i의 제곱근까지 나눠보면 된다.
+
+소수판변 함수 Prime에서 2부터 제곱근까지 나눠보며 나눠지면 바로 False 반환, 안나눠지고 반복이 끝난다면 True로 소수로 판별된다.
+
+소수로 판별된 수는 prime리스트에 담는다.
+
+이후 prime 리스트가 비어있지 않다면 sum()을 사용하여 합과 min()을 사용하여 최소값을 출력해준다.
+
+---
+
+- #1978     소수 찾기
+
+```python
+#1978
+#소수 찾기
+
+import math
+
+def Prime(k):
+     if k == 1:
+          return False
+     else:
+          for i in range(2, int(math.sqrt(k))+1):
+               if k%i==0:
+                    return False
+     return True
+
+num = int(input())
+cnt = 0
+p = list(map(int, input().split()))
+
+for i in range(0, num):
+     if Prime(p[i]):
+          cnt+=1
+          
+print(cnt)
+
+```
+
+풀었다 체크돼있어 확인해보니 예전에 c언어로 풀어둔 거여서 python으로 다시 풀어보았다.
+
+바로 위 문제에서 함수를 정의해놨기에 그대로 가져왔다 ㅎㅎㅎ (야호~)
+
+그래서 소수 구하는 방식은 위와 같다.
+
+다만 여기선 cnt를 세주는 것 뿐.
+
+---
+
+- #1929     소수 구하기
+
+```python
+#1929
+#소수 구하기 - M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오.
+
+import math
+
+def Prime(k):
+     for i in range(2, int(math.sqrt(k))+1):
+          if k%i==0:
+               return False
+     return True
+
+a, b = map(int, input().split())
+
+for i in range(a, b+1):
+     if i == 1:
+          pass
+     elif i == 2:
+          print(i)
+     else:
+          if Prime(i):
+               print(i)
+
+```
+
+오늘 온갖 소수 구하기 문제는 다 푸는 것 같다!!!!!!!! 어쨌든 같은 함수 돌려 쓰기지만,,, 한동안 안잊을 것 같은 소수 구하기.
+
+얘는 두 숫자 입력받아 그 사이 수 소수면 그냥 출력하는 윗 문제들과 아주 유사한 문제.
+
+---
+
+- #4948     베르트랑 공존
+
+```python
+import math
+
+def Prime(p):
+     if p == 1:
+          return False
+     elif p == 2:
+          return True
+     else:
+          for j in range(2, int(math.sqrt(p))+1):
+               if p%j == 0:
+                    return False
+     return True
+
+while True:
+     n = int(input())
+     cnt=0
+     if n == 0:
+          break
+     for i in range(n+1, n*2+1):
+          if Prime(i):
+               cnt+=1
+
+     print(cnt)
+
+```
+
+이것은 정답 아님!! 이렇게 풀었더니 테스트케이스는 통과하지만 시간초과 오류가 났다.
+
+그래서 다른 사람들 풀이를 찾아봤는데 ' 에라토스테네스의 체 ' 를 이용하라는 것이다!!!
+
+으잉, 그게 뭐시당가 내가 찾아보니, 아니 내가 계산하고 있던 제곱근 이용하는 방식이 맞는디,,,,, 하니 매 숫자마다 (만들어둔) 소수 판별 함수를 부르는 것이 비효율적!!
+
+그래서 숫자 하나하나 소수인지 비교하는 방식이 아닌 미리 소수 구해놓고 n숫자를 입력받으면 바로 n~2n까지 소수 개수를 반환하게 바꿨다. (아래코드)
+
+```python
+import math
+
+def isPrime(p):
+    if p == 1: return False
+    for i in range(2, int(math.sqrt(p))+1):
+        if p % i == 0: return False
+    return True
+
+li = list(range(2,246912))
+prime_li = []
+for i in li:
+    if isPrime(i):
+        prime_li.append(i)
+
+while(1):
+    answer = 0
+    n = int(input())
+    if n == 0: break
+
+    for i in prime_li:
+        if n < i <= n*2:
+            answer += 1
+
+    print(answer)
+
+```
+
+---

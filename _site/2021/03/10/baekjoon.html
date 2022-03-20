@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 67 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 67" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 83일차" />
+<meta property="og:description" content="알고리즘 풀기 83일차" />
+<link rel="canonical" href="http://localhost:4000/2021/03/10/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2021/03/10/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-10T03:29:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 67" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-03-10T03:29:00+09:00","datePublished":"2021-03-10T03:29:00+09:00","description":"알고리즘 풀기 83일차","headline":"Baekjoon 알고리즘 67","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/03/10/baekjoon"},"url":"http://localhost:4000/2021/03/10/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 67</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 83일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>#1158     요세푸스 문제</li>
+</ul>
+
+<h1><문제 설명=""></문제></h1>
+<p>요세푸스 문제는 다음과 같다.</p>
+
+<p>1번부터 N번까지 N명의 사람이 원을 이루면서 앉아있고, 양의 정수 K(≤ N)가 주어진다. 이제 순서대로 K번째 사람을 제거한다. 한 사람이 제거되면 남은 사람들로 이루어진 원을 따라 이 과정을 계속해 나간다. 이 과정은 N명의 사람이 모두 제거될 때까지 계속된다. 원에서 사람들이 제거되는 순서를 (N, K)-요세푸스 순열이라고 한다. 예를 들어 (7, 3)-요세푸스 순열은 &lt;3, 6, 2, 7, 5, 1, 4&gt;이다.</p>
+
+<p>N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 작성하시오.</p>
+
+<h1 id="-1"><제한사항></제한사항></h1>
+
+<p>시간 제한:  2 초</p>
+
+<p>메모리 제한:  256 MB</p>
+
+<h1 id="-2"><풀이></풀이></h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">N</span><span class="p">,</span> <span class="n">K</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+<span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+     <span class="k">while</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+          <span class="n">n</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+          <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
+     <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+     <span class="n">n</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+     <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"&lt;%s&gt;"</span> <span class="o">%</span><span class="p">(</span><span class="s">", "</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">answer</span><span class="p">)))</span>
+
+</code></pre></div></div>
+
+<p>하쒸 ,,,,,,,, 2초인데 시간촟과</p>
+
+<p>사실 while문 두번,  , 날 수밖ㅇ ㅔ 없을 거 같기도 하고</p>
+
+<p>다른 떠오른 방법 : % 연산자를 사용하는 방법</p>
+
+<p>내일 적용해볼까 한다.</p>
+
+<p>for 문도 짜다가 while로 돌아왔는데,,,,,,,,,결국 시간초과</p>
+
+<p>K만큼 후의 수를 출력 위해 index를 둬서 해당 index를 pop하는 것을 반복하는 방식으로 짰다.</p>
+
+<h1 id="-3"><다시 푼="" 것=""></다시></h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="n">N</span><span class="p">,</span> <span class="n">K</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)])</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+     <span class="k">while</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+          <span class="n">n</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">popleft</span><span class="p">())</span>
+          <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
+     <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+     <span class="n">n</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+     <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"&lt;%s&gt;"</span> <span class="o">%</span><span class="p">(</span><span class="s">", "</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">answer</span><span class="p">)))</span>
+
+</code></pre></div></div>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-03-10.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/python" class="post-category">python</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/03/11/baekjoon">Baekjoon 알고리즘 67</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/03/09/baekjoon">Baekjoon 알고리즘 66</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 프렌즈 4블록 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 프렌즈 4블록" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 113일차" />
+<meta property="og:description" content="알고리즘 풀기 113일차" />
+<link rel="canonical" href="http://localhost:4000/2021/05/05/programmers+2" />
+<meta property="og:url" content="http://localhost:4000/2021/05/05/programmers+2" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-05T03:29:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 프렌즈 4블록" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-05T03:29:00+09:00","datePublished":"2021-05-05T03:29:00+09:00","description":"알고리즘 풀기 113일차","headline":"[프로그래머스] 프렌즈 4블록","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/05/programmers+2"},"url":"http://localhost:4000/2021/05/05/programmers+2"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 프렌즈 4블록</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 113일차</p>
+
+<p>2018 KAKAO BLIND RECRUITMENT</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="프렌즈-4블록">프렌즈 4블록</h1>
+  </li>
+</ul>
+
+<blockquote>
+
+</blockquote>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>블라인드 공채를 통과한 신입 사원 라이언은 신규 게임 개발 업무를 맡게 되었다. 이번에 출시할 게임 제목은 “프렌즈4블록”.</p>
+
+<p>같은 모양의 카카오프렌즈 블록이 2×2 형태로 4개가 붙어있을 경우 사라지면서 점수를 얻는 게임이다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/117006285-320b6400-ad23-11eb-81e6-534a469c6ea8.png" alt="image" /></p>
+
+<p>만약 판이 위와 같이 주어질 경우, 라이언이 2×2로 배치된 7개 블록과 콘이 2×2로 배치된 4개 블록이 지워진다.</p>
+
+<p>같은 블록은 여러 2×2에 포함될 수 있으며, 지워지는 조건에 만족하는 2×2 모양이 여러 개 있다면 한꺼번에 지워진다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/117006298-36d01800-ad23-11eb-8b1a-b54060073531.png" alt="image" /></p>
+
+<p>블록이 지워진 후에 위에 있는 블록이 아래로 떨어져 빈 공간을 채우게 된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/117006315-3afc3580-ad23-11eb-8370-7c2a85caab43.png" alt="image" /></p>
+
+<p>만약 빈 공간을 채운 후에 다시 2×2 형태로 같은 모양의 블록이 모이면 다시 지워지고 떨어지고를 반복하게 된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/117006327-3df72600-ad23-11eb-8ce4-e3e3f995902c.png" alt="image" /></p>
+
+<p>위 초기 배치를 문자로 표시하면 아래와 같다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TTTANT
+RRFACC
+RRRFCC
+TRRRAA
+TTMMMF
+TMMTTJ
+</code></pre></div></div>
+
+<p>각 문자는 라이언(R), 무지(M), 어피치(A), 프로도(F), 네오(N), 튜브(T), 제이지(J), 콘(C)을 의미한다</p>
+
+<p>입력으로 블록의 첫 배치가 주어졌을 때, 지워지는 블록은 모두 몇 개인지 판단하는 프로그램을 제작하라.</p>
+
+<h2 id="-입력-">&lt; 입력 &gt;</h2>
+
+<p>입력으로 판의 높이 m, 폭 n과 판의 배치 정보 board가 들어온다.</p>
+
+<blockquote>
+  <p>2 ≦ n, m ≦ 30</p>
+</blockquote>
+
+<p>board는 길이 n인 문자열 m개의 배열로 주어진다. 블록을 나타내는 문자는 대문자 A에서 Z가 사용된다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">board</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">turn</span> <span class="o">=</span> <span class="p">[[</span><span class="n">_</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+    <span class="c1"># board 돌리기 - 시계방향 90도 - 리스트에서 빼면 앞으로 밀어넣기 가능하게
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">board</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="c1"># temp라는 임시 리스트 - 여기에 팡!터지는 리스트의 index만 넣는다.
+</span>        <span class="c1"># 반복문 돌며 2*2 터지는 문자 있어도 바로 없애면 겹쳐서 터질 블록이 안터지기에 temp에 인덱스 넣어두고 팡!터질 블록 검사 다 하고 삭제 들어간다.
+</span>        <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># 2*2씩 검사 시작
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># 4칸이 같은 수인지 확인하고 0이 아닌지 확인한다. (0은 빈칸이므로 제외)
+</span>                <span class="k">if</span> <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># set으로 중복 없애기 위해 list안에 tuple 형태로 넣음
+</span>                    <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+                    <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+                    <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                    <span class="n">temp</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># 2*2가 겹치는 칸일 경우 index 두번 들어간다. set을 이용해서 중복은 제외한다.
+</span>        <span class="n">temp</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
+
+        <span class="c1"># while문 나올 조건 - 검사 다 했는데도 2*2 같은 값 없는 경우
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">temp</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="c1"># 중복 없앤 temp값 == 이번에 터질 블록 수
+</span>        <span class="n">answer</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+
+        <span class="c1"># temp에 있는 index 값들 블록 제거 들어간다.
+</span>        <span class="c1"># list의 pop, remove, del 모두 하나씩 밖에 안지워짐.
+</span>        <span class="c1"># 근데 하나 지울 경우 index가 다 밀리기 때문에 일단 해당 칸 ''으로 세팅하고 이 다음에 빈칸 없애주는 작업 추가 진행
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+            <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="s">''</span>
+
+        <span class="c1"># 이제 보드판에서 빈칸인 칸은 없애며 다시 보드판 그린다.
+</span>        <span class="c1"># 블록이 빠지면서 나머지 칸은 0으로 세팅해준다.
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">turn</span><span class="p">)):</span>
+            <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">v</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">&lt;</span><span class="n">m</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">m</span><span class="p">):</span>
+                    <span class="n">turn</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>
+
+<p>풀이는 따로 적는 것보다 코드위에 적어두는게 나중에 봐도 이해가 잘 될 거 같아 주석으로 달았다.</p>
+
+<p>[“CCBDE”, “AAADE”, “AAABF”, “CCBBF”]</p>
+
+<p>입력으로 위와 같은 board가 들어온다면, 왼쪽 리스트인데 이를 오른쪽처럼 돌려주는 작업을 거친다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CCBDE           CAAC
+AAADE           CAAC
+AAABF   --&gt;     BAAB
+CCBBF           BBDD
+                FFEE
+</code></pre></div></div>
+
+<p>터지는 퍼즐은 2*2 정사각형이라 블록을 돌린다고 바뀌지 않는다. 이렇게 돌리면 블록 검사 후 터진 블록 뺄 때 앞으로 밀어주면 된다.</p>
+
+<p>python의 zip함수를 써서 리스트를 쉽게 돌릴 수 있는 거 같은데 tuple의 형태로 return 되어 나중에 이용이 힘들어 새로운 리스트를 만들어 값을 채워줬다.</p>
+
+<p>각 턴이 돌 때마다, 터질 블록 체크 –&gt; 터질 블록 인덱스 저장 –&gt; 체크 완료 후 블록 터트리기 –&gt; 빈칸 채우기 (반복)</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-05-05.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+      <a href="/category/kakao" class="post-category">KAKAO</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/05/05/programmers">[프로그래머스] 파일명 정렬</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/05/04/programmers">[프로그래머스] 압축</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

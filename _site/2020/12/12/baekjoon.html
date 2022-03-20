@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 28 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 28" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 39일차" />
+<meta property="og:description" content="알고리즘 풀기 39일차" />
+<link rel="canonical" href="http://localhost:4000/2020/12/12/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2020/12/12/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-12T09:20:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 28" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-12-12T09:20:00+09:00","datePublished":"2020-12-12T09:20:00+09:00","description":"알고리즘 풀기 39일차","headline":"Baekjoon 알고리즘 28","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/12/12/baekjoon"},"url":"http://localhost:4000/2020/12/12/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 28</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 39일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>#9095     1,2,3 더하기</li>
+</ul>
+
+<p>정수 4를 1, 2, 3의 합으로 나타내는 방법은 총 7가지가 있다. 합을 나타낼 때는 수를 1개 이상 사용해야 한다.</p>
+
+<ul>
+  <li>
+    <p>1+1+1+1</p>
+  </li>
+  <li>
+    <p>1+1+2</p>
+  </li>
+  <li>
+    <p>1+2+1</p>
+  </li>
+  <li>
+    <p>2+1+1</p>
+  </li>
+  <li>
+    <p>2+2</p>
+  </li>
+  <li>
+    <p>1+3</p>
+  </li>
+  <li>
+    <p>3+1</p>
+  </li>
+</ul>
+
+<p>정수 n이 주어졌을 때, n을 1, 2, 3의 합으로 나타내는 방법의 수를 구하는 프로그램을 작성하시오.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/101951348-3337d980-3c3a-11eb-8dbb-057f00baf680.png" alt="image" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span><span class="p">):</span>
+     <span class="n">num</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+     
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())):</span>
+     <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+
+</code></pre></div></div>
+
+<p>규칙을 찾다보다 6까지 가게 되었다. 뭔가 숫자가 커지며 이전 숫자들로 더해 값이 커지니 차근차근 1부터 배열을 만들어 가면 되겠다고 생각했다.</p>
+
+<p>그래서 1부터 숫자를 세보면서 규칙을 찾아보다 인덱스 i의 수를 어떻게 구하냐 봤더니 i-1, i-2, i-3까지의 수를 합하면 됐다.</p>
+
+<p>생각해보면 1,2,3의 수를 가지고 만드는 것이니, 예를들어 7이 입력이면, 이 7은 6+1, 5+2, 4+3으로 1,2,3을 기존 이전 인덱스들로 만들 수 있다.</p>
+
+<p>그러니 기존 인덱스 4, 5, 6의 각 리스트에 3, 2, 1를 append한 것이기 때문에 기존 length는 유지돼 이전 3개의 리스트 값을 더해주면 값이 나오게 된다.</p>
+
+<p>로직은 찾았고 각 입력을 받으며 구해도 되지만, 조건이 11까지라서 미리 배열을 구해두고 출력하는 방식으로 짜보았다.</p>
+
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2020-12-12.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/python" class="post-category">python</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2020/12/13/baekjoon">Baekjoon 알고리즘 29</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2020/12/11/baekjoon">Baekjoon 알고리즘 27</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

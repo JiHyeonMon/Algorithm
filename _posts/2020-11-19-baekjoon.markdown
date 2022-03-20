@@ -1,0 +1,109 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 20"
+date:   2020-11-19 04:20 +0530
+categories: [Baekjoon]
+tags: [python]
+---
+
+알고리즘 풀기 20일차
+
+오늘은 정말 여유로울 줄 알았다,,,
+
+정말로 열심히 시간내서 풀줄 알았는데,,,,
+
+그런데! 개발해야할 것,,다 하고 보니,,새벽 4시 20분,,,호호호,,,,
+
+:)
+
+
+- #1977     완전 제곱수
+
+```python
+#1977
+#완전 제곱수
+import math
+
+n = math.ceil(math.sqrt(int(input())))
+m = math.floor(math.sqrt(int(input())))
+sum=0
+for i in range(n, m+1):
+     sum+=i*i
+
+if sum == 0:
+     print(-1)
+else:
+     print(sum)
+     print(n*n)
+
+
+```
+
+제곱근을 쓰자는 생각으로 접근했다. 60-100이 테스트 케이스였으니 60과 100의 제곱근을 구해서 그 정수 사이값을 제곱하면 되겠다 생각했다.
+
+우선 제곱근 하기위해 sqrt함수를 썼는데 이를 정수로 반환할때 올림할지 내림할지 잘못 생각해서 한 번 틀렸다.
+
+60은 올림수, 100은 내림수로 해야한다. (생각해보면 당연하다.)
+
+
+- #2751        수 정렬하기 2
+
+```python
+#2751
+#수 정렬하기 2
+
+def merge_sort(v):
+     if len(v)<=1:
+          return v
+     m = len(v)//2
+     left = merge_sort(v[0:m])
+     right = merge_sort(v[m:len(v)])
+
+     return merge(left, right)
+     
+def merge(left, right):
+     v=[]
+     i, j = 0,0
+     while (i<len(left) and j<len(right)):
+          if left[i] <= right[j]:
+               v.append(left[i])
+               i+=1
+          else:
+               v.append(right[j])
+               j+=1
+
+     if i == len(left):
+          v += right[j:len(right)]
+     if j == len(right):
+          v += left[i:len(left)]
+
+     return v
+
+v = [int(input()) for i in range(int(input()))]
+m = merge_sort(v)
+
+print(*m, sep="\n")
+
+```
+
+ㅎㅎ이거는 코드 찾아봤다. 
+
+기존의 정렬보다 시간복잡도가 중요한 것은 알기에 일반적인 정렬로 풀면 안되고 퀵정렬, 병합정렬로 풀어야한다는 것은 알고 있었으나 코드로 구현해본 적은 없기에 보면서 이해할 수 있었다. 
+
+주어진 값을 리스트에 넣고 우선 두 등분을 계속 해나간다. 결국에 두개만 남을때까지 계속 나누고 끝나면 그 두개씩 비교를 시작한다. 두개 비교 - 정렬 이거를 반복한다.
+
+두 등분씩 나눠 left와 right에 넣었으니 각 left와 right 을 비교하는데, 작은 수를 v에 넣는다. 
+
+이때 left나 right가 끝나면 나머지를 순차적으로 넣어준다.
+
+
+< 사실 이거 코드 찾아본건데 이것도 시간초과 뜸;어쩌란거지 >
+
+파이썬에서 기본적으로 제공하는 sort()도 O(NlogN)의 복잡도를 가지기에 나름 좋은 성능을 가지고 있다고 한다. 
+
+후,,저렇게 다른 정렬을 안쓰고 푸는 방법으로 기존 python3이 아닌 pypy로 돌리라는 것이다. (더 성능이 좋은지 시간이 단축된다.)
+
+(이 문제 며칠전 면접에서 들은 문제였는데, 정렬 풀기 싫어서 미루고 미루다 이제 봤는데 딱 이 문제,,미리 풀었음 대답 잘 했을텐데,,,) 앞으로 알고리즘 더 열심히 해봐야겠다!!
+
+
+---

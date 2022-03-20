@@ -1,0 +1,262 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 56"
+date:   2021-02-15 23:14 +0530
+categories: python
+---
+
+알고리즘 풀기 70일차
+
+
+:)
+
+
+- #4949     균형잡힌 세상
+
+세계는 균형이 잘 잡혀있어야 한다. 양과 음, 빛과 어둠 그리고 왼쪽 괄호와 오른쪽 괄호처럼 말이다.
+
+정민이의 임무는 어떤 문자열이 주어졌을 때, 괄호들의 균형이 잘 맞춰져 있는지 판단하는 프로그램을 짜는 것이다.
+
+문자열에 포함되는 괄호는 소괄호("()") 와 대괄호("[]")로 2종류이고, 문자열이 균형을 이루는 조건은 아래와 같다.
+
+- 모든 왼쪽 소괄호("(")는 오른쪽 소괄호(")")와만 짝을 이뤄야 한다.
+- 모든 왼쪽 대괄호("[")는 오른쪽 대괄호("]")와만 짝을 이뤄야 한다.
+- 모든 오른쪽 괄호들은 자신과 짝을 이룰 수 있는 왼쪽 괄호가 존재한다.
+- 모든 괄호들의 짝은 1:1 매칭만 가능하다. 즉, 괄호 하나가 둘 이상의 괄호와 짝지어지지 않는다.
+- 짝을 이루는 두 괄호가 있을 때, 그 사이에 있는 문자열도 균형이 잡혀야 한다.
+
+정민이를 도와 문자열이 주어졌을 때 균형잡힌 문자열인지 아닌지를 판단해보자.
+
+```
+#테스트 케이스
+
+So when I die (the [first] I will see in (heaven) is a score list).
+[ first in ] ( first out ).
+Half Moon tonight (At least it is better than no Moon at all].
+A rope may form )( a trail in a maze.
+Help( I[m being held prisoner in a fortune cookie factory)].
+([ (([( [ ] ) ( ) (( ))] )) ]).
+ .
+.
+
+yes
+yes
+no
+no
+no
+yes
+yes
+
+```
+
+# <풀이>
+
+```python
+#첫 시도
+while True:
+     line = input()
+     if line == '.':
+          break
+     bracket = []
+     TF = True
+     for i in range(len(line)):
+          if line[i]=='(' or line[i]=='[':
+               bracket.append(line[i])
+          if line[i]==')':
+               if len(bracket)==0:
+                    print("no")
+                    TF = False
+                    break
+               
+               if bracket[-1]=='(':
+                    bracket.pop()
+               else:
+                    print("no")
+                    TF = False
+                    break
+          if line[i]==']':
+               if len(bracket)==0:
+                    print("no")
+                    TF = False
+                    break
+               
+               if bracket[-1]=='[':
+                    bracket.pop()
+               else:
+                    print("no")
+                    TF = False
+                    break
+
+     if TF:
+          if len(bracket)!=0:
+               print("no")
+
+```
+
+테스트 케이스 다 만족. 
+
+여기서의 문제는 ( 이 입력으로 들어오면 이전 bracket[-1] 이 ) 라는 전제일 때만 가능한 시나리오다. 
+사실은 ([()) ??????????????????????? 풀이 지금 쓰다보니 이거 맞는 풀이인거 같은데,,,,,,,, 이때 수정한 이유가 ([ )와 같은 상황을 생각했는데 이거 역시 안되는 케이스 맞는데,,,)들어오면 무조건 전에꺼가 (여야하는거 아닌가...?
+
+아무튼 고침,,,
+
+---
+
+```python
+#두번째 시도
+while True:
+     line = input()
+     if line == '.':
+          break
+     bracket = []
+     TF = True
+     for i in range(len(line)):
+          if line[i]=='(' or line[i]=='[':
+               bracket.append(line[i])
+          if line[i]==')':
+               if len(bracket)==0:
+                    print("no")
+                    TF = False
+                    break
+               
+               if '(' in bracket:
+                    bracket.pop(bracket.index('('))
+               else:
+                    print("no")
+                    TF = False
+                    break
+          if line[i]==']':
+               if len(bracket)==0:
+                    print("no")
+                    TF = False
+                    break
+               
+               if '[' in bracket:
+                    bracket.pop(bracket.index('['))
+               else:
+                    print("no")
+                    TF = False
+                    break
+
+     if TF:
+          if len(bracket)!=0:
+               print("no")
+          else:
+               print("yes")
+
+```
+
+다섯번째 테스트 케이스 불만족.
+
+여기서의 문제는 ( 입력으로 들어오면 index로 ( 가 있는 앞자리 애를 없애버린다. 뒤부터 맞쳐가며 없애야하는데. 그래서 또 수정 - 아래 버전
+
+---
+
+```python
+#세번째 시도
+while True:
+     line = input()
+     if line == '.':
+          break
+     bracket = []
+     TF = True
+     for i in range(len(line)):
+          if line[i]=='(' or line[i]=='[':
+               bracket.append(line[i])
+          elif line[i]==')':
+               if len(bracket)==0:
+                    print("no")
+                    TF = False
+                    break
+
+               if '(' in bracket:
+                    for j in range(len(bracket)-1, -1, -1):
+                         if bracket[j]=='[':
+                              print("no")
+                              TF = False
+                              break
+                         elif bracket[j]=='(':
+                              bracket.pop(j)
+                              break
+               else:
+                    print("no")
+                    TF = False
+                    break
+               
+                         
+          elif line[i]==']':
+               if len(bracket)==0:
+                    print("no")
+                    TF = False
+                    break
+               
+               if '[' in bracket:
+                    for j in range(len(bracket)-1, -1, -1):
+                         if bracket[j]=='(':
+                              print("no")
+                              TF = False
+                              break
+                         elif bracket[j]=='[':
+                              bracket.pop(j)
+                              break
+               else:
+                    print("no")
+                    TF = False
+                    break
+
+     if TF:
+          if len(bracket)!=0:
+               print("no")
+          else:
+               print("yes")
+
+```
+
+( 를 만나면 bracket 괄호 리스트를 역순으로 돌며 [ 다른 괄호 나오면 틀린 거, 맞는 괄호면 pop을 해서 없애준다.
+
+테스트 케이스 다 만족.
+
+근데 뭐가,,,,,,,,,,뭐가 예외사항에 있는걸까,,,,,,,,, 그 예외를 못찾겠다....
+
+분명 빠뜨린 무언가가 있는데,,,,못찾겠다. 더 생각해보고 풀이 찾아보던지 해야겠다.
+
+
+---
+
+```python
+#정답
+while True:
+     line = input()
+     if line == '.':
+          break
+     bracket = []
+     TF = True
+     for i in range(len(line)):
+          if line[i]=='(' or line[i]=='[':
+               bracket.append(line[i])
+               
+          if line[i]==')':
+               if not bracket or bracket[-1]=='[':
+                    TF = False
+                    break
+               else:
+                    bracket.pop()
+          if line[i]==']':
+               if not bracket or bracket[-1]=='(':
+                    TF = False
+                    break
+               else:
+                    bracket.pop()
+
+     if TF and not bracket:
+          print("yes")
+     else:
+          print("no")
+
+```
+
+결국 풀이를 찾아봤는데 진짜,,,똑같다. 첫번째 풀이와.
+
+조건에서 ) 닫는 괄호 나올 시 앞에꺼가 [ 열린 대괄호인지 체크를 안해줬다.
+
+묵은 체증이 내려가는 기분,

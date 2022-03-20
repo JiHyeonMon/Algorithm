@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 11 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 11" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 11일차 :)" />
+<meta property="og:description" content="알고리즘 풀기 11일차 :)" />
+<link rel="canonical" href="http://localhost:4000/2020/11/09/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2020/11/09/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-09T06:28:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 11" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-11-09T06:28:00+09:00","datePublished":"2020-11-09T06:28:00+09:00","description":"알고리즘 풀기 11일차 :)","headline":"Baekjoon 알고리즘 11","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/11/09/baekjoon"},"url":"http://localhost:4000/2020/11/09/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="python" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 11</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 11일차
+:)</p>
+
+<ul>
+  <li>#2581     소수</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#2581
+#소수 - 자연수 M과 N이 주어질 때 M이상 N이하의 자연수 중 소수인 것을 모두 골라 이들 소수의 합과 최솟값을 찾는 프로그램을 작성하시오.
+</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">Prime</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+          <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">return</span> <span class="bp">False</span>
+     <span class="k">return</span> <span class="bp">True</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">prime</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="k">pass</span>
+     <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+          <span class="n">prime</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">if</span> <span class="n">Prime</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+                    <span class="n">prime</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+          
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prime</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+     <span class="k">print</span><span class="p">(</span><span class="s">"{}</span><span class="se">\n</span><span class="s">{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">prime</span><span class="p">),</span><span class="nb">min</span><span class="p">(</span><span class="n">prime</span><span class="p">)))</span>
+<span class="k">else</span><span class="p">:</span>
+     <span class="k">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>푼 방식은 학교 알고리즘 시간에 소수 구하기에서 배웠던 방식과 비슷하게 풀었다.</p>
+
+<p>다른 풀이들 찾아보니 함수로 만든 사람은 잘 없었는데, 왠지 함수로 만들고 싶어 함수로 소수판별하는 부분을 빼보았다.</p>
+
+<p>소수는 1과 자기자신 외에 나눠지지 않는 수로 입력받은 두 숫자 a,b (포함) 사이 모든 수가 소수인지 2~i의 제곱근까지 나눠보면 된다.</p>
+
+<p>소수판변 함수 Prime에서 2부터 제곱근까지 나눠보며 나눠지면 바로 False 반환, 안나눠지고 반복이 끝난다면 True로 소수로 판별된다.</p>
+
+<p>소수로 판별된 수는 prime리스트에 담는다.</p>
+
+<p>이후 prime 리스트가 비어있지 않다면 sum()을 사용하여 합과 min()을 사용하여 최소값을 출력해준다.</p>
+
+<hr />
+
+<ul>
+  <li>#1978     소수 찾기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#1978
+#소수 찾기
+</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">Prime</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="k">return</span> <span class="bp">False</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+               <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+     <span class="k">return</span> <span class="bp">True</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">Prime</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+          <span class="n">cnt</span><span class="o">+=</span><span class="mi">1</span>
+          
+<span class="k">print</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>풀었다 체크돼있어 확인해보니 예전에 c언어로 풀어둔 거여서 python으로 다시 풀어보았다.</p>
+
+<p>바로 위 문제에서 함수를 정의해놨기에 그대로 가져왔다 ㅎㅎㅎ (야호~)</p>
+
+<p>그래서 소수 구하는 방식은 위와 같다.</p>
+
+<p>다만 여기선 cnt를 세주는 것 뿐.</p>
+
+<hr />
+
+<ul>
+  <li>#1929     소수 구하기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#1929
+#소수 구하기 - M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오.
+</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">Prime</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+          <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+               <span class="k">return</span> <span class="bp">False</span>
+     <span class="k">return</span> <span class="bp">True</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="k">pass</span>
+     <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">Prime</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+               <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>오늘 온갖 소수 구하기 문제는 다 푸는 것 같다!!!!!!!! 어쨌든 같은 함수 돌려 쓰기지만,,, 한동안 안잊을 것 같은 소수 구하기.</p>
+
+<p>얘는 두 숫자 입력받아 그 사이 수 소수면 그냥 출력하는 윗 문제들과 아주 유사한 문제.</p>
+
+<hr />
+
+<ul>
+  <li>#4948     베르트랑 공존</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">Prime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="k">return</span> <span class="bp">False</span>
+     <span class="k">elif</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+          <span class="k">return</span> <span class="bp">True</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+               <span class="k">if</span> <span class="n">p</span><span class="o">%</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+     <span class="k">return</span> <span class="bp">True</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+     <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+     <span class="n">cnt</span><span class="o">=</span><span class="mi">0</span>
+     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="k">break</span>
+     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+          <span class="k">if</span> <span class="n">Prime</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+               <span class="n">cnt</span><span class="o">+=</span><span class="mi">1</span>
+
+     <span class="k">print</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>이것은 정답 아님!! 이렇게 풀었더니 테스트케이스는 통과하지만 시간초과 오류가 났다.</p>
+
+<p>그래서 다른 사람들 풀이를 찾아봤는데 ‘ 에라토스테네스의 체 ‘ 를 이용하라는 것이다!!!</p>
+
+<p>으잉, 그게 뭐시당가 내가 찾아보니, 아니 내가 계산하고 있던 제곱근 이용하는 방식이 맞는디,,,,, 하니 매 숫자마다 (만들어둔) 소수 판별 함수를 부르는 것이 비효율적!!</p>
+
+<p>그래서 숫자 하나하나 소수인지 비교하는 방식이 아닌 미리 소수 구해놓고 n숫자를 입력받으면 바로 n~2n까지 소수 개수를 반환하게 바꿨다. (아래코드)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">isPrime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="bp">True</span>
+
+<span class="n">li</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">246912</span><span class="p">))</span>
+<span class="n">prime_li</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">li</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">isPrime</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="n">prime_li</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">break</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prime_li</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">answer</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2020-11-09.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/baekjoon" class="post-category">Baekjoon</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+      <a href="/tag/python" class="post-tag">python</a>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2020/11/10/baekjoon">Baekjoon 알고리즘 12</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2020/11/08/kakao2">2018 KAKAO BLIND RECRUITMENT - 다트게임</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 더 맵게 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 더 맵게" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 102일차" />
+<meta property="og:description" content="알고리즘 풀기 102일차" />
+<link rel="canonical" href="http://localhost:4000/2021/04/20/programmers" />
+<meta property="og:url" content="http://localhost:4000/2021/04/20/programmers" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-20T03:29:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 더 맵게" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-04-20T03:29:00+09:00","datePublished":"2021-04-20T03:29:00+09:00","description":"알고리즘 풀기 102일차","headline":"[프로그래머스] 더 맵게","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/04/20/programmers"},"url":"http://localhost:4000/2021/04/20/programmers"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 더 맵게</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 102일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="더-맵게">더 맵게</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>어떤 정수들이 있습니다. 이 정수들의 절댓값을 차례대로 담은 정수 배열 absolutes와 이 정수들의 부호를 차례대로 담은 불리언 배열 signs가 매개변수로 주어집니다. 실제 정수들의 합을 구하여 return 하도록 solution 함수를 완성해주세요.매운 것을 좋아하는 Leo는 모든 음식의 스코빌 지수를 K 이상으로 만들고 싶습니다. 모든 음식의 스코빌 지수를 K 이상으로 만들기 위해 Leo는 스코빌 지수가 가장 낮은 두 개의 음식을 아래와 같이 특별한 방법으로 섞어 새로운 음식을 만듭니다.</p>
+
+<blockquote>
+  <p>섞은 음식의 스코빌 지수 = 가장 맵지 않은 음식의 스코빌 지수 + (두 번째로 맵지 않은 음식의 스코빌 지수 * 2)</p>
+</blockquote>
+
+<p>Leo는 모든 음식의 스코빌 지수가 K 이상이 될 때까지 반복하여 섞습니다.</p>
+
+<p>Leo가 가진 음식의 스코빌 지수를 담은 배열 scoville과 원하는 스코빌 지수 K가 주어질 때, 모든 음식의 스코빌 지수를 K 이상으로 만들기 위해 섞어야 하는 최소 횟수를 return 하도록 solution 함수를 작성해주세요.</p>
+
+<h2 id="-제한사항-">&lt; 제한사항 &gt;</h2>
+
+<p>scoville의 길이는 2 이상 1,000,000 이하입니다.</p>
+
+<p>K는 0 이상 1,000,000,000 이하입니다.</p>
+
+<p>scoville의 원소는 각각 0 이상 1,000,000 이하입니다.</p>
+
+<p>모든 음식의 스코빌 지수를 K 이상으로 만들 수 없는 경우에는 -1을 return 합니다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">#틀림 ing~~~~
+</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">scoville</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">scoville</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">scoville</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scoville</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scoville</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">K</span><span class="p">:</span>
+            <span class="n">scoville</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">scoville</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">scoville</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span>
+            <span class="n">answer</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">TF</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">TF</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">answer</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+</code></pre></div></div>
+
+<p>오늘의 쉬운 문제. 그러나 틀림.</p>
+
+<p>처음에 deque로 정의하여 popleft() 두개를 하여 계산했는데 또 문제를 보니 해당 값을 빼서 게산만 하는게 아니라 도로 집어넣어 다음 계산을 진행한다.</p>
+
+<p>그래서 appendleft()를 하자니 다음 순서의 최소값이 아닐 가능성이 있다. (기존에 무조건 popleft로 빼오니 정렬이 돼야하는 상태)</p>
+
+<p>그렇지만 deque에서는 sort를 지원하지 않는다.</p>
+
+<p>그래서 다시 배열로 돌아왔다. 그러나 역시 예상대로 시간초과 문제.</p>
+
+<p>해당 문제 카테고리가 힙(Heap)인 만큼 큐를 써서 풀어야할 것 같다.</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-04-20.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/04/21/programmers">[프로그래머스] 더 맵게 (수정)</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/04/17/programmers">[프로그래머스] 음양 더하기</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

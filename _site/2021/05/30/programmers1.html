@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 구명보트 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 구명보트" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 223일차" />
+<meta property="og:description" content="알고리즘 풀기 223일차" />
+<link rel="canonical" href="http://localhost:4000/2021/05/30/programmers1" />
+<meta property="og:url" content="http://localhost:4000/2021/05/30/programmers1" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-30T21:24:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 구명보트" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-05-30T21:24:00+09:00","datePublished":"2021-05-30T21:24:00+09:00","description":"알고리즘 풀기 223일차","headline":"[프로그래머스] 구명보트","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/05/30/programmers1"},"url":"http://localhost:4000/2021/05/30/programmers1"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 구명보트</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 223일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="구명보트">구명보트</h1>
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>무인도에 갇힌 사람들을 구명보트를 이용하여 구출하려고 합니다. 구명보트는 작아서 한 번에 최대 2명씩 밖에 탈 수 없고, 무게 제한도 있습니다.</p>
+
+<p>예를 들어, 사람들의 몸무게가 [70kg, 50kg, 80kg, 50kg]이고 구명보트의 무게 제한이 100kg이라면 2번째 사람과 4번째 사람은 같이 탈 수 있지만 1번째 사람과 3번째 사람의 무게의 합은 150kg이므로 구명보트의 무게 제한을 초과하여 같이 탈 수 없습니다.</p>
+
+<p>구명보트를 최대한 적게 사용하여 모든 사람을 구출하려고 합니다.</p>
+
+<p>사람들의 몸무게를 담은 배열 people과 구명보트의 무게 제한 limit가 매개변수로 주어질 때, 모든 사람을 구출하기 위해 필요한 구명보트 개수의 최솟값을 return 하도록 solution 함수를 작성해주세요.</p>
+
+<h2 id="-제한사항-">&lt; 제한사항 &gt;</h2>
+
+<p>무인도에 갇힌 사람은 1명 이상 50,000명 이하입니다.</p>
+
+<p>각 사람의 몸무게는 40kg 이상 240kg 이하입니다.</p>
+
+<p>구명보트의 무게 제한은 40kg 이상 240kg 이하입니다.</p>
+
+<p>구명보트의 무게 제한은 항상 사람들의 몸무게 중 최댓값보다 크게 주어지므로 사람들을 구출할 수 없는 경우는 없습니다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">people</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">reverse</span> <span class="o">=</span> <span class="bp">True</span><span class="p">))</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">people</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">people</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">limit</span><span class="p">:</span>
+            <span class="n">people</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">people</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">people</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="n">answer</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">people</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>
+
+<p>일단 최대로 태울 수 있는 것도 두 명이기에 무거운 사람, 가벼운 사람 이렇게 짝짓는게 이득이다.</p>
+
+<p>물론 가장 가벼운 사람과 가장 무거운 사람을 짝지었을 때, limit보다 커지면 무거운 사람 혼자밖에 못타는 것이기에 배열을 정렬한 뒤 맨 앞과 맨 뒤를 더해서 비교했다.</p>
+
+<p>가장 가벼운 사람과 무거운 사람 합이 limit보다 작다면 둘을 빼고 answer+1</p>
+
+<p>limit보다 크면 무거운 사람 혼자 나가고 answer+1</p>
+
+<p>그러고 people에 혼자 남으면 한번 더 보내기에 answer+1, 다 비웠으면 return answer해준다.</p>
+
+<p>무게 무거운 사람, 가벼운 사람 알기 위해 정렬 필요했고, 그 결과 앞뒤로 빼줘야하기에 일반 리스트(스택)으로 생각안하고 deque를 써서 앞에서 뺄 때도 효율을 높였다.</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-05-30.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+      <a href="/category/탐욕법" class="post-category">탐욕법</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/05/31/programmers2">[프로그래머스] 전화번호 목록</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/05/28/programmers">[프로그래머스] 짝지어 제거하기</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

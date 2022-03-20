@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] H-index | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] H-index" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 224일차" />
+<meta property="og:description" content="알고리즘 풀기 224일차" />
+<link rel="canonical" href="http://localhost:4000/2021/06/01/programmers2" />
+<meta property="og:url" content="http://localhost:4000/2021/06/01/programmers2" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-06-01T02:31:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] H-index" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-06-01T02:31:00+09:00","datePublished":"2021-06-01T02:31:00+09:00","description":"알고리즘 풀기 224일차","headline":"[프로그래머스] H-index","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/06/01/programmers2"},"url":"http://localhost:4000/2021/06/01/programmers2"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] H-index</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 224일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="h-index">H-index</h1>
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>H-Index는 과학자의 생산성과 영향력을 나타내는 지표입니다. 어느 과학자의 H-Index를 나타내는 값인 h를 구하려고 합니다. 위키백과1에 따르면, H-Index는 다음과 같이 구합니다.</p>
+
+<p>어떤 과학자가 발표한 논문 n편 중, h번 이상 인용된 논문이 h편 이상이고 나머지 논문이 h번 이하 인용되었다면 h의 최댓값이 이 과학자의 H-Index입니다.</p>
+
+<p>어떤 과학자가 발표한 논문의 인용 횟수를 담은 배열 citations가 매개변수로 주어질 때, 이 과학자의 H-Index를 return 하도록 solution 함수를 작성해주세요.</p>
+
+<h2 id="-제한사항-">&lt; 제한사항 &gt;</h2>
+
+<p>과학자가 발표한 논문의 수는 1편 이상 1,000편 이하입니다.</p>
+
+<p>논문별 인용 횟수는 0회 이상 10,000회 이하입니다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">citations</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">citations</span><span class="p">)</span>
+    <span class="n">citations</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">citations</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">n</span><span class="o">-</span><span class="n">i</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="c1">#     for i in range(n, -1, -1):
+#         cnt = 0
+#         if citations[0] &gt; i:
+#             return i
+</span>
+<span class="c1">#         for j in range(n-1, -1, -1):
+#             if citations[j]&gt;=i:
+#                 cnt += 1
+#             else:
+#                 break
+#         if cnt&gt;=i:
+#             return i
+</span>
+</code></pre></div></div>
+
+<p>위에 코드 + 아래 주석 모두 통과.</p>
+
+<p>아래 코드 먼저 생각해서 풀었는데 다른 사람 풀이 중 괜찮은 것을 하나 들고와봤다.</p>
+
+<p>우선 최대 값은 citations의 길이가 된다. ==&gt; h번 이상 인용된 논문이 h편 이상</p>
+
+<p>그래서 길이의 최대값부터 내려오면서 개수 비교하며 cnt 하는 방식으로 구했다. (사실 쉬운 문제 같아 보였는데 생각하는데 꽤나 골머리 썩힘)</p>
+
+<p>통과는 했는데 이렇게 풀기 전에 틀렸던 풀이가 있는데 다른 사람 풀이를 보니 같은 생각으로 푼 풀이가 있어 가져와봤다.</p>
+
+<p>그냥 citations 길이만큼 돌며 0~최대 길이까지 인덱스라 치면, 해당 인덱스가 가리키는 값이 해당 값 뒤로 남은 수들보다 같아지게 되는 순간이 최대다. (단 정렬을 해놔야 함.)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[0, 1, 3, 5, 6]
+0부터 돌면서 3을 가리켰는데, 해당 3값 포함 뒤로 남은 수가 3일 때 최대값이 된다.
+</code></pre></div></div>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-06-01.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+      <a href="/category/정렬" class="post-category">정렬</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/06/02/programmers">[프로그래머스] 주식가격</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/06/01/programmers1">[프로그래머스] 다리를 지나는 트럭</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

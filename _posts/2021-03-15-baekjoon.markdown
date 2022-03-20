@@ -1,0 +1,115 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 68"
+date:   2021-03-15 23:59 +0530
+categories: python
+---
+
+알고리즘 풀기 85일차
+
+:)
+
+- #11444     피보나치 수 6
+
+# <문제 설명>
+
+피보나치 수는 0과 1로 시작한다. 0번째 피보나치 수는 0이고, 1번째 피보나치 수는 1이다. 그 다음 2번째 부터는 바로 앞 두 피보나치 수의 합이 된다.
+
+이를 식으로 써보면 Fn = Fn-1 + Fn-2 (n ≥ 2)가 된다.
+
+n=17일때 까지 피보나치 수를 써보면 다음과 같다.
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597
+
+n이 주어졌을 때, n번째 피보나치 수를 구하는 프로그램을 작성하시오.
+
+# <제한사항>
+
+시간 제한:  1 초
+
+메모리 제한:  256 MB
+
+
+# <풀이>
+
+```python
+#메모리 초과
+import sys
+p = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597]
+
+num = int(sys.stdin.readline())
+
+if num < 18:
+     print(p[num])
+else:
+     for i in range(18, num+1):
+          p.append(p[i-1]+p[i-2])
+     print(p[num]%1000000007)
+
+```
+
+내가 푼 풀이
+
+# <풀이>
+
+```python
+
+#2^x 피보나치를 구해주는 함수
+def matrix_mul_self(x):
+    base = [[1, 1], [1, 0]]
+    result = [[1, 1], [1, 0]]
+    for _ in range(x):
+        result = [[0, 0], [0, 0]]
+        for i in range(2):
+            for j in range(2):
+                for k in range(2):
+                    result[i][j] += (base[i][k] * base[k][j]) % 1000000007
+        base = result
+        
+    return result
+
+#2*2 두 행렬의 곱을 구해주는 함수
+def matrix_mul(a, b):
+    result = [[0 ,0], [0, 0]]
+    for i in range(2):
+        for j in range(2):
+            for k in range(2):
+                result[i][j] += (a[i][k] * b[k][j]) % 1000000007
+                
+    return result
+
+n = bin(int(input()))[2:] #2진법으로 변환
+
+result = [[1, 0], [0, 1]]
+for i in range(len(n)):
+    if n[-i-1] == '1': #2^x 피보나치들만 구해준 다음 곱해줌
+        result = matrix_mul(result, matrix_mul_self(i))
+        
+print(result[0][1] % 1000000007)
+
+```
+
+---
+
+아건 풀이를 찾아볼 수밖에 없었다.
+
+도저히 기존에 쓰던 방법으로 푸는 방법이 생각이 나지 않아 찾는데, 풀이도 너무 어렵다.
+
+분할정복+행렬곱으로 푸는 문제란다,,,
+
+
+n을 이진법으로 바꿔준다.
+
+10101(2)를 피보나치 수를 행렬로 표현하면
+
+[[fn , fn-1 ], [fn-1 , fn-2]] = [[1, 1], [1, 0]] ^ 2 ^ 4 * [[1, 1], [1, 0]] ^ 2 ^ 2 * [[1, 1], [1, 0]] ^ 2 ^ 0
+
+과 같다.
+
+https://shoark7.github.io/programming/algorithm/%ED%94%BC%EB%B3%B4%EB%82%98%EC%B9%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-5%EA%B0%80%EC%A7%80-%EB%B0%A9%EB%B2%95.html
+
+사실 이 문제는 제대로 이해하고 푼게 아니라서 틀린 문제 채로 놔뒀다.
+
+이 문제는 주말에 다시 풀이 찬찬히 볼 필요 + 피보나치 알고리즘 방법 5가지 복습 해야할 것 같다.
+
+(지금껏 피보나치 2-3개 방법 정도론 풀어봤는데 행렬곱 이 문제는 약간 역대급,,,)

@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-21T01:11:34+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Algorighm</title><subtitle>B's Algorighm Blog</subtitle><entry><title type="html">[프로그래머스] 단속카메라</title><link href="http://localhost:4000/2021/08/19/programmers" rel="alternate" type="text/html" title="[프로그래머스] 단속카메라" /><published>2021-08-19T09:01:00+09:00</published><updated>2021-08-19T09:01:00+09:00</updated><id>http://localhost:4000/2021/08/19/programmers</id><content type="html" xml:base="http://localhost:4000/2021/08/19/programmers"><![CDATA[<p>알고리즘 풀기 236일차</p>
+
+<p>:)</p>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>고속도로를 이동하는 모든 차량이 고속도로를 이용하면서 단속용 카메라를 한 번은 만나도록 카메라를 설치하려고 합니다.</p>
+
+<p>고속도로를 이동하는 차량의 경로 routes가 매개변수로 주어질 때, 모든 차량이 한 번은 단속용 카메라를 만나도록 하려면 최소 몇 대의 카메라를 설치해야 하는지를 return 하도록 solution 함수를 완성하세요.</p>
+
+<h2><제한사항></제한사항></h2>
+
+<ul>
+  <li>차량의 대수는 1대 이상 10,000대 이하입니다.</li>
+  <li>routes에는 차량의 이동 경로가 포함되어 있으며 routes[i][0]에는 i번째 차량이 고속도로에 진입한 지점, routes[i][1]에는 i번째 차량이 고속도로에서 나간 지점이 적혀 있습니다.</li>
+  <li>차량의 진입/진출 지점에 카메라가 설치되어 있어도 카메라를 만난것으로 간주합니다.</li>
+  <li>차량의 진입 지점, 진출 지점은 -30,000 이상 30,000 이하입니다.</li>
+</ul>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">routes</span><span class="p">):</span>
+    <span class="c1"># routes를 나간시간 순으로
+</span>    <span class="n">routes</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1"># camera = 현재 카메라가 설치된 위치
+</span>    <span class="n">camera</span> <span class="o">=</span> <span class="n">routes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># 두번째 차량부터 마지막번째 차량까지 반복문을 돌며 현재 카메라가 설치된 시간보다
+</span>    <span class="c1"># 들어온 시간이 늦으면 camera에 현재 차량의 나간시간을 넣어주고 answer 1증가
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">routes</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">camera</span> <span class="o">&lt;</span> <span class="n">routes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">camera</span> <span class="o">=</span> <span class="n">routes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">answer</span> <span class="o">+=</span> <span class="mi">1</span>
+                
+    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>
+
+<p>며칠간 골머리를 앓다 여러 사람의 풀이를 결국 찾아보게 되었다.</p>
+
+<p>나는 우선 시작시간~끝나는 시간을 변수로 두고 반복문을 돌며 딱 해당 시간에 몇 대의 차가 있는지 확인하고 해당 차가 하나라도 빠지는 순간 (가장 많은 차가 겹치는 구간)에 카메라를 설치하면 된다고 생각했다.</p>
+
+<p>즉, 시간이 지나며 현재 차량 개수가 하나 빠지면 카메라를 더해주면 된다 생각했는데 (가령 3-&gt;2가 되는 순간) 이렇게 할 경우 다른 카메라로 잡을 수 있는 거리인데 포함이 되어 카메라가 최소 개수가 안되는 많아지는 경우가 생긴다.</p>
+
+<p>생각하다 생각하다 모르겠어서 풀이를 참고했다.</p>
+
+<p>우선 정렬 자체를 난 들어오는 순 리스트의 인덱스[0]을 기준으로 했는데 [1]을 기준으로 함으로써 나가는 시간 기준으로 정렬을 한다.</p>
+
+<p>당연히 첫 카메라는 처음으로 차가 나가는 시간에 맞춘다. (최소로 설치해야 하기에 우선 앞 차를 포함하며 뒷 차도 포함될 경우가 베스트기에 가장 뒷 시간, 즉 나가는 시간에 맞춘다.)</p>
+
+<p>그러면 첫 차는 포함하며 카메라 설치하고 해당 시간에 뒷 차가 있는가 보는데 있다면 당연히 뒷차도 해당 카메라에 포함되니 패스, 그러나 카메라 찍히지 않게 설치 시점보다 뒤에 차가 들어올 경우 이제 해당 차량이 나갈때마다 넣어주며 모든 차량이 카메라 찍히게 하면 된다.</p>
+
+<p>이 문제를 당연히 시작 시간에 맞춰 정렬했는데 생각을 바꿔 나가는 시간에 맞춰 정렬을 할 수도 있구나 느끼며 새로웠다.</p>]]></content><author><name></name></author><category term="프로그래머스" /><category term="그리디" /><summary type="html"><![CDATA[알고리즘 풀기 236일차]]></summary></entry><entry><title type="html">[프로그래머스] 부족한 금액 계산하기</title><link href="http://localhost:4000/2021/08/13/programmers" rel="alternate" type="text/html" title="[프로그래머스] 부족한 금액 계산하기" /><published>2021-08-13T09:01:00+09:00</published><updated>2021-08-13T09:01:00+09:00</updated><id>http://localhost:4000/2021/08/13/programmers</id><content type="html" xml:base="http://localhost:4000/2021/08/13/programmers"><![CDATA[<p>알고리즘 풀기 235일차</p>
+
+<p>3주만에 등장~</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="부족한-금액-계산하기">부족한 금액 계산하기</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>새로 생긴 놀이기구는 인기가 매우 많아 줄이 끊이질 않습니다. 이 놀이기구의 원래 이용료는 price원 인데, 놀이기구를 N 번 째 이용한다면 원래 이용료의 N배를 받기로 하였습니다.</p>
+
+<p>즉, 처음 이용료가 100이었다면 2번째에는 200, 3번째에는 300으로 요금이 인상됩니다.</p>
+
+<p>놀이기구를 count번 타게 되면 현재 자신이 가지고 있는 금액에서 얼마가 모자라는지를 return 하도록 solution 함수를 완성하세요.</p>
+
+<p>단, 금액이 부족하지 않으면 0을 return 하세요.</p>
+
+<h2 id="-제한사항-">&lt; 제한사항 &gt;</h2>
+
+<p>놀이기구의 이용료 price : 1 ≤ price ≤ 2,500, price는 자연수</p>
+
+<p>처음 가지고 있던 금액 money : 1 ≤ money ≤ 1,000,000,000, money는 자연수</p>
+
+<p>놀이기구의 이용 횟수 count : 1 ≤ count ≤ 2,500, count는 자연수</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">money</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="n">totalMoney</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">totalMoney</span> <span class="o">+=</span> <span class="n">price</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">totalMoney</span><span class="o">&lt;=</span><span class="n">money</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">totalMoney</span><span class="o">-</span><span class="n">money</span>
+
+</code></pre></div></div>
+
+<p>좌존쉼 상훼,,, 굉장 쉬운 문제 5번은 틀려 알고리즘 3주 공백 타격 씨게 맞았습니다. (바보냐,,)</p>
+
+<p>솔직히 풀이도 필요없을 쉬운 문젠데 말이죠. 머쓱-</p>
+
+<p>전 그냥 생각나는대로 정석? 방법으로 매번 price 가 count 지날 수록 커지니 totalMoney 변수로 만들어 매번 커지는 price 만큼 더해 만들어줍니다.</p>
+
+<p>이후 리턴에 있어 부족하지 않다면 0, 부족하면 차액만큼 리턴하게 구현했습니다.</p>
+
+<p>아래는 다른 사람 풀이.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">money</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">price</span><span class="o">*</span><span class="p">(</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">count</span><span class="o">//</span><span class="mi">2</span><span class="o">-</span><span class="n">money</span><span class="p">)</span>
+    
+</code></pre></div></div>
+
+<p>^<strong>__</strong><strong>__</strong>___^</p>
+
+<p>아주 깔끔 간결
+나도 노력하자, 화이팅~</p>
+
+<p>totalMoney = price<em>(count+1)</em>count//2</p>
+
+<p>수학으로 푼 방식.</p>
+
+<p>1~n 까지의 합  == n*(n+1)/2</p>
+
+<p>근데 여기서 1씩 증가가 아니라 price 만큼 커지니 price 역시 곱해준다.</p>]]></content><author><name></name></author><category term="프로그래머스" /><category term="위클리챌린지" /><summary type="html"><![CDATA[알고리즘 풀기 235일차]]></summary></entry><entry><title type="html">[프로그래머스] JadenCase 문자열 만들기</title><link href="http://localhost:4000/2021/07/25/programmers" rel="alternate" type="text/html" title="[프로그래머스] JadenCase 문자열 만들기" /><published>2021-07-25T23:01:00+09:00</published><updated>2021-07-25T23:01:00+09:00</updated><id>http://localhost:4000/2021/07/25/programmers</id><content type="html" xml:base="http://localhost:4000/2021/07/25/programmers"><![CDATA[<p>알고리즘 풀기 234일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="jadencase-문자열-만들기">JadenCase 문자열 만들기</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>JadenCase란 모든 단어의 첫 문자가 대문자이고, 그 외의 알파벳은 소문자인 문자열입니다.</p>
+
+<p>문자열 s가 주어졌을 때, s를 JadenCase로 바꾼 문자열을 리턴하는 함수, solution을 완성해주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">upper</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">answer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">" "</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="s">" "</span><span class="p">:</span>
+                <span class="n">answer</span><span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">upper</span><span class="p">()</span>
+                <span class="k">continue</span>
+        <span class="n">answer</span><span class="o">+=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">lower</span><span class="p">()</span>
+            
+    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>
+
+<p>이틀에 걸쳐 푼 문제. 이유인 즉슨 문제를 잘못 이해하고 있었다..(바보)</p>
+
+<p>중간에 공백이 많으면 “           “  이런 곳이 있으면 공백 하나로 치환해야 하는 줄 알았는데 공백은 그대로 놔둬야 하는 것이었다…</p>
+
+<p>기존에 리스트로 변환 후 ‘ ‘.join() 을 통해 불필요한 공백 없애는 작업을 선행했는데 잘못 생각했다.</p>
+
+<p>우선 answer 문자열에 첫번째 글자를 대문자로 넣는다.</p>
+
+<p>이후 반복문을 통해서 s를 하나씩 넣는데 answer의 마지막을 검사하며 넣을 것이기 때문에 미리 answer에 하나를 넣어둔 채로 시작한다.</p>
+
+<p>만약 answer의 마지막이 공백인데, s도 공백이면 놔두는 것. s가 공백이 아니면 (앞이 공백이기에) 대문자로 넣고 continue</p>
+
+<p>앞이 공백이 아니면 소문자 넣어주면 된다.</p>]]></content><author><name></name></author><category term="프로그래머스" /><summary type="html"><![CDATA[알고리즘 풀기 234일차]]></summary></entry><entry><title type="html">[프로그래머스] 거리두기 확인하기</title><link href="http://localhost:4000/2021/07/21/programmers" rel="alternate" type="text/html" title="[프로그래머스] 거리두기 확인하기" /><published>2021-07-21T23:01:00+09:00</published><updated>2021-07-21T23:01:00+09:00</updated><id>http://localhost:4000/2021/07/21/programmers</id><content type="html" xml:base="http://localhost:4000/2021/07/21/programmers"><![CDATA[<p>알고리즘 풀기 233일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="거리두기-확인하기">거리두기 확인하기</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>개발자를 희망하는 죠르디가 카카오에 면접을 보러 왔습니다.</p>
+
+<p>코로나 바이러스 감염 예방을 위해 응시자들은 거리를 둬서 대기를 해야하는데 개발 직군 면접인 만큼 아래와 같은 규칙으로 대기실에 거리를 두고 앉도록 안내하고 있습니다.</p>
+
+<blockquote>
+  <p>대기실은 5개이며, 각 대기실은 5x5 크기입니다.</p>
+</blockquote>
+
+<blockquote>
+  <p>거리두기를 위하여 응시자들 끼리는 맨해튼 거리1가 2 이하로 앉지 말아 주세요.</p>
+</blockquote>
+
+<blockquote>
+  <p>단 응시자가 앉아있는 자리 사이가 파티션으로 막혀 있을 경우에는 허용합니다.</p>
+</blockquote>
+
+<p>예를 들어,</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/126506604-b0cab0af-2171-4eaa-88ec-68c54c06e694.png" alt="image" /></p>
+
+<p>5개의 대기실을 본 죠르디는 각 대기실에서 응시자들이 거리두기를 잘 기키고 있는지 알고 싶어졌습니다.</p>
+
+<p>자리에 앉아있는 응시자들의 정보와 대기실 구조를 대기실별로 담은 2차원 문자열 배열 places가 매개변수로 주어집니다.</p>
+
+<p>각 대기실별로 거리두기를 지키고 있으면 1을, 한 명이라도 지키지 않고 있으면 0을 배열에 담아 return 하도록 solution 함수를 완성해 주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">place</span><span class="p">):</span>
+    <span class="c1"># 상
+</span>    <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'X'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="c1"># 하
+</span>    <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'X'</span> <span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="c1"># 좌
+</span>    <span class="k">if</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'X'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="c1"># 우
+</span>    <span class="k">if</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'X'</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="c1"># 좌상
+</span>    <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="p">(</span><span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="s">'X'</span> <span class="ow">or</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">!=</span><span class="s">'X'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="c1"># 좌하
+</span>    <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="p">(</span><span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'X'</span> <span class="ow">or</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'X'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="c1"># 우상
+</span>    <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="p">(</span><span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="s">'X'</span> <span class="ow">or</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">!=</span><span class="s">'X'</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="c1"># 우하
+</span>    <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span> <span class="ow">and</span> <span class="p">(</span><span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">!=</span><span class="s">'X'</span> <span class="ow">or</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">!=</span><span class="s">'X'</span><span class="p">):</span> 
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="bp">True</span>
+
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">places</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">place</span> <span class="ow">in</span> <span class="n">places</span><span class="p">:</span>
+        <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">TF</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">place</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s">'P'</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">place</span><span class="p">):</span>
+                        <span class="n">TF</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="k">break</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">TF</span><span class="p">:</span>
+                <span class="n">answer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">break</span>
+                        
+    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>
+
+<p>이전에 카카오 코테 풀면서 풀었던 문제.</p>
+
+<p>진짜, 경우 하나하나 다 확인하면서 푼 문제인데 다들 어떻게 푸셨는지 궁금합니다.</p>
+
+<p>각 5 by 5 좌석 하나하나 check 메소드를 만들어서 확인하는 작업을 만들었습니다.</p>
+
+<p>상하좌우만 처음에 검사를 했는데 대각선도 필요하여 대각선에 있다면 그 대각선 주변에 체크하는 로직까지 추가해서 통과했습니다.</p>
+
+<p>직관적이긴 하나 노가다로 푼 문제인듯 하여 더 공부해야겠다는 생각이 들었습니다.</p>
+
+<p>…..</p>]]></content><author><name></name></author><category term="프로그래머스" /><category term="2021카카오" /><summary type="html"><![CDATA[알고리즘 풀기 233일차]]></summary></entry><entry><title type="html">[프로그래머스] 예상 대진표</title><link href="http://localhost:4000/2021/07/20/programmers" rel="alternate" type="text/html" title="[프로그래머스] 예상 대진표" /><published>2021-07-20T23:01:00+09:00</published><updated>2021-07-20T23:01:00+09:00</updated><id>http://localhost:4000/2021/07/20/programmers</id><content type="html" xml:base="http://localhost:4000/2021/07/20/programmers"><![CDATA[<p>알고리즘 풀기 232일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="예상-대진표">예상 대진표</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>△△ 게임대회가 개최되었습니다. 이 대회는 N명이 참가하고, 토너먼트 형식으로 진행됩니다.</p>
+
+<p>N명의 참가자는 각각 1부터 N번을 차례대로 배정받습니다. 그리고, 1번↔2번, 3번↔4번, … , N-1번↔N번의 참가자끼리 게임을 진행합니다.</p>
+
+<p>각 게임에서 이긴 사람은 다음 라운드에 진출할 수 있습니다.</p>
+
+<p>이때, 다음 라운드에 진출할 참가자의 번호는 다시 1번부터 N/2번을 차례대로 배정받습니다.</p>
+
+<p>만약 1번↔2번 끼리 겨루는 게임에서 2번이 승리했다면 다음 라운드에서 1번을 부여받고, 3번↔4번에서 겨루는 게임에서 3번이 승리했다면 다음 라운드에서 2번을 부여받게 됩니다.</p>
+
+<p>게임은 최종 한 명이 남을 때까지 진행됩니다.</p>
+
+<p>이때, 처음 라운드에서 A번을 가진 참가자는 경쟁자로 생각하는 B번 참가자와 몇 번째 라운드에서 만나는지 궁금해졌습니다.</p>
+
+<p>게임 참가자 수 N, 참가자 번호 A, 경쟁자 번호 B가 함수 solution의 매개변수로 주어질 때, 처음 라운드에서 A번을 가진 참가자는 경쟁자로 생각하는 B번 참가자와 몇 번째 라운드에서 만나는지 return 하는 solution 함수를 완성해 주세요.</p>
+
+<p>단, A번 참가자와 B번 참가자는 서로 붙게 되기 전까지 항상 이긴다고 가정합니다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">battle</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">//</span><span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="k">if</span> <span class="n">b</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">//</span><span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+    
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+    <span class="k">while</span> <span class="bp">True</span> <span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">a</span><span class="o">+</span><span class="mi">1</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cnt</span>
+        <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">battle</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>
+
+<p>이전부터 분명 풀었는데 항상 몇 개씩 테스트 케이스를 틀렸던 문제.</p>
+
+<p>우선 a가 b보다 항상 작게 설정한다. (이것도 분명 테스트케이스 예외 있었음)</p>
+
+<p>그리고 battle함수를 돌려 a, b의 위치를 매번 조정한다.</p>
+
+<p>홀수라면, 가령 7번째였다면 다음 순서는 7//2+1인 4번째가 되고, 짝수라면 //2 한 번째로 이동한다. (물론 n 도 절반씩 준다.)</p>
+
+<p>계속 실패했던 이유가 while문 나오는 조건으로 b-a==1 이라고 생각했다. 둘이 붙어있음 다음 라운드에 붙겠지 했는데 잘못 생각했다.</p>
+
+<p>a가 홀수번째 &amp;&amp; b가 짝수번째여야 해당 라운드에서 붙게된다. (가령 a==4, b==5가 되면 a는 3,4와 붙고 b는 5,6과 붙는다.)</p>
+
+<p>그래서 탈출 조건문을 a가 홀수면서 b가 a+1일 때로 바꿔주니 3개 시간초과 나던 것 빼고 다 통과했다.</p>
+
+<p>시간초과를 생각하면 분명 a==1인 조건일 것 같았다. (바로 나갈 수 있는 조건이 있는데 함수를 먼저 돌려 while에서 못나오는)</p>
+
+<p>그래서 탈출문을 원래는 while문의 제일 뒤에 썼다가 그냥 제일 앞으로 땡겼다.</p>
+
+<p>– 통과 –</p>]]></content><author><name></name></author><category term="프로그래머스" /><category term="2017팁스타운" /><summary type="html"><![CDATA[알고리즘 풀기 232일차]]></summary></entry><entry><title type="html">[프로그래머스] 숫자 문자열과 영단어</title><link href="http://localhost:4000/2021/07/19/programmers" rel="alternate" type="text/html" title="[프로그래머스] 숫자 문자열과 영단어" /><published>2021-07-19T23:01:00+09:00</published><updated>2021-07-19T23:01:00+09:00</updated><id>http://localhost:4000/2021/07/19/programmers</id><content type="html" xml:base="http://localhost:4000/2021/07/19/programmers"><![CDATA[<p>알고리즘 풀기 231일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="숫자-문자열과-영단어">숫자 문자열과 영단어</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/126166541-cfa1caf6-e0cc-4666-b857-03e23c748a9b.png" alt="image" /></p>
+
+<p>네오와 프로도가 숫자놀이를 하고 있습니다. 네오가 프로도에게 숫자를 건넬 때 일부 자릿수를 영단어로 바꾼 카드를 건네주면 프로도는 원래 숫자를 찾는 게임입니다.</p>
+
+<p>다음은 숫자의 일부 자릿수를 영단어로 바꾸는 예시입니다.</p>
+
+<p>1478 → “one4seveneight”</p>
+
+<p>234567 → “23four5six7”</p>
+
+<p>10203 → “1zerotwozero3”</p>
+
+<p>이렇게 숫자의 일부 자릿수가 영단어로 바뀌어졌거나, 혹은 바뀌지 않고 그대로인 문자열 s가 매개변수로 주어집니다. s가 의미하는 원래 숫자를 return 하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">numberStringList</span> <span class="o">=</span> <span class="p">[</span><span class="s">"zero"</span><span class="p">,</span> <span class="s">"one"</span><span class="p">,</span> <span class="s">"two"</span><span class="p">,</span> <span class="s">"three"</span><span class="p">,</span> <span class="s">"four"</span><span class="p">,</span> <span class="s">"five"</span><span class="p">,</span> <span class="s">"six"</span><span class="p">,</span> <span class="s">"seven"</span><span class="p">,</span> <span class="s">"eight"</span><span class="p">,</span> <span class="s">"nine"</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num</span><span class="p">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">answer</span><span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">+=</span> <span class="n">num</span>
+            <span class="k">if</span> <span class="n">tmp</span> <span class="ow">in</span> <span class="n">numberStringList</span><span class="p">:</span>
+                <span class="n">answer</span><span class="o">+=</span><span class="nb">str</span><span class="p">(</span><span class="n">numberStringList</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
+                <span class="n">tmp</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>분명 푼 문제 같은 느낌은 해당 코딩테스트에서 풀었던 문제겠죠?</p>
+
+<p>쉽게쉽게 다시 풀었습니다.</p>
+
+<p>string형태의 숫자를 먼저 배열로 넣어두고, 해당 string을 int로 넣어야함에 배열 index를 넣어주게 했습니다.</p>
+
+<p>python 의 isdigit() 함수를 사용해서 true일 경우 해당 값을 string으로 넣고, 아닐 경우 문자로 된 숫자이기에 tmp 에 잠시 넣어놨다 tmp가 문자로 된 숫자로 완성되면 해당 index를 string으로 answer에 넣습니다.</p>
+
+<p>answer에 string을 넣는 이유는 int결과값을 더해주면 정말 수식 더하기가 되기에 string으로 변환해 숫자들을 넣고 integer형으로 결과 값을 반환해줍니다.</p>]]></content><author><name></name></author><category term="프로그래머스" /><category term="2021카카오" /><summary type="html"><![CDATA[알고리즘 풀기 231일차]]></summary></entry><entry><title type="html">[프로그래머스] 문자열 압축</title><link href="http://localhost:4000/2021/07/14/programmers" rel="alternate" type="text/html" title="[프로그래머스] 문자열 압축" /><published>2021-07-14T23:01:00+09:00</published><updated>2021-07-14T23:01:00+09:00</updated><id>http://localhost:4000/2021/07/14/programmers</id><content type="html" xml:base="http://localhost:4000/2021/07/14/programmers"><![CDATA[<p>알고리즘 풀기 230일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="문자열-압축">문자열 압축</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>데이터 처리 전문가가 되고 싶은 “어피치”는 문자열을 압축하는 방법에 대해 공부를 하고 있습니다.</p>
+
+<p>최근에 대량의 데이터 처리를 위한 간단한 비손실 압축 방법에 대해 공부를 하고 있는데, 문자열에서 같은 값이 연속해서 나타나는 것을 그 문자의 개수와 반복되는 값으로 표현하여 더 짧은 문자열로 줄여서 표현하는 알고리즘을 공부하고 있습니다.</p>
+
+<p>간단한 예로 “aabbaccc”의 경우 “2a2ba3c”(문자가 반복되지 않아 한번만 나타난 경우 1은 생략함)와 같이 표현할 수 있는데, 이러한 방식은 반복되는 문자가 적은 경우 압축률이 낮다는 단점이 있습니다.</p>
+
+<p>예를 들면, “abcabcdede”와 같은 문자열은 전혀 압축되지 않습니다.</p>
+
+<p>“어피치”는 이러한 단점을 해결하기 위해 문자열을 1개 이상의 단위로 잘라서 압축하여 더 짧은 문자열로 표현할 수 있는지 방법을 찾아보려고 합니다.</p>
+
+<p>예를 들어, “ababcdcdababcdcd”의 경우 문자를 1개 단위로 자르면 전혀 압축되지 않지만, 2개 단위로 잘라서 압축한다면 “2ab2cd2ab2cd”로 표현할 수 있습니다.</p>
+
+<p>다른 방법으로 8개 단위로 잘라서 압축한다면 “2ababcdcd”로 표현할 수 있으며, 이때가 가장 짧게 압축하여 표현할 수 있는 방법입니다.</p>
+
+<p>다른 예로, “abcabcdede”와 같은 경우, 문자를 2개 단위로 잘라서 압축하면 “abcabc2de”가 되지만, 3개 단위로 자른다면 “2abcdede”가 되어 3개 단위가 가장 짧은 압축 방법이 됩니다.</p>
+
+<p>이때 3개 단위로 자르고 마지막에 남는 문자열은 그대로 붙여주면 됩니다.</p>
+
+<p>압축할 문자열 s가 매개변수로 주어질 때, 위에 설명한 방법으로 1개 이상 단위로 문자열을 잘라 압축하여 표현한 문자열 중 가장 짧은 것의 길이를 return 하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># 테케 s:"a"
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">i</span><span class="p">):</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">step</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">tmp</span><span class="p">:</span>
+                <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="k">if</span> <span class="n">cnt</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">step</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">))</span>
+                <span class="n">step</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+                <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">cnt</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">step</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">cnt</span><span class="p">))</span>
+
+        <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">step</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>이전에 풀다 만 문제 다시 풀었다.</p>
+
+<p>진짜 조건문과 반복문의 향연,,,</p>
+
+<p>우선 문자를 자르는데 1개씩 자르는 것부터 최대 input s의 절반 크기로 자른다. (절반 크기로 자르면 반이 돼서 2개로 나뉘기에 그 이상의 크기로 잘라도 2개)</p>
+
+<p>각각 자른 것을 step에 넣고 다음 것을 비교하는데 현재 칸을 tmp에 넣고 step에 담긴 마지막 칸을 보고 비교한다.</p>
+
+<p>tmp(현재)가 step[-1] (한칸 전)과 같다면 tmp는 넣을 필요 없고, 같은 개수를 세어주는 cnt를 증가시킨다.</p>
+
+<p>만약 다를 경우, 1인 경우 들어가지 않기에 빼고 cnt를 넣어준다. (이전 step[-1]와 같은게 몇 개 나왔는지)</p>
+
+<p>그리고 현재 step의 마지막과 달랐던 현재 tmp를 넣어준다. (반복)</p>
+
+<p>제일 마지막은 cnt가 안들어가기에 for문을 나와서 검사해서 cnt를 넣어준다.</p>
+
+<p>“ababcdcdefcd” 가령 이런 예가 있다면 4개로 끊었을 때, [“abab”, “2”, “cdcd”, “2”, “efcd”] 이렇게 들어가게 되는 셈이다.</p>
+
+<p>그래서 해당 배열을 하나의 string으로 join하여 “abab2cdcd2efcd”이렇게 만들고 이것의 길이를 answer에 넣는다.</p>
+
+<p>&lt;문제의 예에선 2abab2cdcdefcd 이렇게지만 난 편의를 위해 count를 해당 반복문자 뒤에 넣었다.&gt;</p>
+
+<p>그리고 가장 짧은 길이를 반환해준다.</p>
+
+<p>아래는 기존 틀린 코드.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">[</span> <span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">i</span><span class="p">)</span> <span class="p">]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+        <span class="n">compress</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">popleft</span><span class="p">())</span>
+
+        <span class="k">while</span> <span class="n">tmp</span><span class="p">:</span>
+            <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">compress</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">popleft</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">compress</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">compress</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]:</span>
+                <span class="n">compress</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">cnt</span><span class="p">:</span>
+                    <span class="n">compresss</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">cnt</span><span class="p">)</span>
+                    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">compress</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="프로그래머스" /><category term="2020카카오" /><summary type="html"><![CDATA[알고리즘 풀기 230일차]]></summary></entry><entry><title type="html">[프로그래머스] 튜플</title><link href="http://localhost:4000/2021/07/07/programmers" rel="alternate" type="text/html" title="[프로그래머스] 튜플" /><published>2021-07-07T23:01:00+09:00</published><updated>2021-07-07T23:01:00+09:00</updated><id>http://localhost:4000/2021/07/07/programmers</id><content type="html" xml:base="http://localhost:4000/2021/07/07/programmers"><![CDATA[<p>알고리즘 풀기 229일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="튜플">튜플</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>셀수있는 수량의 순서있는 열거 또는 어떤 순서를 따르는 요소들의 모음을 튜플(tuple)이라고 합니다. n개의 요소를 가진 튜플을 n-튜플(n-tuple)이라고 하며, 다음과 같이 표현할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a1, a2, a3, ..., an)
+</code></pre></div></div>
+
+<p>튜플은 다음과 같은 성질을 가지고 있습니다.</p>
+
+<ul>
+  <li>중복된 원소가 있을 수 있습니다. ex : (2, 3, 1, 2)</li>
+  <li>원소에 정해진 순서가 있으며, 원소의 순서가 다르면 서로 다른 튜플입니다. ex : (1, 2, 3) ≠ (1, 3, 2)</li>
+  <li>튜플의 원소 개수는 유한합니다.</li>
+</ul>
+
+<p>원소의 개수가 n개이고, 중복되는 원소가 없는 튜플 (a1, a2, a3, …, an)이 주어질 때(단, a1, a2, …, an은 자연수), 이는 다음과 같이 집합 기호 ‘{‘, ‘}’를 이용해 표현할 수 있습니다.</p>
+
+<blockquote>
+  <p>”{{a1},{a1,a2},{a1,a2,a3},{a1,a2,a3,a4},…{a1,a2,a3,a4,…,an}}”</p>
+</blockquote>
+
+<p>예를 들어 튜플이 (2, 1, 3, 4)인 경우 이는</p>
+
+<blockquote>
+  <p>”{{2}, {2, 1}, {2, 1, 3}, {2, 1, 3, 4}}”</p>
+</blockquote>
+
+<p>와 같이 표현할 수 있습니다. 이때, 집합은 원소의 순서가 바뀌어도 상관없으므로</p>
+
+<blockquote>
+  <p>”{{2}, {2, 1}, {2, 1, 3}, {2, 1, 3, 4}}”</p>
+</blockquote>
+
+<blockquote>
+  <p>”{{2, 1, 3, 4}, {2}, {2, 1, 3}, {2, 1}}”</p>
+</blockquote>
+
+<blockquote>
+  <p>”{{1, 2, 3}, {2, 1}, {1, 2, 4, 3}, {2}}”</p>
+</blockquote>
+
+<p>는 모두 같은 튜플 (2, 1, 3, 4)를 나타냅니다.</p>
+
+<p>특정 튜플을 표현하는 집합이 담긴 문자열 s가 매개변수로 주어질 때, s가 표현하는 튜플을 배열에 담아 return 하도록 solution 함수를 완성해주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:].</span><span class="n">split</span><span class="p">(</span><span class="s">'},{'</span><span class="p">)))</span>
+    <span class="c1">#	['2', '2,1', '2,1,3', '2,1,3,4}}']
+</span>
+    <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="c1"># 	['2', '2,1', '2,1,3', '2,1,3,4']
+</span>
+    <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)))</span>
+        <span class="c1"># [,, [2, 1], [2, 1, 3], [2, 1, 3, 4]]
+</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">answer</span><span class="p">)):</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">answer</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">answer</span> <span class="o">+=</span> <span class="n">tmp</span>
+
+    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>
+
+<p>이전에 풀다 만 문제 다시 풀었다.</p>
+
+<p>(짠 코드에서 수정해버려서 온전히 이전 코드가 뭔지 알기 어렵지만 하단 주석 부분이 이전 코드의 일부)</p>
+
+<p>이전에는 아마 2134면 2134 이렇게 나오고 순차적으로 빼는 식으로 짠 듯 한데 (오래돼 기억이 가물,,) 이 경우 문제가 2와 2가 들어간 여러 숫자가 있을 경우 구분이 어렵다는거다.</p>
+
+<p>그래서 [2,1,3,4] 이렇게 배열로 따로 해서 생각해야 한다.</p>
+
+<p>그래서 우선 숫자로 배열 만드는 과정이 필요했다.</p>
+
+<p>주어진 입력이 {{1}, {1,2}} 이런 스트링 형식이어서 스트링으로 괄호를 자른다.</p>
+
+<p>괄호를 자르고 길이 순으로 정렬한다.</p>
+
+<p>첫번째에는 그럼 당연히 한자리 == 시작이 될테니 int로 바꿔 answer에 넣어주고 시작한다.</p>
+
+<p>이후 ‘2,1,3,4’ 이런 스트링을 콤마 기준 잘라 int형의 배열에 넣어 [2,1,3,4]로 만든다.</p>
+
+<p>그리고 앞에서 부터 빼서 검사할 것이기에 deque로 변환하여 popleft를 사용한다.</p>
+
+<p>하나하나 빼서 answer에 들어간 값인지 확인하며 answer에 있는 값이면 뺀다.</p>
+
+<p>answer에 없는 값 == 하나만 남는다. (리스트)</p>
+
+<p>그래서 answer에 추가해준다. 남는 값이 리스트 형태이기에 append가 아닌 +로 이어준다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">:].</span><span class="n">split</span><span class="p">(</span><span class="s">'},{'</span><span class="p">)))</span>
+    <span class="c1">#	['2', '2,1', '2,1,3', '2,1,3,4}}']
+</span>
+    <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="c1"># 	['2', '2,1', '2,1,3', '2,1,3,4']
+</span>
+    <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)))</span>
+        <span class="c1"># [,, [2, 1], [2, 1, 3], [2, 1, 3, 4]]
+</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="c1"># print(answer)
+</span>
+    <span class="k">while</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">answer</span><span class="p">)):</span>
+            <span class="n">tmp</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">answer</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="c1"># print(tmp)
+</span>        <span class="n">answer</span> <span class="o">+=</span> <span class="n">tmp</span>
+
+
+    <span class="c1"># for i in range(len(s)):
+</span>    <span class="c1">#     s[i].pop(s[i].index(answer[-1]))
+#     answer.append(int(s[0]))
+#     print(s)
+#     for i in range(1, len(s)):
+#         tmp =
+</span>
+<span class="c1">#         for j in range(len(answer)):
+#             if answer[j] in tmp:
+#                 tmp.pop(tmp.index(answer[j]))
+#         answer.append(int(tmp))
+#         print(answer)
+</span>
+<span class="c1">#     print(answer)
+</span>
+<span class="c1">#     if len(s) == 1:
+#         return int(s[0])
+</span>
+<span class="c1">#     for i in range(len(s)):
+#         s[i] = re.sub('[,]', '', s[i])
+</span>
+<span class="c1">#     for i in range(len(s)):
+#         s[i] = list(map(int, s[i].split(',')))
+</span>
+
+<span class="c1">#     for i in range(len(s)):
+#         answer.append(int(s[i][0]))
+#         for j in range(i+1, len(s)):
+#             s[j] = re.sub(s[i][0], '', s[j])
+</span>    <span class="c1"># print(answer)
+</span>    <span class="k">return</span> <span class="n">answer</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="프로그래머스" /><category term="카카오겨울인턴십" /><summary type="html"><![CDATA[알고리즘 풀기 229일차]]></summary></entry><entry><title type="html">[프로그래머스] N개의 최소공배수</title><link href="http://localhost:4000/2021/07/06/programmers" rel="alternate" type="text/html" title="[프로그래머스] N개의 최소공배수" /><published>2021-07-06T02:31:00+09:00</published><updated>2021-07-06T02:31:00+09:00</updated><id>http://localhost:4000/2021/07/06/programmers</id><content type="html" xml:base="http://localhost:4000/2021/07/06/programmers"><![CDATA[<p>알고리즘 풀기 228일차</p>
+
+<p>정말 오랜만입니다. 사실 아직 통과도 아닌,,,,,풀다 만 문제,,,,,,</p>
+
+<p>오랜만에 펴봤으니 만족- 하하하,,,,,,,,,,</p>
+
+<p>오랜만에 왔더니 머리가 안돌아가고,,얼른 눕고싶고,,,,,암턴,,,,그렇네여,,,,,ㅠㅠㅠㅠㅠㅠ</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="n개의-최소공배수">N개의 최소공배수</h1>
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>두 수의 최소공배수(Least Common Multiple)란 입력된 두 수의 배수 중 공통이 되는 가장 작은 숫자를 의미합니다. 예를 들어 2와 7의 최소공배수는 14가 됩니다.</p>
+
+<p>정의를 확장해서, n개의 수의 최소공배수는 n 개의 수들의 배수 중 공통이 되는 가장 작은 숫자가 됩니다.</p>
+
+<p>n개의 숫자를 담은 배열 arr이 입력되었을 때 이 수들의 최소공배수를 반환하는 함수, solution을 완성해 주세요.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="k">def</span> <span class="nf">lcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="o">//</span><span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">lcm</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">())</span>
+
+    <span class="k">while</span> <span class="n">arr</span><span class="p">:</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">answer</span>
+
+        <span class="k">if</span> <span class="n">lcm</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="o">==</span> <span class="n">answer</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">answer</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="n">lcm</span><span class="p">(</span><span class="n">answer</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>생각한 로직은 크기 순으로 숫자를 정렬한 후, 가장 큰 두 수의 최소 공배수를 구한다.</p>
+
+<p>그러고 그 다음 수와 비교했을 때 최소 공배수가 다를 경우, 그 수와 이전에 구한 최소 공배수의 최소공배수를 구해나가는 방식.</p>
+
+<p>근데 틀렸다. 다시 접근해야할 거 같다.</p>]]></content><author><name></name></author><category term="프로그래머스" /><category term="최소공배수" /><category term="최대공약수" /><summary type="html"><![CDATA[알고리즘 풀기 228일차]]></summary></entry><entry><title type="html">[프로그래머스] 이중우선순위큐</title><link href="http://localhost:4000/2021/06/09/programmers" rel="alternate" type="text/html" title="[프로그래머스] 이중우선순위큐" /><published>2021-06-09T02:31:00+09:00</published><updated>2021-06-09T02:31:00+09:00</updated><id>http://localhost:4000/2021/06/09/programmers</id><content type="html" xml:base="http://localhost:4000/2021/06/09/programmers"><![CDATA[<p>알고리즘 풀기 227일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="이중우선순위큐">이중우선순위큐</h1>
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>이중 우선순위 큐는 다음 연산을 할 수 있는 자료구조를 말합니다.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>명령어</td>
+      <td>수신 탑(높이)</td>
+    </tr>
+    <tr>
+      <td>I 숫자</td>
+      <td>큐에 주어진 숫자를 삽입합니다.</td>
+    </tr>
+    <tr>
+      <td>D 1</td>
+      <td>큐에서 최댓값을 삭제합니다.</td>
+    </tr>
+    <tr>
+      <td>D -1</td>
+      <td>큐에서 최솟값을 삭제합니다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이중 우선순위 큐가 할 연산 operations가 매개변수로 주어질 때, 모든 연산을 처리한 후 큐가 비어있으면 [0,0] 비어있지 않으면 [최댓값, 최솟값]을 return 하도록 solution 함수를 구현해주세요.</p>
+
+<h2 id="-제한사항-">&lt; 제한사항 &gt;</h2>
+
+<p>operations는 길이가 1 이상 1,000,000 이하인 문자열 배열입니다.</p>
+
+<p>operations의 원소는 큐가 수행할 연산을 나타냅니다.</p>
+
+<p>원소는 “명령어 데이터” 형식으로 주어집니다.- 최댓값/최솟값을 삭제하는 연산에서 최댓값/최솟값이 둘 이상인 경우, 하나만 삭제합니다.</p>
+
+<p>빈 큐에 데이터를 삭제하라는 연산이 주어질 경우, 해당 연산은 무시합니다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">heapq</span>
+
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">operations</span><span class="p">):</span>
+    <span class="n">heap</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">operations</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">operations</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'I'</span><span class="p">:</span>
+            <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">operations</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">:]))</span>
+        <span class="k">elif</span> <span class="n">operations</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">"D -1"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">heap</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">operations</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">"D 1"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">heap</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">heap</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">heap</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">heap</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">operations</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">:]))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">heap</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">heap</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">heap</span><span class="p">)]</span>
+
+</code></pre></div></div>
+
+<p>힙 정렬로 정렬하여 순차적으로 정렬해주는 python의 heapq를 사용하였다.</p>
+
+<p>우선 I면 숫자를 넣는다. (자동 정렬)</p>
+
+<p>D면 우선 비어있는지 확인하고 최대값을 뺀다면 정렬되어 있으니까 그냥 pop을 써서 제일 뒤에를 빼준다.</p>
+
+<p>최소값을 뺀다면 그냥 pop(0)을 하면 다시 정렬 –&gt; heapq를 써서 heappop으로 최소값을 빼준다.</p>
+
+<p>그 외의 빼는 경우는 일반적인 pop으로 해당 값의 index를 찾아 빼준다.</p>
+
+<p>이렇게 진행했을 때 남은 게 없으면 [0,0]을 반환하고 아니라면 [최대, 최소]로 반환한다.</p>]]></content><author><name></name></author><category term="프로그래머스" /><category term="힙" /><summary type="html"><![CDATA[알고리즘 풀기 227일차]]></summary></entry></feed>

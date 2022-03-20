@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 삼각 달팽이 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 삼각 달팽이" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 94일차" />
+<meta property="og:description" content="알고리즘 풀기 94일차" />
+<link rel="canonical" href="http://localhost:4000/2021/04/02/programmers" />
+<meta property="og:url" content="http://localhost:4000/2021/04/02/programmers" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-02T03:29:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 삼각 달팽이" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-04-02T03:29:00+09:00","datePublished":"2021-04-02T03:29:00+09:00","description":"알고리즘 풀기 94일차","headline":"[프로그래머스] 삼각 달팽이","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/04/02/programmers"},"url":"http://localhost:4000/2021/04/02/programmers"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 삼각 달팽이</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 94일차</p>
+
+<p>회사에서 몰래 풀었는데, 몰래몰래 조금씩 풀다보니 주석을 자꾸 달게된다. (순간순간 생각한 알고리즘 까먹을까봐)</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="삼각-달팽이">삼각 달팽이</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>정수 n이 매개변수로 주어집니다. 다음 그림과 같이 밑변의 길이와 높이가 n인 삼각형에서 맨 위 꼭짓점부터 반시계 방향으로 달팽이 채우기를 진행한 후, 첫 행부터 마지막 행까지 모두 순서대로 합친 새로운 배열을 return 하도록 solution 함수를 완성해주세요.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50662636/113160289-541f4b80-9278-11eb-9f79-beff47fc2468.png" alt="image" /></p>
+
+<h2 id="-제한사항-">&lt; 제한사항 &gt;</h2>
+
+<p>n은 1 이상 1,000 이하입니다.</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">iimport</span> <span class="n">sys</span>
+
+<span class="c1">#함수에 들어갈 것
+# n = 몇 칸 이동할지
+# index 어디쪽 방향 &amp; 빈 값에 넣을지
+</span><span class="k">def</span> <span class="nf">first</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">num</span><span class="p">[</span><span class="n">array_index</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="n">array_index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># 왼쪽 칸 다 채움
+</span>    <span class="n">array_index</span> <span class="o">-=</span> <span class="mi">1</span> <span class="c1"># 마지막까지 간 후 +1 하고 나옴
+</span>    <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span>
+
+<span class="k">def</span> <span class="nf">second</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">num</span><span class="p">[</span><span class="n">array_index</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="n">a</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">index</span> <span class="o">-=</span> <span class="mi">2</span> <span class="c1"># 마지막 배열 다 채움, 왼쪽 맨 마지막 인덱스 값
+</span>    <span class="n">array_index</span> <span class="o">-=</span> <span class="mi">1</span> <span class="c1"># 마지막 다 채웠으니 왼쪽으로 한 칸 이동 ( 이 다음은 왼쪽으로 갈 것 )
+</span>    <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span>
+
+<span class="k">def</span> <span class="nf">third</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">num</span><span class="p">[</span><span class="n">array_index</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">index</span><span class="o">-=</span><span class="mi">1</span> <span class="c1"># 앞 칸 갈 수록 맨 끝 index 도 줄어든다.
+</span>        <span class="n">array_index</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">array_index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># 이제 다시 오른 쪽으로 갈 것. 다음 차례 오른쪽 배열로 세팅
+</span>    <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">array_index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Initialize array  - set 0
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">num</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+
+<span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># 1번 루트 - 배열 앞에 넣기
+</span>    <span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">first</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="c1"># 2번 루트 - 맨 마지막 배열 순차로 (왼-&gt;오) 끝까지 채우기
+</span>    <span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">second</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="c1"># 3번 루트 - 뒷 배열부터 맨 뒤에 넣기
+</span>    <span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">third</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">array_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+    <span class="n">array_index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="p">[]))</span>
+
+</code></pre></div></div>
+
+<p>삼각 달팽이, 그림으로 보면 삼각 달팽이지만 (ㅋㅋㅋ) 사실 입출력 값을 보면 그냥 배열을 써야겠다 생각이 들었고 규칙 찾기에 먼저 전념했다.</p>
+
+<p>우선 총 세 개의 액션으로 나눌 수 있다. 아래 세 스텝의 반복으로 이뤄진다.</p>
+
+<blockquote>
+  <p>첫째, 왼쪽 대각선 내려가는 부분.</p>
+</blockquote>
+
+<blockquote>
+  <p>둘째, 맨 밑의 줄 가로로 순차적 채우기</p>
+</blockquote>
+
+<blockquote>
+  <p>셋째, 오른쪽 대각선 올라가는 부분</p>
+</blockquote>
+
+<p>(예로 입력을 6이라 가정)</p>
+
+<p>6이 들어오면 우선 0으로 채워진 배열을 먼저 만들었다. ==&gt; [[0], [0,0], [0,0,0], [0,0,0,0], [0,0,0,0,0], [0,0,0,0,0,0]]</p>
+
+<blockquote>
+  <p>첫번째 스텝, [[1], [2,0], [3,0,0], [4,0,0,0], [5,0,0,0,0], [6,0,0,0,0,0]] ==&gt; 6번 진행</p>
+</blockquote>
+
+<blockquote>
+  <p>두번째 스텝, [[1], [2,0], [3,0,0], [4,0,0,0], [5,0,0,0,0], [6,7,8,9,10,11]] ==&gt; 5번 진행</p>
+</blockquote>
+
+<blockquote>
+  <p>세번째 스텝, [[1], [2,15], [3,0,14], [4,0,0,13], [5,0,0,0,12], [6,7,8,9,10,11]] ==&gt; 4번 진행</p>
+</blockquote>
+
+<blockquote>
+  <p>첫번째 스텝, [[1], [2,15], [3,16,14], [4,17,0,13], [5,18,0,0,12], [6,7,8,9,10,11]] ==&gt; 3번 진행</p>
+</blockquote>
+
+<blockquote>
+  <p>두번째 스텝, [[1], [2,15], [3,16,14], [4,17,0,13], [5,18,19,20,12], [6,7,8,9,10,11]] ==&gt; 2번 진행</p>
+</blockquote>
+
+<blockquote>
+  <p>세번째 스텝, [[1], [2,15], [3,16,14], [4,17,21,13], [5,18,19,20,12], [6,7,8,9,10,11]] ==&gt; 1번 진행</p>
+</blockquote>
+
+<p>입력 값 n 만큼 스텝을 돈다는 것을 발견</p>
+
+<p>그리하여 실제 코드를 보면 n만큼 while문을 돌며 각 스텝을 순차적으로 호출하며 n을 감소시킨다.</p>
+
+<p>그리고 array_index는 n만큼 진행할테니 끝나는 부분은 몰라도 되는데 어느 배열에서 시작하는지 위치가 필요하고, 그 배열 안에서 몇 번째에 값을 넣어줘야하는지 index도 필요하여 두개의 변수로 위치를 찾아간다.</p>
+
+<blockquote>
+  <p>첫째, 왼쪽 대각선 내려가는 부분. ==&gt; array_index 증가 (아래=뒤로 이동), index는 고정 (맨 처음일 경우 [0]이 되고 그렇기에 맨 앞에 값들 채워짐)</p>
+</blockquote>
+
+<blockquote>
+  <p>둘째, 맨 밑의 줄 가로로 순차적 채우기 ==&gt; array_index 고정 (맨 뒤에 칸 채우기), index 증가</p>
+</blockquote>
+
+<blockquote>
+  <p>셋째, 오른쪽 대각선 올라가는 부분 ==&gt; array_index 감소 (위=앞으로 이동), index 줄어듬(앞 배열일수록 개수가 작아서 하나씩 줄여줌)</p>
+</blockquote>
+
+<p>위와 같은 규칙으로 코드를 짰다.</p>
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-04-02.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/04/06/programmers">[프로그래머스] 위장</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/04/01/programmers">프로그래머스 코딩테스트</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

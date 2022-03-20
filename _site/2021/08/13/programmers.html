@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[프로그래머스] 부족한 금액 계산하기 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="[프로그래머스] 부족한 금액 계산하기" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 235일차" />
+<meta property="og:description" content="알고리즘 풀기 235일차" />
+<link rel="canonical" href="http://localhost:4000/2021/08/13/programmers" />
+<meta property="og:url" content="http://localhost:4000/2021/08/13/programmers" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-13T09:01:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[프로그래머스] 부족한 금액 계산하기" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-08-13T09:01:00+09:00","datePublished":"2021-08-13T09:01:00+09:00","description":"알고리즘 풀기 235일차","headline":"[프로그래머스] 부족한 금액 계산하기","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/08/13/programmers"},"url":"http://localhost:4000/2021/08/13/programmers"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>[프로그래머스] 부족한 금액 계산하기</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 235일차</p>
+
+<p>3주만에 등장~</p>
+
+<p>:)</p>
+
+<ul>
+  <li>
+    <h1 id="부족한-금액-계산하기">부족한 금액 계산하기</h1>
+  </li>
+</ul>
+
+<h2 id="-문제-">&lt; 문제 &gt;</h2>
+
+<p>새로 생긴 놀이기구는 인기가 매우 많아 줄이 끊이질 않습니다. 이 놀이기구의 원래 이용료는 price원 인데, 놀이기구를 N 번 째 이용한다면 원래 이용료의 N배를 받기로 하였습니다.</p>
+
+<p>즉, 처음 이용료가 100이었다면 2번째에는 200, 3번째에는 300으로 요금이 인상됩니다.</p>
+
+<p>놀이기구를 count번 타게 되면 현재 자신이 가지고 있는 금액에서 얼마가 모자라는지를 return 하도록 solution 함수를 완성하세요.</p>
+
+<p>단, 금액이 부족하지 않으면 0을 return 하세요.</p>
+
+<h2 id="-제한사항-">&lt; 제한사항 &gt;</h2>
+
+<p>놀이기구의 이용료 price : 1 ≤ price ≤ 2,500, price는 자연수</p>
+
+<p>처음 가지고 있던 금액 money : 1 ≤ money ≤ 1,000,000,000, money는 자연수</p>
+
+<p>놀이기구의 이용 횟수 count : 1 ≤ count ≤ 2,500, count는 자연수</p>
+
+<h2 id="-풀이-">&lt; 풀이 &gt;</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">money</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="n">totalMoney</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">totalMoney</span> <span class="o">+=</span> <span class="n">price</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">totalMoney</span><span class="o">&lt;=</span><span class="n">money</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">totalMoney</span><span class="o">-</span><span class="n">money</span>
+
+</code></pre></div></div>
+
+<p>좌존쉼 상훼,,, 굉장 쉬운 문제 5번은 틀려 알고리즘 3주 공백 타격 씨게 맞았습니다. (바보냐,,)</p>
+
+<p>솔직히 풀이도 필요없을 쉬운 문젠데 말이죠. 머쓱-</p>
+
+<p>전 그냥 생각나는대로 정석? 방법으로 매번 price 가 count 지날 수록 커지니 totalMoney 변수로 만들어 매번 커지는 price 만큼 더해 만들어줍니다.</p>
+
+<p>이후 리턴에 있어 부족하지 않다면 0, 부족하면 차액만큼 리턴하게 구현했습니다.</p>
+
+<p>아래는 다른 사람 풀이.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">money</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">price</span><span class="o">*</span><span class="p">(</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">count</span><span class="o">//</span><span class="mi">2</span><span class="o">-</span><span class="n">money</span><span class="p">)</span>
+    
+</code></pre></div></div>
+
+<p>^<strong>__</strong><strong>__</strong>___^</p>
+
+<p>아주 깔끔 간결
+나도 노력하자, 화이팅~</p>
+
+<p>totalMoney = price<em>(count+1)</em>count//2</p>
+
+<p>수학으로 푼 방식.</p>
+
+<p>1~n 까지의 합  == n*(n+1)/2</p>
+
+<p>근데 여기서 1씩 증가가 아니라 price 만큼 커지니 price 역시 곱해준다.</p>
+
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2021-08-13.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/프로그래머스" class="post-category">프로그래머스</a>
+      
+      <a href="/category/위클리챌린지" class="post-category">위클리챌린지</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2021/08/19/programmers">[프로그래머스] 단속카메라</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2021/07/25/programmers">[프로그래머스] JadenCase 문자열 만들기</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

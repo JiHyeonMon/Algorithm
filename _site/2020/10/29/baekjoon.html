@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 2 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="bakjoon 알고리즘 풀기 2일차" />
+<meta property="og:description" content="bakjoon 알고리즘 풀기 2일차" />
+<link rel="canonical" href="http://localhost:4000/2020/10/29/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2020/10/29/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-29T01:25:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-10-29T01:25:00+09:00","datePublished":"2020-10-29T01:25:00+09:00","description":"bakjoon 알고리즘 풀기 2일차","headline":"Baekjoon 알고리즘 2","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/10/29/baekjoon"},"url":"http://localhost:4000/2020/10/29/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="python" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 2</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>bakjoon 알고리즘 풀기 2일차</p>
+
+<ul>
+  <li>#7287	등록</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#7287
+#자신이 백준 온라인 저지(BOJ)에서 맞은 문제의 수와 아이디를 그대로 출력하는 프로그램을 작성하시오.
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"55</span><span class="se">\n</span><span class="s">jhk8806"</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#2440	별 찍기 - 3</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#2440
+#첫째 줄에는 별 N개, 둘째 줄에는 별 N-1개, ..., N번째 줄에는 별 1개를 찍는 문제
+</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"*"</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#10952	A+B - 5</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#10952
+#두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+</span>
+<span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">break</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#2558	A+B - 2</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#2558
+#두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#2441	별 찍기 - 4</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#2441
+#첫째 줄에는 별 N개, 둘째 줄에는 별 N-1개, ..., N번째 줄에는 별 1개를 찍는 문제
+</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"{}{}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">' '</span><span class="o">*</span><span class="p">(</span><span class="n">num</span><span class="o">-</span><span class="n">i</span><span class="p">),</span> <span class="s">'*'</span><span class="o">*</span><span class="n">i</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#11654	아스키 코드</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#11654
+#알파벳 소문자, 대문자, 숫자 0-9중 하나가 주어졌을 때, 주어진 글자의 아스키 코드값을 출력하는 프로그램을 작성하시오.
+</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<p>파이썬에서 문자와 아스키코드를 변환할때 chr() 과 ord() 함수를 사용 할 수 있다. 
+문자 -&gt; 아스키코드 : chr()
+아스키코드 -&gt; 문자 : ord()</p>
+
+<hr />
+
+<ul>
+  <li>#11021	A+B - 7</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#11021
+#두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Case #{}: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#11022	A+B - 8</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#11022
+#두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Case #{}: {} + {} = {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span> <span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#15552	빠른 A+B</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#15552
+#각 테스트케이스마다 A+B를 한 줄에 하나씩 순서대로 출력한다.
+</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="nb">input</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#10951	A+B - 4</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#10951
+#두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">break</span>
+
+</code></pre></div></div>
+
+<p>테스트 케이스 개수가 정해지지 않았기 때문에
+try: 변수 A,B에 int형이 들어간다면, A+B의 값을 출력한다.
+except: try에 대한 에러가 발생한 경우(ex. a 1, 3, 2 ㄱ 입력)
+break: while문을 멈춘다.</p>
+
+<hr />
+
+<ul>
+  <li>#8958	OX퀴즈</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#8958
+#OX퀴즈의 결과가 주어졌을 때, 점수를 구하는 프로그램을 작성하시오.
+</span>
+<span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">score</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="n">problem</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+    <span class="n">add_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">problem</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">problem</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="s">'O'</span><span class="p">:</span>
+            <span class="n">add_sum</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">add_sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="nb">sum</span> <span class="o">+=</span><span class="n">add_sum</span>
+    <span class="n">score</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">score</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#1152	단어의 개수</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#1152
+#영어 대소문자와 띄어쓰기만으로 이루어진 문자열이 주어진다. 이 문자열에는 몇 개의 단어가 있을까? 이를 구하는 프로그램을 작성하시오. 단, 한 단어가 여러 번 등장하면 등장한 횟수만큼 모두 세어야 한다.
+</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#10818	최소, 최대</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#10818
+#N개의 정수가 주어진다. 이때, 최솟값과 최댓값을 구하는 프로그램을 작성하시오.
+</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+<span class="nb">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">max</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="nb">min</span><span class="p">):</span>
+        <span class="nb">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&gt;</span><span class="nb">max</span><span class="p">):</span>
+        <span class="nb">max</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+<span class="k">print</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>    
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#10809	알파벳 찾기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#10809
+#알파벳 소문자로만 이루어진 단어 S가 주어진다. 각각의 알파벳에 대해서, 단어에 포함되어 있는 경우에는 처음 등장하는 위치를, 포함되어 있지 않은 경우에는 -1을 출력하는 프로그램을 작성하시오.
+</span>    
+<span class="n">a</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">alphaList</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">26</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="mi">97</span>
+    <span class="n">alphaList</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphaList</span><span class="p">)):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">alphaList</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">end</span> <span class="o">=</span> <span class="s">' '</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<ul>
+  <li>#2750	수 정렬하기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#2750
+#N개의 수가 주어졌을 때, 이를 오름차순으로 정렬하는 프로그램을 작성하시오.
+</span>
+<span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+<span class="n">a</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="n">a</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+</code></pre></div></div>
+
+<hr />
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2020-10-29.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/baekjoon" class="post-category">Baekjoon</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+      <a href="/tag/python" class="post-tag">python</a>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2020/10/30/baekjoon">Baekjoon 알고리즘 3</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2020/10/27/baekjoon">Baekjoon 알고리즘 1</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>

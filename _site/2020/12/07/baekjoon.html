@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Baekjoon 알고리즘 24 | Algorighm</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Baekjoon 알고리즘 24" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="알고리즘 풀기 35일차" />
+<meta property="og:description" content="알고리즘 풀기 35일차" />
+<link rel="canonical" href="http://localhost:4000/2020/12/07/baekjoon" />
+<meta property="og:url" content="http://localhost:4000/2020/12/07/baekjoon" />
+<meta property="og:site_name" content="Algorighm" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-07T04:00:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Baekjoon 알고리즘 24" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-12-07T04:00:00+09:00","datePublished":"2020-12-07T04:00:00+09:00","description":"알고리즘 풀기 35일차","headline":"Baekjoon 알고리즘 24","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2020/12/07/baekjoon"},"url":"http://localhost:4000/2020/12/07/baekjoon"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<meta name="keywords" content="" />
+
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico"/>
+<link rel="alternate" type="application/rss+xml" title="Algorighm - B's Algorighm Blog" href="/feed.xml" />
+<link rel="stylesheet" type="text/css" href="/assets/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/assets/css/highlight.css" />
+
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async ></script>
+
+
+<script src="/assets/script/jekyllpaper.js" async ></script>
+<script src="https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js" onload="javascript:loadMermaid();" async></script>
+
+
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="container-header">
+      <div class="header-info">
+  <span class="header-info-name">Algorighm</span>
+  <span class="header-info-desc">B's Algorighm Blog</span>
+</div>
+<nav class="header-nav">
+  <ul class="header-main-nav">
+  
+    <li class="header-main-nav-item"><a href="/">Index</a></li>
+  
+    <li class="header-main-nav-item"><a href="/category">Categories</a></li>
+  
+    <li class="header-main-nav-item"><a href="https://github.com/ghosind/Jekyll-Paper">Jekyll Paper</a></li>
+  
+    <li class="header-main-nav-item"><a href="/about">About</a></li>
+  
+  </ul>
+</nav>
+    </header>
+    <main class="container-main">
+      <article class="container-post">
+  <div class="post-title">
+    <h1>Baekjoon 알고리즘 24</h1>
+  </div>
+  <div class="post-author">
+    <span>Hapbee</span>
+  </div>
+  <div class="post-content">
+    <p>알고리즘 풀기 35일차</p>
+
+<p>:)</p>
+
+<ul>
+  <li>#1181     단어 정렬</li>
+</ul>
+
+<p>알파벳 소문자로 이루어진 N개의 단어가 들어오면 아래와 같은 조건에 따라 정렬하는 프로그램을 작성하시오.</p>
+
+<ol>
+  <li>길이가 짧은 것부터</li>
+  <li>길이가 같으면 사전 순으로</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">word</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())):</span>
+     <span class="n">word</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+<span class="n">word</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+     <span class="k">if</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+          <span class="k">pass</span>
+     <span class="k">else</span><span class="p">:</span>
+          <span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+
+</code></pre></div></div>
+
+<p>정렬을 lambda를 이용해서 해줬다. 이게 될까 싶었는데 되더라. 우선 길이순으로 정렬을 해야해서 len(x)를 통해 길이별로 정렬이 됐는데 2순위로 사전 순으로 해야해서 기존 x를 그래도 정렬 해주니 길이를 1순위, 사전순이 2순위로 정렬이 됐다.</p>
+
+<p>같은 문자는 제외를 해야하는데 python에서 set함수를 쓰면 중복이 없어지는데 정렬해둔 것도 사라져서 같은 문자가 있다면 pass하며 반복문을 통해 출력하는 방식으로 하였다.</p>
+
+<hr />
+
+<ul>
+  <li>#10814        나이순 정렬</li>
+</ul>
+
+<p>온라인 저지에 가입한 사람들의 나이와 이름이 가입한 순서대로 주어진다. 이때, 회원들을 나이가 증가하는 순으로, 나이가 같으면 먼저 가입한 사람이 앞에 오는 순서로 정렬하는 프로그램을 작성하시오.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())):</span>
+     <span class="n">l</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)):</span>
+     <span class="k">print</span><span class="p">(</span><span class="s">'{} {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+
+</code></pre></div></div>
+
+<p>나이는 int, 이름은 str으로 정렬을 해야하는 것 같다. (둘다 str으로 해놨다 출력했는데 실패했다.)</p>
+
+<p>정렬할 때 그냥 sort해주면 나이순-&gt;사전순으로 되지만 입력이 등록순서대로 돼있기때문에 나이순으로만 바꾸고 이름 순으로 정렬할 필요가 없다. 그래서 lambda를 써서 나이순으로만 정렬하게 설정했다.</p>
+
+<p>아, 정렬시 lambda에 넣어준 x[0]을 그대로 쓰니 실패했었다. int(x[0])으로 줘서 비교를 하게 하니 잘 돌아갔다.</p>
+
+
+  </div>
+  <div class="post-info">
+    <div class="post-date">
+      Written on 2020-12-07.
+    </div>
+    <div class="post-categories">
+      <span>Categories: </span>
+      
+      <a href="/category/python" class="post-category">python</a>
+      
+    </div>
+    <div class="post-tags">
+      <span>Tags: </span>
+      
+    </div>
+    <div class="post-tools">
+      
+      <div>
+        <span>Next: </span><a href="/2020/12/08/baekjoon">Baekjoon 알고리즘 25</a>
+      </div>
+      
+      
+      <div>
+        <span>Previous: </span><a href="/2020/12/06/baekjoon">Baekjoon 알고리즘 23</a>
+      </div>
+      
+    </div>
+    
+  </div>
+</article>
+    </main>
+    <footer class="container-footer">
+      <div class="footer-copyright">
+  <span class="footer-copyright-text float-left">Copyright &copy; 2022. jihyeonmon.github.io.</span>
+  <span class="footer-copyright-text float-right">
+    Powered by <a href="https://jekyllrb.com/">Jekyll</a>, themed by <a href="https://github.com/ghosind/Jekyll-Paper">Jekyll-Paper</a>.
+  </span>
+</div>
+    </footer>
+  </div>
+</body>
+</html>
