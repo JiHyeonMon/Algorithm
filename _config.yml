@@ -70,6 +70,7 @@ plugins:
   - jekyll-archives
   - jekyll-seo-tag
 
+<<<<<<< HEAD
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
@@ -81,3 +82,10 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+=======
+inc_after_content: "drassil/comments.html"
+inc_after_head : "drassil/head.html"
+inc_before_page_list : "drassil/sidebar.html"
+
+theme: jekyll-theme-minimal
+>>>>>>> cf1340cae381fa6837ba9999ddaf701d6b7c59cb
