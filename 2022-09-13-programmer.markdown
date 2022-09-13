@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "[프로그래머스] 숫자의 표현"
-date: 2022-09-13 09:01
+date: 2022-09-13
 categories: 프로그래머스
+level: 2
 
 ---
 
