@@ -1,0 +1,79 @@
+---
+layout: post
+title: "[leetcode] 278. First Bad Version"
+date: 2022-09-14
+categories: 이분탐색
+level: easy
+
+---
+
+
+
+## < 문제 >
+
+You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad.
+
+Suppose you have n versions [1, 2, ..., n] and you want to find out the first bad one, which causes all the following ones to be bad.
+
+You are given an API bool isBadVersion(version) which returns whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+
+## <제한사항>
+
+- 1 <= bad <= n <= 231 - 1
+
+
+## < 풀이 >
+
+```
+/**
+ * The knows API is defined in the parent class VersionControl.
+ *     func isBadVersion(_ version: Int) -> Bool{}
+ */
+
+class Solution : VersionControl {
+    func firstBadVersion(_ n: Int) -> Int {
+     
+        var min = 1
+        var max = n
+        
+        // Exception
+        if isBadVersion(1) { return 1 }
+        
+        while true {
+            
+            var mid = (min + max)/2
+
+            // true
+            if isBadVersion(mid) {
+                
+                // true면 언제 처음부터 true인지 찾아야한다.
+                // 직전이 false라면 현재 mid가 답
+                if !isBadVersion(mid-1) {
+                    return mid
+                }
+                
+                max = mid
+                
+                // false
+            } else {
+                
+                // Exception
+                // 바로 다음이 max 의 경우, /2 연산으로 더 이상 커지지 않을 경우
+                if mid+1 == max {
+                    return max
+                }
+                
+                // false면 계속 min 올려서 true 나올 때 까지
+                min = mid
+            }
+        }
+        
+        return n
+    }
+}
+
+```
+
+마찬가지로 이분탐색 진행.
+이번에는 딱 떨어지는 값을 찾는 것이 아닌 false와 true의 경계를 찾는 것.
+API를 호출하며 계속 true, false를 추적하여 min, max를 조정해준다. 
