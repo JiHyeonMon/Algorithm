@@ -24,7 +24,7 @@ You must write an algorithm with O(log n) runtime complexity.
 
 ## < 풀이 >
 
-```
+```swift
 class Solution {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
         
