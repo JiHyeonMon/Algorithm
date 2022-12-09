@@ -1,0 +1,116 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 27"
+date:   2020-12-11 04:50 +0530
+categories: python
+---
+
+알고리즘 풀기 38일차
+
+저번에 못푼 문제 더 생각해보고 마저 풀기 
+
+:)
+
+
+- #1003     피보나치
+
+fibonacci(3)을 호출하면 다음과 같은 일이 일어난다.
+
+
+1. fibonacci(3)은 fibonacci(2)와 fibonacci(1) (첫 번째 호출)을 호출한다.
+
+2. fibonacci(2)는 fibonacci(1) (두 번째 호출)과 fibonacci(0)을 호출한다.
+
+3. 두 번째 호출한 fibonacci(1)은 1을 출력하고 1을 리턴한다.
+
+4. fibonacci(0)은 0을 출력하고, 0을 리턴한다.
+
+5. fibonacci(2)는 fibonacci(1)과 fibonacci(0)의 결과를 얻고, 1을 리턴한다.
+
+6. 첫 번째 호출한 fibonacci(1)은 1을 출력하고, 1을 리턴한다.
+
+7. fibonacci(3)은 fibonacci(2)와 fibonacci(1)의 결과를 얻고, 2를 리턴한다.
+
+
+1은 2번 출력되고, 0은 1번 출력된다. N이 주어졌을 때, fibonacci(N)을 호출했을 때, 0과 1이 각각 몇 번 출력되는지 구하는 프로그램을 작성하시오.
+
+
+```python
+#1차 실패
+
+def fibonacci(n) :
+     num = []
+     if n == 0 :
+          num.append(0)
+     elif n == 1:
+          num.append(1)
+     else:
+          return fibonacci(n-1) + fibonacci(n-2)
+     return num
+
+for i in range(int(input())):
+     num = fibonacci(int(input()))
+     print("{} {}".format(num.count(0), num.count(1)))
+
+```
+
+며칠전 이렇게 풀고 시간초과가 났다. 예시로 준 피보나치 함수를 그대로 파이썬화해서 num이라는 리스트에서 count해서 하는 방식이었다. 
+
+
+
+
+```python
+#2차
+
+'''
+1 0
+0 1
+1 1
+1 2
+2 3
+3 4
+'''
+
+for i in range(int(input())):
+     k = int(input())
+     if k == 0:
+          print("{} {}".format(1, 0))
+     elif k == 1:
+          print("{} {}".format(0, 1))
+     elif k == 2:
+          print("{} {}".format(1,1))
+     else:
+          print("{} {}".format(k-2, k-1))
+
+```
+
+규칙찾아 적어보던 중, 1/2 이후로 하나씩 증가하는 건가 싶어 입력 값의 -2, -1 해준 값을 출력했다.
+
+틀렸다. 보니 테스트 케이스 잘못 구했던 거였다. (맨마지막 4가 아니라 5)
+
+
+
+
+그래서 다시 보니 이전 -1, -2의 인덱스들의 합이 다음 수가 되는 것을 보고 아래와 같이 코드를 짰다.
+
+0과 1의 리스트를 따로 만들어 각 -2, -1인덱스의 값을 더해주면 된다.
+
+
+```python
+
+#3차 성공
+
+def fib(k):
+     fib_zero=[1,0]
+     fib_one=[0,1]
+     for i in range(2, k+1):
+          fib_zero.append(fib_zero[i-2]+fib_zero[i-1])
+          fib_one.append(fib_one[i-2]+fib_one[i-1])
+     return "{} {}".format(fib_zero[k], fib_one[k])
+          
+for i in range(int(input())):
+     n = int(input())
+     print(fib(n))
+
+```
+

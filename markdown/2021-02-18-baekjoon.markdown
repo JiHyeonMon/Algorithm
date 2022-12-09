@@ -1,0 +1,76 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 59"
+date:   2021-02-19 23:59 +0530
+categories: python
+---
+
+알고리즘 풀기 73일차
+
+
+:)
+
+- #10866        덱
+
+정수를 저장하는 덱(Deque)를 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
+
+명령은 총 여덟 가지이다.
+
+- push_front X: 정수 X를 덱의 앞에 넣는다.
+- push_back X: 정수 X를 덱의 뒤에 넣는다.
+- pop_front: 덱의 가장 앞에 있는 수를 빼고, 그 수를 출력한다. 만약, 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+- pop_back: 덱의 가장 뒤에 있는 수를 빼고, 그 수를 출력한다. 만약, 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+- size: 덱에 들어있는 정수의 개수를 출력한다.
+- empty: 덱이 비어있으면 1을, 아니면 0을 출력한다.
+- front: 덱의 가장 앞에 있는 정수를 출력한다. 만약 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+- back: 덱의 가장 뒤에 있는 정수를 출력한다. 만약 덱에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+
+
+# <풀이>
+
+```python
+#정답
+from collections import deque
+import sys
+deque = deque()
+for i in range(int(sys.stdin.readline())):
+     tmp = sys.stdin.readline()
+     if tmp[0:6] == 'push_f':
+          deque.insert(0, tmp[11:len(tmp)-1])
+     if tmp[0:6] == 'push_b':
+          deque.append(tmp[10:len(tmp)-1])
+     if tmp[0:5] == 'pop_f':
+          if not deque:
+               print(-1)
+          else:
+               print(deque.popleft())
+     if tmp[0:5] == 'pop_b':
+          if not deque:
+               print(-1)
+          else:
+               print(deque.pop())          
+     if tmp[0] == 's':
+          print(len(deque))
+     if tmp[0] == 'e':
+          if not deque:
+               print(1)
+          else:
+               print(0)
+     if tmp[0] == 'f':
+          if not deque:
+               print(-1)
+          else:
+               print(deque[0])
+     if tmp[0] == 'b':
+          if not deque:
+               print(-1)
+          else:
+               print(deque[-1])
+
+```
+
+---
+
+딴 문제도 풀다 안풀려서 넘어온 문제.
+
+맨처음 push 때 값 자르는거 [n:] 이런 식으로 자르니 뒤에 개행까지 붙어서 짤려서 맨뒤에 한 자리는 빼고 push.

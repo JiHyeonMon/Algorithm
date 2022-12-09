@@ -1,0 +1,92 @@
+---
+layout: post
+title: "[leetcode] 704. Binary Search"
+date: 2022-09-14
+categories: 이분탐색
+level: easy
+
+---
+
+
+
+## < 문제 >
+
+Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.
+
+You must write an algorithm with O(log n) runtime complexity. 
+
+## <제한사항>
+
+- 1 <= nums.length <= 104
+- -104 < nums[i], target < 104
+- All the integers in nums are unique.
+- nums is sorted in ascending order.
+
+
+## < 풀이 >
+
+```swift
+
+class Solution {
+    func search(_ nums: [Int], _ target: Int) -> Int {
+        
+        return nums.firstIndex { $0 == target } ?? -1
+    }
+}
+
+```
+
+당연히 Swift에서 제공하는 index 반환 메서드가 있다.
+보통 제공하는 메서드의 경우 시간효율성이 좋으니 사용해보니 바로 통과.
+
+그러나 이분 탐색 한 번 해보자.
+
+```swift
+
+class Solution {
+    func search(_ nums: [Int], _ target: Int) -> Int {
+        
+        // Exception
+        if nums.first! == target { return 0 }
+        if nums.last! == target { return nums.count-1 }
+        if nums.count == 1 { return -1 }
+        if nums.first! > target || nums.last! < target { return -1 }
+        
+        var min = 0
+        var max = nums.count - 1
+
+        while true {
+            
+            var index = (min + max)/2
+            
+            // find
+            if nums[index] == target {
+                return index
+            }
+            
+            // smaller
+            if nums[index] > target {
+                if index < 1 || nums[index-1] < target { 
+                    return -1
+                }
+                max = index
+            }
+            
+            // biggger
+            if nums[index] < target {
+                if nums[index+1] > target { 
+                    return -1
+                }
+                min = index
+            }
+        }
+        return -1
+    }
+}
+
+```
+
+ㅎㅎ 예외 찾는다고 13번 제출했다. 
+예외를 저렇게 처리해도 되나,,,,? 
+
+이분 탐색: 정렬된 배열에서 특정 수를 찾을 때 쓰는 방법. min, max로 탐색 볌위를 정해서 확률을 줄여나간다!

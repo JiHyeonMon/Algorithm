@@ -1,0 +1,115 @@
+---
+layout: post
+title:  "Baekjoon 알고리즘 14"
+date:   2020-11-12 03:59 +0530
+categories: [Baekjoon]
+tags: [python]
+---
+
+알고리즘 풀기 14일차
+
+오늘은 재귀함수들을 풀어보았다.
+
+프로그래밍 언어배울때 재귀함수 굉장히 어려워하고 싫어했는데, 실제로도 어렵게 내려면 어려운 문제가 많구나 느꼈다..ㅎ
+
+복잡한 로직 생각하기 싫다,,,ㅎ
+
+
+:)
+
+
+- #10872     팩토리얼
+
+```python
+#10872
+#0보다 크거나 같은 정수 N이 주어진다. 이때, N!을 출력하는 프로그램을 작성하시오.
+
+def fac(n):
+     if n>1:
+          return n * fac(n-1)
+     else:
+          return 1
+
+print(fac(int(input())))
+
+```
+
+예전에 풀었던 거, 다시 풀어봤다.
+
+---
+
+- #10870     피보나치 수 5
+
+```python
+#10870
+#피보나치 수 5 - n이 주어졌을 때, n번째 피보나치 수를 구하는 프로그램을 작성하시오.
+
+p = [0,1]
+for i in range(2, 21):
+     p.append(p[i-2]+p[i-1])
+
+print(p[int(input())])
+
+```
+
+자연수 20까지라 미리 20까지 배열을 만들어놓고 바로 입력 값을 인덱스로 바로 찾아주는 코드
+
+---
+
+- #2447     별찍기 - 10
+
+```python
+
+def stars(n):
+    s=[]
+    for i in range(3 * len(n)):
+        if i // len(n) == 1:
+            s.append(n[i % len(n)] + " " * len(n) + n[i % len(n)])
+        else:
+            s.append(n[i % len(n)] * 3)
+    return(list(s))
+
+star = ["***","* *","***"]
+n = int(input())
+k = 0
+while n != 3:
+    n = int(n / 3)
+    k += 1
+    
+for i in range(k):
+    star = stars(star)
+for i in star:
+    print(i)
+
+```
+
+
+제대로 동작 안하던 내가 짠 코드
+```python
+def star(s, n, k):
+     sf = [[],[],[]]
+
+     if k>n:
+          return sf
+     
+     sf[0] = s*k
+     
+     for i in range(0, len(sf[0]) ):
+          if i%2==0:
+               sf[1].append(s*len(s))
+          else:
+               sf[1].append(" "*len(s))
+     sf[2] = sf[0]
+
+     k *= 3
+     s= ''.join(sf[0])+''.join(sf[1])+''.join(sf[2])
+     star(s, n, k)
+
+n = int(input())
+s = "*"
+
+print(star(s, n, 3))
+```
+
+접근은 비슷했으나 더 생각해봐야 할 로직이 많아보였다.
+
